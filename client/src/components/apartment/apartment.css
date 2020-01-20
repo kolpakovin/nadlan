@@ -1,0 +1,289 @@
+.carousel {
+  width: 60%;
+  margin-left: 225px; }
+  .carousel img {
+    height: 550px; }
+
+#div-form {
+  width: 300px;
+  margin-left: auto;
+  margin-right: 10px;
+  position: absolute;
+  top: 106px;
+  right: 50px; }
+
+#user-name-input {
+  width: 100%; }
+
+span.input-group-addon {
+  position: absolute;
+  bottom: 3px;
+  left: 5px; }
+
+.div-input {
+  width: 100%;
+  position: relative; }
+  .div-input input {
+    padding-left: 30px; }
+
+#text-input-area {
+  resize: none;
+  height: 50px;
+  width: 100%;
+  padding: 0 30px; }
+
+#form-button {
+  width: 100%;
+  height: 40px;
+  border-radius: 13px;
+  border: 1px solid transparent;
+  color: white;
+  background: #d92228; }
+
+#phone-form {
+  background-color: #E0E0E0;
+  padding: 10px; }
+
+.apartment-details {
+  margin-left: 235px;
+  margin-top: 20px; }
+
+.agency {
+  font-size: 12px;
+  margin-left: 225px; }
+
+.fake-input {
+  width: 40%;
+  height: 50px;
+  background-color: #5f5150;
+  border-radius: 32px;
+  opacity: 0.6;
+  margin: 15px; }
+
+.fake-content {
+  height: 15px;
+  width: 90%;
+  background: #AB9C95;
+  margin: 5px auto;
+  opacity: 0.7;
+  border-radius: 10px; }
+
+.map-container {
+  overflow: hidden;
+  padding-bottom: 56.25%;
+  position: relative;
+  height: 0; }
+
+.map-container iframe {
+  left: 0;
+  top: 0;
+  height: 50%;
+  width: 50%;
+  position: absolute; }
+
+.lds-ellipsis {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px; }
+
+.lds-ellipsis div {
+  position: absolute;
+  top: 33px;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: #cef;
+  -webkit-animation-timing-function: cubic-bezier(0, 1, 1, 0);
+  animation-timing-function: cubic-bezier(0, 1, 1, 0); }
+
+.lds-ellipsis div:nth-child(1) {
+  left: 8px;
+  -webkit-animation: lds-ellipsis1 0.6s infinite;
+  animation: lds-ellipsis1 0.6s infinite; }
+
+.lds-ellipsis div:nth-child(2) {
+  left: 8px;
+  -webkit-animation: lds-ellipsis2 0.6s infinite;
+  animation: lds-ellipsis2 0.6s infinite; }
+
+.lds-ellipsis div:nth-child(3) {
+  left: 32px;
+  -webkit-animation: lds-ellipsis2 0.6s infinite;
+  animation: lds-ellipsis2 0.6s infinite; }
+
+.lds-ellipsis div:nth-child(4) {
+  left: 56px;
+  -webkit-animation: lds-ellipsis3 0.6s infinite;
+  animation: lds-ellipsis3 0.6s infinite; }
+
+@-webkit-keyframes lds-ellipsis1 {
+  0% {
+    -webkit-transform: scale(0);
+    transform: scale(0); }
+  100% {
+    -webkit-transform: scale(1);
+    transform: scale(1); } }
+
+@keyframes lds-ellipsis1 {
+  0% {
+    -webkit-transform: scale(0);
+    transform: scale(0); }
+  100% {
+    -webkit-transform: scale(1);
+    transform: scale(1); } }
+
+@-webkit-keyframes lds-ellipsis3 {
+  0% {
+    -webkit-transform: scale(1);
+    transform: scale(1); }
+  100% {
+    -webkit-transform: scale(0);
+    transform: scale(0); } }
+
+@keyframes lds-ellipsis3 {
+  0% {
+    -webkit-transform: scale(1);
+    transform: scale(1); }
+  100% {
+    -webkit-transform: scale(0);
+    transform: scale(0); } }
+
+@-webkit-keyframes lds-ellipsis2 {
+  0% {
+    -webkit-transform: translate(0, 0);
+    transform: translate(0, 0); }
+  100% {
+    -webkit-transform: translate(24px, 0);
+    transform: translate(24px, 0); } }
+
+@keyframes lds-ellipsis2 {
+  0% {
+    -webkit-transform: translate(0, 0);
+    transform: translate(0, 0); }
+  100% {
+    -webkit-transform: translate(24px, 0);
+    transform: translate(24px, 0); } }
+
+.google-map {
+  position: relative;
+  height: 250px;
+  width: 450px;
+  bottom: 80px;
+  left: calc(100vw/2.2); }
+
+.google-map iframe {
+  height: 100%;
+  width: 100%; }
+
+#under-carousel-text {
+  color: #1c7de6; }
+  #under-carousel-text:hover {
+    text-decoration: underline; }
+
+.description .upload-time-1 {
+  z-index: 88;
+  bottom: 33px;
+  font-size: 14px;
+  background-color: green;
+  color: white;
+  left: 280px;
+  padding: 0 3px; }
+
+.description .rent-status-1 {
+  position: absolute;
+  bottom: 34px;
+  background: #ce7f8e;
+  color: #ffffff;
+  left: calc(100vw/2 + 100vw/10);
+  padding: 0 3px; }
+
+#side-menu-button {
+  display: none; }
+
+.add-baner {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  padding: 50px;
+  color: white;
+  border-top: 1px solid gray; }
+  .add-baner div {
+    background: #020024;
+    background: -webkit-gradient(linear, left top, right top, from(#020024), color-stop(0%, #f71919), to(#6b0000));
+    background: -webkit-linear-gradient(left, #020024 0%, #f71919 0%, #6b0000 100%);
+    background: -o-linear-gradient(left, #020024 0%, #f71919 0%, #6b0000 100%);
+    background: linear-gradient(90deg, #020024 0%, #f71919 0%, #6b0000 100%);
+    padding: 20px 100px; }
+  .add-baner button {
+    background: transparent;
+    border: 1px solid white;
+    padding: 10px;
+    font-size: 23px;
+    color: white;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    font-weight: 700;
+    margin-left: 17px; }
+  .add-baner h3 {
+    font-size: 33px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif; }
+
+@media (max-width: 576px) {
+  .agency {
+    margin-left: 0; }
+  .carousel {
+    width: 100vw;
+    margin-left: 0; }
+  .apartment-details {
+    margin-left: 0; }
+  .google-map {
+    height: 250px;
+    bottom: 115px;
+    left: 0;
+    position: static;
+    width: 100vw; }
+  .description .rent-status-1 {
+    left: 0; }
+  .description .upload-time-1 {
+    left: 240px; }
+  #side-menu-button {
+    display: block;
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    z-index: 99999;
+    background-color: #f0f0f0;
+    padding: 5px;
+    font-size: 20px;
+    border-radius: 6px; }
+  #div-form {
+    -webkit-transition: -webkit-transform .5s;
+    transition: -webkit-transform .5s;
+    -o-transition: transform .5s;
+    transition: transform .5s;
+    transition: transform .5s, -webkit-transform .5s;
+    -webkit-transform: translateX(-120%);
+    -ms-transform: translateX(-120%);
+    transform: translateX(-120%); }
+    #div-form.active {
+      -webkit-transform: translateX(0);
+      -ms-transform: translateX(0);
+      transform: translateX(0); } }
+
+.like-me i {
+  position: absolute;
+  bottom: 100px;
+  font-size: 40px;
+  color: red;
+  background-color: white;
+  right: calc(100vw/2.4);
+  border: 0;
+  border-radius: 50%;
+  padding: 8px;
+  z-index: 99999; }

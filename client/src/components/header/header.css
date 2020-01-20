@@ -1,0 +1,288 @@
+h4 {
+  font-size: 14px; }
+
+li.navigation-li {
+  list-style: none;
+  padding-right: 8px;
+  padding-left: 8px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  border-bottom: 3px solid transparent; }
+  li.navigation-li:first-child {
+    border-bottom: 3px solid red; }
+  li.navigation-li li {
+    list-style: none; }
+
+#iphone-icon {
+  border-bottom: 3px solid transparent; }
+  #iphone-icon:hover {
+    border-bottom: 3px solid red; }
+
+h4.li-title:hover {
+  color: red;
+  cursor: pointer; }
+
+li.navigation-li:hover {
+  border-bottom: 3px solid red; }
+
+#app-header {
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  border-bottom: 1px solid #898989; }
+
+#app-header img {
+  height: 74px;
+  width: 250px; }
+
+.sub-nav-menu {
+  position: absolute;
+  top: 81px;
+  z-index: 1000;
+  background-color: #ffffff;
+  left: 0;
+  right: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+  justify-content: space-around;
+  padding: 10px 0; }
+  .sub-nav-menu div li:first-child {
+    font-weight: bold; }
+
+div.navigation {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center; }
+  div.navigation a {
+    color: black;
+    text-decoration: none; }
+
+.full-height {
+  height: 100%; }
+
+#left-side {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-right: 100px; }
+
+#right-ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-right: 5px;
+  height: 100%; }
+
+.gallery {
+  margin: 23px 0 0 0; }
+
+#filters {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-left: 10px; }
+
+.filter-submenu {
+  list-style: none; }
+
+#name-input {
+  height: 38px;
+  width: 150px; }
+
+.label-of-submenu {
+  border: 1px solid #d02929;
+  border-radius: 50%;
+  padding: 8px 11px;
+  margin-right: 5px; }
+
+.dropdown-fltr {
+  border: 1px solid darkgray;
+  padding: 10px; }
+
+.submenu-title {
+  font-weight: bold;
+  font-size: 12px;
+  position: relative;
+  bottom: 5px; }
+
+.price-divider {
+  font-size: 30px;
+  color: gray;
+  position: relative;
+  top: 18px; }
+
+.dollar {
+  position: relative;
+  top: 31px;
+  left: 4px;
+  color: gray; }
+
+.price-fltr {
+  position: relative;
+  bottom: 22px; }
+
+#iphone-inner {
+  position: absolute;
+  top: 81px;
+  right: 199px;
+  font-size: 13px;
+  border: 1px solid black;
+  background: white;
+  padding: 10px;
+  font-family: American Typewriter, serif;
+  border-radius: 5px;
+  z-index: 999;
+  color: #454545; }
+  #iphone-inner #first-div {
+    border-bottom: 1px solid darkgray; }
+  #iphone-inner i {
+    position: absolute;
+    top: 23px;
+    left: -10px;
+    font-size: 40px;
+    color: black; }
+  #iphone-inner .inner-div {
+    position: relative; }
+    #iphone-inner .inner-div svg {
+      position: relative;
+      left: 7px; }
+    #iphone-inner .inner-div p {
+      position: absolute;
+      left: 55px; }
+      #iphone-inner .inner-div p:first-child {
+        top: 22px; }
+      #iphone-inner .inner-div p:last-child {
+        top: 29px; }
+
+.ml-39 {
+  margin-left: 39px; }
+
+#login {
+  position: fixed;
+  z-index: 9999;
+  top: 75px;
+  color: black;
+  right: calc(100vw/4);
+  background: white;
+  line-height: 1.6; }
+  #login h4 {
+    font-size: 23px; }
+  #login p {
+    margin: 8px 0; }
+  #login .left-side {
+    width: 55%; }
+  #login .right-side {
+    width: 45%;
+    background-color: #ececec; }
+    #login .right-side button {
+      background-color: #00acee;
+      color: white;
+      border: 0;
+      border-radius: 10px;
+      padding: 0 30px;
+      margin: 10px 0; }
+    #login .right-side a {
+      color: #00acee; }
+      #login .right-side a:hover {
+        text-decoration: underline; }
+    #login .right-side img {
+      position: absolute;
+      bottom: 30px;
+      right: 35px; }
+  #login .padding-form {
+    padding: 30px 20px; }
+  #login input {
+    width: 100%;
+    height: 35px;
+    position: relative;
+    margin: 5px 0;
+    padding-left: 10px; }
+  #login #forgot-password:hover {
+    color: #1c7de6;
+    text-decoration: underline; }
+  #login #close-me {
+    position: absolute;
+    right: 10px;
+    top: 0;
+    font-size: 22px;
+    cursor: pointer; }
+  #login #simple-login {
+    color: white;
+    background-color: #d92228;
+    border: 0;
+    padding: 3px 45px;
+    border-radius: 18px; }
+  #login #no-account {
+    position: relative;
+    top: 4px;
+    color: #d92228; }
+    #login #no-account:hover {
+      color: #1c7de6;
+      text-decoration: underline; }
+  #login .login-form-button {
+    width: 100%;
+    margin: 5px 0;
+    border-radius: 15px;
+    border: 0;
+    padding: 3px 10px; }
+  #login .facebook-button {
+    background-color: #39589b;
+    color: white; }
+  #login .google-button {
+    background-color: white;
+    border: 1px solid black; }
+    #login .google-button img {
+      height: 17px;
+      width: 17px;
+      position: relative;
+      top: 3px;
+      right: 4px; }
+
+@media (max-width: 576px) {
+  div.navigation {
+    display: none; }
+  .burger-icon {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center; }
+  .burger-menu {
+    width: 35px;
+    height: 5px;
+    background-color: black;
+    margin: 3px 0; }
+  .image-div-2 {
+    -webkit-box-ordinal-group: -1;
+    -ms-flex-order: -2;
+    order: -2; }
+  #rectangle-div-form input {
+    width: 250px !important; }
+  #rectangle-div-form .button {
+    width: 20%; }
+  .add-baner div {
+    padding: 15px 3px !important; }
+  .add-baner h3 {
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center; }
+  .statistic {
+    height: 100% !important; }
+  #address {
+    width: 355px !important; }
+  #right-ul:last-child {
+    display: none; } }
