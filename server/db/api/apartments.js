@@ -18,13 +18,15 @@ const Builder = require('./builder')
 //     })
 // }
 
-function getAll({rooms = -1, beds = -1, minprice = -1, maxprice = -1, page = 1, size = 10}) {
+function getAll({rooms = -1, beds = -1, minprice = -1, maxprice = 9999999999999,user_id = -1, page = 1, size = 10}) {
     const builder = new Builder();
     return new Promise((resolve, reject) => {
         const {query,params} = builder.allApartments(page, size)
                         .rooms(rooms)
                         .beds(beds)
                         .minprice(minprice)
+                        .maxprice(maxprice)
+                        .user_id(user_id)
                         .build()
         console.log(query, params); 
         connection.query(query, [...params,page,size], (error, results, fields) => {

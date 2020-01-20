@@ -44,7 +44,8 @@ class RightSide extends React.Component {
     }
     cleanCookie = () => {
         this.setState({
-            user: null
+            user: null,
+            isOpenForm: false
         })
         Cookies.remove('user')
     }
@@ -59,7 +60,7 @@ class RightSide extends React.Component {
                         </i></li>
                     {this.state.user ?
 
-                        <li onClick={() => this.redirectToUser()} className={"navigation-li"}> <Link to={`/profile/`}><h4 className={"li-title"}>
+                        <li className={"navigation-li"}> <Link to={`/profile`}><h4 className={"li-title"}>
                             {this.state.user.first_name} </h4></Link></li>
 
                         : <li onClick={this.changeFormStatus} className={"navigation-li"}><h4 className={"li-title"}>

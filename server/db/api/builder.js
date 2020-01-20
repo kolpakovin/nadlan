@@ -15,8 +15,10 @@ class Builder {
         return this;
     }
     user_id = (user_id) => {
+        if(user_id > 0){
         this.params.push(user_id)
         this.query += ' and user_id = ? ';
+        }
         return this;
     }
     city_id = (city_id) => {
@@ -27,6 +29,11 @@ class Builder {
     minprice = (price) => {
         this.params.push(price);
         this.query += ' and price >= ? ';
+        return this;
+    }
+    maxprice = (price) => {
+        this.params.push(price);
+        this.query += ' and price <= ? ';
         return this;
     }
     rooms = (rooms) => {

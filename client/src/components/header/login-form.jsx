@@ -10,8 +10,8 @@ class LoginForm extends React.Component{
         this.state = {
             email: '', 
             password: '',
-            redirect : false, 
-            form_style: true
+            redirect : false 
+            // form_style: true
         }
     }
     // componentDidMount() {
@@ -31,9 +31,9 @@ class LoginForm extends React.Component{
     sendUser = (e) => {
         e.preventDefault()
         console.log(this.state.email ,this.state.password);
-        this.setState({
-            form_style: false
-        })
+        // this.setState({
+        //     form_style: false
+        // })
         loginUser(this.state.email, this.state.password, this.changeState)
         // .then(result => this.setState({}))
         
@@ -54,6 +54,9 @@ class LoginForm extends React.Component{
             console.log('JSON', JSON.parse(Cookies.get('user')))
             console.log('state ', this.state.form_style);
              console.log('I was here 2');
+             this.setState({
+                redirect: false
+            })
            return <Redirect to='/admin' />
         }
     }
@@ -62,7 +65,8 @@ class LoginForm extends React.Component{
         const changeStatus = this.props.changeUserState;
         return (
             
-            <form id={"login"} style={{display: this.props.isOpenForm && this.state.form_style ? 'flex' : 'none'} } >
+            <form id={"login"} style={{display: this.props.isOpenForm && 
+            (window.location.href !== "http://localhost:3000/profile" && window.location.href !== "http://localhost:3000/admin") ? 'flex' : 'none'} } >
                <div className={"left-side"}>
                    <div className={"padding-form"}>
                         {this.renderRedirect()}

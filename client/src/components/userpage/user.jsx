@@ -1,36 +1,49 @@
 import React, { Component } from 'react';
 import Cookies from 'js-cookie';
 import { Redirect } from 'react-router';
-import {getApartmentsById} from '../app-data/apartments-server'
+import {getApartmentsByUserId} from '../app-data/apartments-server';
+import Grig from "../gallery/grid";
+
 
 
 export const userpage = true;
 
 class User extends Component {
-    // constructor(props) {
-    //     super(props);
-    //     this.state = {
-    //         user: null
-    //     }
-    // }
+    constructor(props) {
+        super(props);
+        this.state = {
+            apartments: []
+        }
+    }
     // componentDidMount(){
     //     this.state({
     //         user: 
     //     })
     // }
+    async componentDidMount(){
+        if (Cookies.get('user')){
+        const apartments = await getApartmentsByUserId(JSON.parse(Cookies.get('user')).id);
+        this.setState({
+            apartments
+        });}
+    }
     cleanCookie = () => {
         console.log('clean cookie')
         Cookies.remove('user');
         return <Redirect to='/apartments' />
     }
     render() {
-        // const mycookie = JSON.parse(Cookies.get('user'));
-        // const {user} = this.state;
-        // console.log('user', user)
         return (
-            <div>    
+            <div>
                 <div className="m-4">
                     <h1>{`Hello ${JSON.parse(Cookies.get('user')).first_name} ${JSON.parse(Cookies.get('user')).last_name}. Let's build a new page ;)`}</h1>    
+                </div>
+                <div className={"container mt-4"}>
+                    <div className={" row"}>
+                        {
+                            this.state.apartments.map((item, i) => <Grig {...item}  key={i}/>)
+                        }
+                    </div>
                 </div>
                 <div id={'user-form'}>
                     <form>
