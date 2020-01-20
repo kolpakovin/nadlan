@@ -5,7 +5,7 @@ class Grid extends React.Component {
     render() {
         const {type, label, number_of_bath,address, country, number_of_room,for_rent, for_sale, sqft, price, image, main_image, name} = this.props;
 
-        const num_bath_or_description = number_of_bath && "beds: " + number_of_bath ;
+        const num_bath_or_description = number_of_bath && "baths: " + number_of_bath ;
         const apartment_price = price && "$" + Math.floor(price);
         const num_of_rooms = number_of_room && "rooms: " + number_of_room;
         const heart_icon = <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" aria-labelledby="Save Listing"
