@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Cookies from 'js-cookie';
-import { Redirect } from 'react-router'
+import { Redirect } from 'react-router';
+import {getApartmentsById} from '../app-data/apartments-server'
 
 
 export const userpage = true;

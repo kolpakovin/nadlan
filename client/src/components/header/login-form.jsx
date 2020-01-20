@@ -35,6 +35,7 @@ class LoginForm extends React.Component{
             form_style: false
         })
         loginUser(this.state.email, this.state.password, this.changeState)
+        // .then(result => this.setState({}))
         
     }
     changeState = () => {
@@ -45,7 +46,9 @@ class LoginForm extends React.Component{
     renderRedirect = () => {
         if (this.state.redirect && JSON.parse(Cookies.get('user')).role_id == 2) {
            console.log('state ', this.state.form_style);
-            console.log('I was here');
+           this.setState({
+               redirect: false
+           })
           return <Redirect to='/profile' />
         }else if (this.state.redirect && JSON.parse(Cookies.get('user')).role_id == 1) {
             console.log('JSON', JSON.parse(Cookies.get('user')))

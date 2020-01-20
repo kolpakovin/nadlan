@@ -20,6 +20,14 @@ const getApartments = async (rooms = 0, beds = 0, minprice = -1, maxprice = -1, 
     }
 }
 
+const getApartmentsById = async (id) => {
+    try {
+        const response = await fetcher.get(`/apartments?id=${id}`);
+        return response.data.apartments;
+    } catch (error) {
+        console.log(error);
+    }
+}
 
 async function getApartment(apartmentId, handleSuccess) {
     try {
@@ -50,7 +58,7 @@ async function loginUser(email, password, func) {
     }
 }
 
-export { getApartments, getApartment, registerUser, loginUser }
+export { getApartments, getApartment, registerUser, loginUser, getApartmentsById }
 
 /*const getDataFromServer = () => {
     fetch(`https://storage.googleapis.com/realtour/apartments-rt.json`, {

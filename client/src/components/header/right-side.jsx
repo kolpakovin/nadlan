@@ -30,19 +30,23 @@ class RightSide extends React.Component {
         })
     }
     changeUserState = () => {
-        if (this.state.isOpenForm && JSON.parse(Cookies.get('user'))) {
-            this.setState({
-                user: JSON.parse(Cookies.get('user'))
-            })
-        }
+        console.log('user from state1',this.state.user)
+        setTimeout(() => this.setState({
+            user: JSON.parse(Cookies.get('user'))
+        }), 500);
+
+        // if (this.state.isOpenForm && JSON.parse(Cookies.get('user'))) {
+        //     this.setState({
+        //         user: JSON.parse(Cookies.get('user'))
+        //     })
+        // }
+        console.log('user from state',this.state.user)
     }
-    redirectToUser = () => {
-        console.log('redirect')
-        return <Redirect to='/profile' />
-    }
-    redirectToHomePage = () => {
-        console.log('redirect to homepage ')
-        return <Redirect to='/' />
+    cleanCookie = () => {
+        this.setState({
+            user: null
+        })
+        Cookies.remove('user')
     }
     render() {
         return (
@@ -62,9 +66,10 @@ class RightSide extends React.Component {
                             Log In
     
                     </h4></li>}
-                    {this.state.user ? <li onClick={this.changeSignUpStatus} className={"navigation-li"}><h4 className={"li-title"}>
+                    {this.state.user ? <li onClick={() => this.cleanCookie()} className={"navigation-li"}>
+                    <Link to={`/`}><h4 className={"li-title"}>
                         Log Out
-                    </h4></li>
+                    </h4></Link></li>
 
                         : <li onClick={this.changeSignUpStatus} className={"navigation-li"}><h4 className={"li-title"}>
                             Sign Up
