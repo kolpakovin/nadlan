@@ -59,7 +59,13 @@ async function loginUser(email, password, func) {
     }
 }
 
-export { getApartments, getApartment, registerUser, loginUser, getApartmentsByUserId }
+const addApartment = async (form_data) => {
+    console.log('data from form: ', form_data)
+    const response = await fetcher.post(`/apartments`, form_data)
+    return response.data
+}
+
+export { getApartments, getApartment, registerUser, loginUser, getApartmentsByUserId, addApartment }
 
 /*const getDataFromServer = () => {
     fetch(`https://storage.googleapis.com/realtour/apartments-rt.json`, {

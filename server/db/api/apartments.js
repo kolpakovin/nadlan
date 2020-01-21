@@ -65,11 +65,12 @@ function getImagesById(apartmentId){
         });
     })
 }
-function newApartment({user_id, address, city_id, price, number_of_room, number_of_bath,sqft, sale_status, availability, property_type, main_image, status}) {
+function newApartment(user_id, address, city_id, price, number_of_room, number_of_bath,sqft, sale_status, available, property_type, main_image, status) {
+    main_image = "public/images/apartment/" + main_image
     return new Promise((resolve, reject) => {
 
         connection.query(`INSERT INTO apartments (user_id,address,city_id,price,number_of_room,number_of_bath,sqft,sale_status,availability,property_type,main_image,status) 
-        VALUES (?,?,?,?,?,?,?,?,?,?,?,?);`, [user_id, address, city_id, price, number_of_room, number_of_bath,sqft, sale_status, availability, property_type, main_image, status],
+        VALUES (?,?,?,?,?,?,?,?,?,?,?,?);`, [user_id, address, city_id, price, number_of_room, number_of_bath,sqft, sale_status, available, property_type, main_image, status],
          (error, results, fields) => {
             if (error) {  
                 console.log(error);
