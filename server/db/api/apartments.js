@@ -66,7 +66,7 @@ function getImagesById(apartmentId){
     })
 }
 function newApartment(user_id, address, city_id, price, number_of_room, number_of_bath,sqft, sale_status, available, property_type, main_image, status) {
-    main_image = "public/images/apartment/" + main_image
+    main_image = "images/apartment/" + main_image
     return new Promise((resolve, reject) => {
 
         connection.query(`INSERT INTO apartments (user_id,address,city_id,price,number_of_room,number_of_bath,sqft,sale_status,availability,property_type,main_image,status) 
@@ -77,9 +77,37 @@ function newApartment(user_id, address, city_id, price, number_of_room, number_o
                 reject(error)
                 return
             };
-            resolve(results);
+            resolve(results.insertId);
         })
     })
 }
 
-module.exports = {getAll, byId, getImagesById, newApartment}
+function addImages(apartment_id, array_of_images) {
+    array_of_images.forEach(image => {
+        console.log('!-!', image.filename);   
+        imageURL = 'images/apartment/' + image.filename;
+        return new Promise((resolve, reject) => {
+        
+            // let data = "";
+            // array_of_images.map(image => data += (`(${apartment_id},${" ' " + image.filename+ " ' "}),`));
+            // data = data.slice(0, data.length - 1)
+            console.log(`INSERT INTO images(apartment_id, url) VALUES (${apartment_id},'${imageURL}')`)
+            connection.query(`INSERT INTO images(apartment_id, url) VALUES (${apartment_id},'${imageURL}')` ,(error, result, fields) => {
+                if (error){
+                    console.log('my images error');
+                    console.log(error);
+                    reject(error)
+                }
+                console.log('res', result)
+                resolve(result.data);
+            })
+        })
+    })
+}
+    
+    // console.log('imageURL: ' , imageURL)
+    // console.log('apartment_id:', apartment_id)
+    
+
+
+module.exports = {getAll, byId, getImagesById, newApartment, addImages}

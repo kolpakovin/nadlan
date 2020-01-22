@@ -21,7 +21,7 @@ class Grid extends React.Component {
                  id={type === "cities" ? "city" + this.props.id : "apartment" + this.props.id}>
                 <Link to={`/apartment/${this.props.id}`}>
                     <div className={"city-content card"}>
-                        <img src={type === "cities" ? "" + image : "" + main_image} alt=""/>
+                        <img src={`http://localhost:4000/${main_image}`} alt=""/>
                         {<div className={"d-flex"}>
                             <p className={type === "cities" ? "city-description" : "num_of_baths ml-2"}>{num_bath_or_description}</p>
                             <p className={"rooms ml-2"}>{num_of_rooms}</p>

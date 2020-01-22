@@ -8,6 +8,7 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var apartmentsRouter = require('./routes/apartments');
 var citiesRouter = require('./routes/cities')
+const imagesRouter = require('./routes/images')
 
 var app = express();
 app.use(cors({credentials: true, origin: 'http://localhost:3000'}))
@@ -21,7 +22,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/apartments', apartmentsRouter);
-app.use('/cities', citiesRouter)
+app.use('/cities', citiesRouter);
+app.use('images', imagesRouter)
 
 // app.use('/images', getImagesRouter)
 

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Cookies from 'js-cookie';
 import { Redirect } from 'react-router';
-import { getApartmentsByUserId, addApartment } from '../app-data/apartments-server';
+import { getApartmentsByUserId, addApartment, addImages } from '../app-data/apartments-server';
 import Grig from "../gallery/grid";
 
 
@@ -19,7 +19,8 @@ class User extends Component {
             sale_status: null,
             available: "available",
             property_type: null,
-            main_image: null
+            main_image: null,
+            images : []
         }
     }
     // componentDidMount(){
@@ -41,8 +42,16 @@ class User extends Component {
     }
     addApartment = (e) => {
         e.preventDefault()
-        const {main_image, user_id, city_id, address, price, rooms, baths, sqft, sale_status, available, property_type} = this.state
+        const {main_image, user_id, city_id, address, price, rooms, baths, sqft, sale_status, available, property_type, images} = this.state
         const formData = new FormData();
+        const apartmentsToSend = []
+        apartmentsToSend.push(main_image);
+        console.log(images, typeof(images))
+        apartmentsToSend.push(...images);
+        apartmentsToSend.forEach(image => {
+            console.log("I WAS HERE BABY", image)
+            formData.append('images', image)
+        });
         const singleApartment = {
             user_id : JSON.parse(Cookies.get('user')).id,
             city_id,
@@ -54,18 +63,14 @@ class User extends Component {
             sale_status,
             available, 
             property_type, 
-            main_image,
             status: "pending"
         }
         console.log("singleApartment: ", singleApartment)
         for (let prop in singleApartment) {
-            if (prop === 'main_image'){
-                formData.append(prop, document.querySelector(".main_image").files[0])
-            } else {
                 formData.append(prop, singleApartment[prop])
             }
-        }
-        addApartment(formData)
+        addApartment(formData);
+        // addImages(apartmentid.id, this.state.images)
     }
     handleChange = (e) => {
         e.preventDefault();
@@ -80,7 +85,14 @@ class User extends Component {
         console.log(e.target.files[0])
         this.setState({
             main_image: e.target.files[0]
-        })        
+        })
+    }
+    onImagesChange = (e) => {
+        // console.log(e.target.files)
+        // let imagesArr = []
+        // imagesArr.push(e.target.files)
+        // console.log(imagesArr)
+        this.setState({ images: e.target.files })
     }
     render() {
         console.log('blabla', this.props.sale_status)
@@ -148,8 +160,12 @@ class User extends Component {
                                 </select>
                             </div>
                             <div class="form-group mt-1 ml-4">
-                                <label for="exampleFormControlFile1">Apartment's image</label>
+                                <label for="exampleFormControlFile1">Apartment's main image</label>
                                 <input type="file" class="main_image form-control-file" id="exampleFormControlFile1" onChange={(e) => this.onFileChange(e)}/>
+                            </div>
+                            <div class="form-group mt-1 ml-4">
+                                <label for="exampleFormControlFile1">Apartment's images</label>
+                                <input type="file" class="images form-control-file" id="exampleFormControlFile1"  onChange={(e) => this.onImagesChange(e)} multiple/>
                             </div>
                         </div>
                         

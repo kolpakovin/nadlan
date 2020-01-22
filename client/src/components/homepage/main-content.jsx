@@ -25,7 +25,7 @@ class MainContent extends React.Component {
                 <div className={"container mt-4"}>
                     <div className={" row"}>
                         {
-                            this.state.apartments.map((item, i) => <Grig {...item} type={"apartments"} key={i}/>)
+                            this.state.apartments.map((item, i) => <Grig {...item}  key={i}/>)
                         }
                     </div>
                 </div>
