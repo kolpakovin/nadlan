@@ -7,7 +7,7 @@ import { Redirect } from 'react-router';
 import { Link } from "react-router-dom";
 
 
-
+ 
 
 class RightSide extends React.Component {
     constructor() {
@@ -17,6 +17,13 @@ class RightSide extends React.Component {
             isOpenForm: false,
             isOpenSignUp: false,
             user: null
+        }
+    }
+    async componentDidMount() {
+        if (Cookies.get('user')) {
+            this.setState({
+                user: JSON.parse(Cookies.get('user'))
+            });
         }
     }
     changeFormStatus = () => {
@@ -60,7 +67,7 @@ class RightSide extends React.Component {
                         </i></li>
                     {this.state.user ?
 
-                        <li className={"navigation-li"}> <Link to={`/profile`}><h4 className={"li-title"}>
+                        <li className={"navigation-li"}> <Link to={`/profile/`}><h4 className={"li-title"}>
                             {this.state.user.first_name} </h4></Link></li>
 
                         : <li onClick={this.changeFormStatus} className={"navigation-li"}><h4 className={"li-title"}>

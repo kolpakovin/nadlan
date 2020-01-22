@@ -10,7 +10,7 @@ const storage = multer.diskStorage({
         cb(null, 'public/images/apartment')
     }, 
     filename: function(req, file, cb){
-        cb(null, new Date().getHours() + '-' + file.originalname)
+        cb(null, `${new Date().getMinutes()}-${file.originalname}`);
     }
 });
 const upload = multer({storage})
@@ -33,18 +33,17 @@ router.get ('/:id/images', function(req, res, next) {
     .catch(error => res.status(500).json({error: error.message})) 
 })
 router.post('/', upload.array('images') ,async function(req, res, next) {
-    console.log('req.body: ',req.body)
-    console.log('req.files: ',req.files)
-    const main_image = new Date().getHours() + '-' + req.files[0].originalname;
-    const images = req.files;
-    const {user_id, address, city_id, price, rooms, baths,sqft, sale_status, available, property_type, status} = req.body;
-    console.log('req.body: ',req.body)
-    const apartmentId = await newApartment(user_id, address, city_id, price, rooms, baths ,sqft, sale_status, available, property_type, main_image, status)
-    const newapp = await addImages(apartmentId, req.files)
-    const apart = req.files
-    console.log(newapp)
-    .then(apart=> res.status(200).json(apart))
-    .catch(error => res.status(500).json({error: error.message})) 
+    try{
+        console.log('req.body: ',req.body)
+        console.log('req.files: ',req.files)
+        const main_image = `${new Date().getMinutes()}-${req.files[0].originalname}`;
+        const {user_id, address, city_id, price, rooms, baths,sqft, sale_status, available, property_type, status} = req.body;
+        const apartmentId = await newApartment(user_id, address, city_id, price, rooms, baths ,sqft, sale_status, available, property_type, main_image, status)
+        await addImages(apartmentId, req.files);
+        res.status(201).json({id: apartmentId});
+    }catch(error){
+        res.status(500).json({error: error.message});
+    }
 })
 
 

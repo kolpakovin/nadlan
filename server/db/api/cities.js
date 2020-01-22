@@ -13,4 +13,17 @@ function getCityByCityId(id) {
     })
 }
 
-module.exports = {getCityByCityId}
+function getAllCities() {
+    return new Promise((resolve, reject) => {
+
+        connection.query(`SELECT * FROM cities`, (error, results, fields) => {
+            if (error) {
+                reject(error)
+                return
+            };
+            resolve(results);
+        });
+    })
+}
+
+module.exports = {getCityByCityId, getAllCities}

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Cookies from 'js-cookie';
 import { Redirect } from 'react-router';
-import { getApartmentsByUserId, addApartment, addImages } from '../app-data/apartments-server';
+import { getApartmentsByUserId, addApartment, getCities } from '../app-data/apartments-server';
 import Grig from "../gallery/grid";
 
 
@@ -20,21 +20,17 @@ class User extends Component {
             available: "available",
             property_type: null,
             main_image: null,
-            images : []
+            images : [],
+            cities: []
         }
     }
-    // componentDidMount(){
-    //     this.state({
-    //         user: 
-    //     })
-    // }
     async componentDidMount() {
         if (Cookies.get('user')) {
             const apartments = await getApartmentsByUserId(JSON.parse(Cookies.get('user')).id);
             this.setState({
                 apartments
             });
-        }
+        } await getCities(this.setCities)
     }
     cleanCookie = () => {
         console.log('clean cookie')
@@ -46,7 +42,6 @@ class User extends Component {
         const formData = new FormData();
         const apartmentsToSend = []
         apartmentsToSend.push(main_image);
-        console.log(images, typeof(images))
         apartmentsToSend.push(...images);
         apartmentsToSend.forEach(image => {
             console.log("I WAS HERE BABY", image)
@@ -94,8 +89,16 @@ class User extends Component {
         // console.log(imagesArr)
         this.setState({ images: e.target.files })
     }
+    setCities = (cities) => {
+        console.log(cities)
+        this.setState({ cities: cities.data})
+    }
     render() {
-        console.log('blabla', this.props.sale_status)
+        const cities = [];
+        for (let city in this.state.cities){
+            cities.push(this.state.cities[city]);
+        }
+        console.log(cities)
         return (
             <div>
                 <div className="m-4">
@@ -110,6 +113,18 @@ class User extends Component {
                 </div>
                 <div id={'user-form'}>
                     <form>
+                        
+                        <div class="form-group col-md-4">
+                                <label for="inputState">Sale Status</label>
+                                <select name="city_id" onClick={(e) => this.handleChange(e)} id="inputState" class="form-control">
+                                    <option selected>City...</option>
+                                    {cities.map((city, i) => {
+                                        return (
+                                            <option key={i} value={city.id}>{city.name}</option>
+                                        )
+                                    })}
+                                </select>
+                            </div>
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label for="inputEmail4">City</label>

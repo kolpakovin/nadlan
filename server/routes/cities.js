@@ -1,11 +1,11 @@
 var express = require('express');
 var router = express.Router();
-const {getCityByCityId}  = require('../db/api/cities')
+const {getCityByCityId, getAllCities}  = require('../db/api/cities')
 
 
 router.get('/', function (req, res, next) {
-    (req.query)
-        .then(apartments => res.status(200).json({ apartments }))
+    getAllCities()
+        .then(apartments => res.status(200).json( apartments ))
         .catch(error => res.status(500).json({ error: error.message }))
 })
 

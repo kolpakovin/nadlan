@@ -18,7 +18,7 @@ const Builder = require('./builder')
 //     })
 // }
 
-function getAll({rooms = -1, beds = -1, minprice = -1, maxprice = 9999999999999,user_id = -1, page = 1, size = 10}) {
+function getAll({rooms = -1, beds = -1, minprice = -1, maxprice = 9999999999999,user_id = -1, page = 1, size = 12}) {
     const builder = new Builder();
     return new Promise((resolve, reject) => {
         const {query,params} = builder.allApartments(page, size)
@@ -43,7 +43,7 @@ function getAll({rooms = -1, beds = -1, minprice = -1, maxprice = 9999999999999,
 function byId(apartmentId){
     return new Promise((resolve, reject) => {
         
-            connection.query(`Select A.*, group_concat(I.url) "images", C.name 'real_city_name'  from apartments A join images I on A.id = I.apartment_id join cities C where A.id = ?  `, [apartmentId], (error, results, fields) => {
+            connection.query(`Select A.*, group_concat(I.url) "images", C.name 'real_city_name'  from apartments A left join images I on A.id = I.apartment_id join cities C where A.id = ?  `, [apartmentId], (error, results, fields) => {
                 if(error) {
                     reject(error)
                     return
@@ -98,8 +98,7 @@ function addImages(apartment_id, array_of_images) {
                     console.log(error);
                     reject(error)
                 }
-                console.log('res', result)
-                resolve(result.data);
+                resolve();
             })
         })
     })

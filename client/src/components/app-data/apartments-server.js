@@ -11,7 +11,7 @@ async function registerUser({...data}) {
     }
 }
 
-const getApartments = async (rooms = 0, beds = 0, minprice = -1, maxprice = 99999999999, size = 10) => {
+const getApartments = async (rooms = 0, beds = 0, minprice = -1, maxprice = 99999999999, size = 12) => {
     try {
         const response = await fetcher.get(`/apartments?rooms=${rooms}&beds=${beds}&minprice=${minprice}&maxprice=${maxprice}&size=${size}`);
         return response.data.apartments;
@@ -69,11 +69,21 @@ const addImages = async (images) => {
     return response.data
 }
 
-export { getApartments, getApartment, registerUser, loginUser, getApartmentsByUserId, addApartment, addImages }
+const getCities = async (onSuccess) => {
+   try{
+    const cities = await fetcher.get(`/cities`)
+    console.log("cities ", cities)
+    onSuccess(cities)
+    return cities
+}catch (error) {
+    console.log(error)
+   }}
+
+export { getApartments, getApartment, registerUser, loginUser, getApartmentsByUserId, addApartment, addImages, getCities}
 
 /*const getDataFromServer = () => {
     fetch(`https://storage.googleapis.com/realtour/apartments-rt.json`, {
-            method: 'GET',
+            method: 'GET',      
         }
     ).then(response => response.json()
     ).then(success =>  {

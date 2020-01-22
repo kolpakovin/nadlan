@@ -36,8 +36,8 @@ li.navigation-li:hover {
   border-bottom: 1px solid #898989; }
 
 #app-header img {
-  height: 74px;
-  width: 250px; }
+  height: 100px;
+  width: 200px; }
 
 .sub-nav-menu {
   position: absolute;
@@ -73,7 +73,8 @@ div.navigation {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  margin-right: 100px; }
+  margin-left: auto;
+  margin-right: 35%; }
 
 #right-ul {
   display: -webkit-box;
