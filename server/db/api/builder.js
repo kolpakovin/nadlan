@@ -16,14 +16,16 @@ class Builder {
     }
     user_id = (user_id) => {
         if(user_id > 0){
-        this.params.push(user_id)
-        this.query += ' and user_id = ? ';
+            this.params.push(user_id)
+            this.query += ' and user_id = ? ';
         }
         return this;
     }
     city_id = (city_id) => {
-        this.params.push(city_id);
-        this.query += ' and city_id = ? ';
+        if(city_id > 0){
+            this.params.push(city_id);
+            this.query += ' and city_id = ? ';
+        }
         return this;
     }
     minprice = (price) => {

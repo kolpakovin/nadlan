@@ -16,7 +16,7 @@ function getCityByCityId(id) {
 function getAllCities() {
     return new Promise((resolve, reject) => {
 
-        connection.query(`SELECT * FROM cities`, (error, results, fields) => {
+        connection.query(`SELECT C.* FROM cities C join apartments A on C.id = A.city_id group by C.id`, (error, results, fields) => {
             if (error) {
                 reject(error)
                 return

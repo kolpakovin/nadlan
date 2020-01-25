@@ -18,7 +18,7 @@ const Builder = require('./builder')
 //     })
 // }
 
-function getAll({rooms = -1, beds = -1, minprice = -1, maxprice = 9999999999999,user_id = -1, page = 1, size = 12}) {
+function getAll({rooms = -1, beds = -1, minprice = -1, maxprice = 9999999999999,user_id = -1,city_id = -1, page = 1, size = 12}) {
     const builder = new Builder();
     return new Promise((resolve, reject) => {
         const {query,params} = builder.allApartments(page, size)
@@ -27,6 +27,7 @@ function getAll({rooms = -1, beds = -1, minprice = -1, maxprice = 9999999999999,
                         .minprice(minprice)
                         .maxprice(maxprice)
                         .user_id(user_id)
+                        .city_id(city_id)
                         .build()
         console.log(query, params); 
         connection.query(query, [...params,page,size], (error, results, fields) => {
@@ -87,10 +88,7 @@ function addImages(apartment_id, array_of_images) {
         console.log('!-!', image.filename);   
         imageURL = 'images/apartment/' + image.filename;
         return new Promise((resolve, reject) => {
-        
-            // let data = "";
-            // array_of_images.map(image => data += (`(${apartment_id},${" ' " + image.filename+ " ' "}),`));
-            // data = data.slice(0, data.length - 1)
+
             console.log(`INSERT INTO images(apartment_id, url) VALUES (${apartment_id},'${imageURL}')`)
             connection.query(`INSERT INTO images(apartment_id, url) VALUES (${apartment_id},'${imageURL}')` ,(error, result, fields) => {
                 if (error){
@@ -103,10 +101,24 @@ function addImages(apartment_id, array_of_images) {
         })
     })
 }
+function updateApartment(apartmentId){
+    return new Promise((resolve, reject) => {
+        
+            connection.query(`UPDATE apartments SET address = 'HaMatmid 6221', city_id = '1102757', price = '3010101', number_of_room = '4', number_of_bath = '5', sqft = '525', sale_status = 'sale', property_type = 'ranch' WHERE (id = '104');`,
+            (error, results, fields) => {
+                if(error) {
+                    reject(error)
+                    return
+                };
+            resolve(results) ;
+        });
+    })
+}
+
     
     // console.log('imageURL: ' , imageURL)
     // console.log('apartment_id:', apartment_id)
     
 
 
-module.exports = {getAll, byId, getImagesById, newApartment, addImages}
+module.exports = {getAll, byId, getImagesById, newApartment, addImages, updateApartment}

@@ -148,7 +148,14 @@ p.rent-status-b{
 .apartment-address{
   margin-left: 8px;
 }
-#user-form{
+.user-form{
   width: 80%;
   margin: 10px auto;
+}
+.pencil{
+  width: 31px;
+  height: 31px;
+  position: absolute;
+  right: 15px;
+  top: 59px;
 }

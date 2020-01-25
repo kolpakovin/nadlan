@@ -1,6 +1,6 @@
 import React from "react";
 import Grig from "./grid";
-import {getApartments} from "../app-data/apartments-server";
+import {getApartments, getCities} from "../app-data/apartments-server";
 
 
 
@@ -8,23 +8,28 @@ class Gallery extends React.Component {
     constructor() {
         super();
         this.state = {
-            city: "",
+            city_id: "",
             number_of_rooms: 0,
             number_of_beds: 0,
             min_price: 0,
             max_price: 0,
-            apartments: []
+            apartments: [],
+            cities: []
         }
     }
 
     async componentDidMount() {
-        const apartments = await getApartments({rooms: this.state.number_of_rooms, beds: this.state.number_of_beds, minprice: this.state.min_price, maxprice: this.state.maxprice});
+        const apartments = await getApartments({rooms: this.state.number_of_rooms, beds: this.state.number_of_beds, minprice: this.state.min_price, maxprice: this.state.maxprice, city_id: this.state.city_id});
         this.setState({
             apartments,
             loading: false,
         });
+        await getCities(this.setCities)
     }
-
+    setCities = (cities) => {
+        console.log(cities)
+        this.setState({ cities: cities.data})
+    }
     showApartments = (apartments) => {
         console.log('apartments', apartments);
         this.setState({
@@ -70,11 +75,19 @@ class Gallery extends React.Component {
 
     searchApartments = async e => {
         console.log({rooms: this.state.number_of_rooms, beds: this.state.number_of_beds, minprice: this.state.min_price, maxprice: this.state.maxprice});
-        const apartments = await getApartments(this.state.number_of_rooms, this.state.number_of_beds, this.state.min_price, this.state.maxprice);
+        const apartments = await getApartments(this.state.number_of_rooms, this.state.number_of_beds, this.state.min_price, this.state.maxprice, this.state.city_id);
         this.showApartments(apartments);
     }
-
+    handleChange = (e) => {
+        e.preventDefault();
+        const name = e.target.name;
+        const value = e.target.value;
+        this.setState({
+            [name]: value
+        })
+    }
     render() {
+        
         const isTrue1 = this.state.isTrue1;
         const isTrue2 = this.state.isTrue2;
         const isTrue3 = this.state.isTrue3;
@@ -126,9 +139,24 @@ class Gallery extends React.Component {
             </div>}
         </div>
         
+        const cities = [];
+        for (let city in this.state.cities){
+            cities.push(this.state.cities[city]);
+        }
         return (
             <div>
                 <div id={"filters"} className={"mb-2"}>
+                <div class="form-group col-md-4">
+                                <label for="inputState">Sale Status</label>
+                                <select name="city_id" onClick={(e) => this.handleChange(e)} id="inputState" class="form-control">
+                                    <option selected>City...</option>
+                                    {cities.map((city, i) => {
+                                        return (
+                                            <option key={i} value={city.id}>{city.name}</option>
+                                        )
+                                    })}
+                                </select>
+                            </div>
                     <input id={"name-input"} className={"form-control"} type="text" name="city" onChange={this.handleInputChange}/>
                     {rooms_fltr}
                     {beds_fltr}
