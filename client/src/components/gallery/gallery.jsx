@@ -145,9 +145,8 @@ class Gallery extends React.Component {
         }
         return (
             <div>
-                <div id={"filters"} className={"mb-2"}>
+                <div id={"filters"} className={"mb-2 mt-2"}>
                 <div class="form-group col-md-4">
-                                <label for="inputState">Sale Status</label>
                                 <select name="city_id" onClick={(e) => this.handleChange(e)} id="inputState" class="form-control">
                                     <option selected>City...</option>
                                     {cities.map((city, i) => {
@@ -157,11 +156,12 @@ class Gallery extends React.Component {
                                     })}
                                 </select>
                             </div>
-                    <input id={"name-input"} className={"form-control"} type="text" name="city" onChange={this.handleInputChange}/>
                     {rooms_fltr}
                     {beds_fltr}
                     {price_fltr}
-                    <button className="btn btn-secondary btn-outline-black" onClick={this.searchApartments}>SEARCH</button>
+                    <div className="ml-2">
+                        <button className="btn btn-secondary btn-outline-black" onClick={this.searchApartments}>SEARCH</button>
+                    </div>
                 </div>
                 <h2 style={{fontSize: "20px"}}><b className={"ml-2 mt-3"}>New York, NY Real Estate & Homes for Sale</b></h2>
                 <h4 className={"ml-2 mt-2"}>{this.state.apartments.length}</h4>

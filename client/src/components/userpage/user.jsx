@@ -266,7 +266,7 @@ class User extends Component {
                     { this.state.add_apartment
                                 &&
                         <div className='user-form col-10 '>
-                            <form>
+                            <form class="form-userpage">
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
                                         <label for="inputState">City</label>
@@ -343,7 +343,7 @@ class User extends Component {
                                     <label htmlFor="exampleFormControlTextarea1">Description</label>
                                     <textarea className="form-control" id="exampleFormControlTextarea1" rows="3" name='description' onChange={this.inputChange}></textarea>
                                 </div>
-                                <button type="submit" class="btn btn-primary" onClick={(e) => this.onSubmit(e, "newApartment")}>Post apartment</button>
+                                <button type="submit" class="btn btn-secondary btn-primary" onClick={(e) => this.onSubmit(e, "newApartment")}>Post apartment</button>
                             </form>
                         </div>}
                     {
@@ -363,7 +363,7 @@ class User extends Component {
                     this.state.editApartmentIsOpen
                     &&
                     <div className='user-form col-10' ref={this.myDivToFocus}>
-                        <form>
+                        <form class="form-userpage">
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <label for="inputState">City</label>
@@ -440,7 +440,7 @@ class User extends Component {
                                 <label htmlFor="exampleFormControlTextarea1">Description</label>
                                 <textarea className="form-control" id="exampleFormControlTextarea1" rows="3" name='description' value={this.state.description.value} onChange={this.inputChange}></textarea>
                             </div>
-                            <button type="submit" class="btn btn-primary" onClick={(e) => this.onSubmit(e, "updateApartment")}>Update apartment</button>
+                            <button type="submit" class="btn btn-secondary btn-primary" onClick={(e) => this.onSubmit(e, "updateApartment")}>Update apartment</button>
                         </form>
                     </div>
                 }
