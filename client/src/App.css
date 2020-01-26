@@ -1,4 +1,6 @@
 @import url("https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Source+Code+Pro&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Cinzel&display=swap");
 * {
   box-sizing: border-box;
   font-family: "Roboto",sans-serif;
@@ -72,7 +74,7 @@ a:hover{color: black; text-decoration: none;}
 .list-style-none{list-style: none}
 .li-icon a{font-size: 22px;}
 .div-icon{background: white;padding: 8px 16px; border-radius: 5px}
-.fltr{background: white; z-index: 999; margin-left: 10px;}
+.fltr{background: #8a6097; z-index: 999; margin-left: 10px;}
 h3.city-name {
   position: absolute;
   background: rgba(251, 211, 212, 0.7);
@@ -173,4 +175,38 @@ p.rent-status-b{
 }
 #user_row{
   margin: 5px 0
+}
+.list-group-item-action{
+  font-family: 'Cinzel', serif;
+  font-size: 21px;
+  text-align: center;
+}
+.li-title{
+  font-family: 'Source Code Pro', monospace;
+  font-weight: 600;
+}
+.sidebar-heading {
+  text-align: center;
+  font-weight: bold;
+}
+.btn-secondary{
+  background-color: #8a6097;
+}
+.btn-secondary:hover {
+  color: #fff;
+  background-color: #fa5f83;
+  border-color: #545b62;
+}
+@media only screen and (max-width: 600px) {
+  .carousel img{
+    height: 200px!important
+  }
+}
+@media (max-width: 600px){
+  .carousel {
+      width: 70vw!important;
+      margin: 0 auto!important;
+}}
+@media (max-width: 600px){
+#left-side {margin-right: 0!important}
 }

@@ -100,10 +100,12 @@ div.navigation {
   width: 150px; }
 
 .label-of-submenu {
-  border: 1px solid #d02929;
+  border: 1px solid #fe6565;
   border-radius: 50%;
   padding: 8px 11px;
-  margin-right: 5px; }
+  margin-right: 5px; 
+  color: white
+}
 
 .dropdown-fltr {
   border: 1px solid darkgray;
