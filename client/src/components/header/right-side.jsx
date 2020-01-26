@@ -5,6 +5,8 @@ import SignUp from './signup';
 import Cookies from 'js-cookie';
 import { Redirect } from 'react-router';
 import { Link } from "react-router-dom";
+import ReactTooltip from 'react-tooltip';
+
 
 
  
@@ -67,8 +69,8 @@ class RightSide extends React.Component {
                         </i></li>
                     {this.state.user ?
 
-                        <li className={"navigation-li"}> <Link to={`/profile`}><h4 className={"li-title"}>
-                            {this.state.user.first_name} </h4></Link></li>
+                        <li className={"navigation-li"}> <Link to={`/profile`}><h4 className={"li-title"} data-tip data-for='user'>
+                            {this.state.user.first_name} </h4></Link>  <ReactTooltip id='user' place="bottom" type="info" effect="float">Get To My Profile</ReactTooltip></li>
 
                         : <li onClick={this.changeFormStatus} className={"navigation-li"}><h4 className={"li-title"}>
                             Log In

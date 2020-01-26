@@ -253,20 +253,19 @@ class User extends Component {
                     <h1 id="greeting">{`Hello ${JSON.parse(Cookies.get('user')).first_name} ${JSON.parse(Cookies.get('user')).last_name}. Let's build a new page ;)`}</h1>
                 </div>
                 <div className='row' id='user_row'>
-                    <div class="bg-light border-right col-2" id="sidebar-wrapper">
-                        <div class="sidebar-heading">User Menu </div>
+                    <div class="bg-light border-right col-lg-2 col-md-12" id="sidebar-wrapper">
+                        <div class="sidebar-heading list-group-item-action ">User Menu </div>
                         <div class="list-group list-group-flush">
                             <a href="#" class="list-group-item list-group-item-action bg-light" onClick={e => this.handleMenu(e, 'my_apartments')}>My Apartments</a>
                             <a href="#" class="list-group-item list-group-item-action bg-light" onClick={e => this.handleMenu(e, 'add_apartment')}>Add Apartment</a>
-                            <a href="#" class="list-group-item list-group-item-action bg-light">All Apartments</a>
-                            <a href="#" class="list-group-item list-group-item-action bg-light">Events</a>
-                            <a href="#" class="list-group-item list-group-item-action bg-light">Profile</a>
-                            <a href="#" class="list-group-item list-group-item-action bg-light">Status</a>
+                            <a href="/apartments" class="list-group-item list-group-item-action bg-light">All Apartments</a>
+                            <a href="/" class="list-group-item list-group-item-action bg-light">Homepage</a>
+                            <a href="#" class="list-group-item list-group-item-action bg-light">Log Out</a>
                         </div>
                     </div>
                     { this.state.add_apartment
                                 &&
-                        <div className='user-form col-10'>
+                        <div className='user-form col-10 '>
                             <form>
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
