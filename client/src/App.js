@@ -13,7 +13,9 @@ import Apartment from "./components/apartment/single-apartment";
 import Footer from "./components/homepage/footer";
 import Loader from "./components/gallery/loader";
 import User from "./components/userpage/user";
-import Admin from "./components/userpage/admin"
+import Admin from "./components/userpage/admin";
+
+
 
 
 class App extends React.Component{
@@ -22,6 +24,7 @@ class App extends React.Component{
     }
     
     render() {
+        
         return(
             <Router>
                 <div id={"app"}>

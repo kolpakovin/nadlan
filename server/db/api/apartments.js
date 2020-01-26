@@ -66,12 +66,12 @@ function getImagesById(apartmentId){
         });
     })
 }
-function newApartment(user_id, address, city_id, price, number_of_room, number_of_bath,sqft, sale_status, available, property_type, main_image, status) {
+function newApartment(user_id, address, city_id, price, number_of_room, number_of_bath, sqft, description, sale_status, availability, property_type, main_image, status) {
     main_image = "images/apartment/" + main_image
     return new Promise((resolve, reject) => {
 
-        connection.query(`INSERT INTO apartments (user_id,address,city_id,price,number_of_room,number_of_bath,sqft,sale_status,availability,property_type,main_image,status) 
-        VALUES (?,?,?,?,?,?,?,?,?,?,?,?);`, [user_id, address, city_id, price, number_of_room, number_of_bath,sqft, sale_status, available, property_type, main_image, status],
+        connection.query(`INSERT INTO apartments (user_id,address,city_id,price,number_of_room,number_of_bath, sqft, description, sale_status,availability,property_type,main_image,status) 
+        VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?);`, [user_id, address, city_id, price, number_of_room, number_of_bath, sqft, description, sale_status, availability, property_type, main_image, status],
          (error, results, fields) => {
             if (error) {  
                 console.log(error);
@@ -101,11 +101,12 @@ function addImages(apartment_id, array_of_images) {
         })
     })
 }
-function updateApartment(apartmentId){
+function updateApartment(address, city_id, price, number_of_room, number_of_bath, sqft, description, sale_status, property_type, main_image, apartment_id){
+    main_image = "images/apartment/" + main_image
     return new Promise((resolve, reject) => {
         
-            connection.query(`UPDATE apartments SET address = 'HaMatmid 6221', city_id = '1102757', price = '3010101', number_of_room = '4', number_of_bath = '5', sqft = '525', sale_status = 'sale', property_type = 'ranch' WHERE (id = '104');`,
-            (error, results, fields) => {
+            connection.query(`UPDATE apartments SET address = ?, city_id = ?, price = ?, number_of_room = ?, number_of_bath = ?, sqft = ?, description = ?, sale_status = ?, property_type = ?, main_image = ? WHERE (id = ?);`,
+            [address, city_id, price, number_of_room, number_of_bath, sqft, description, sale_status, property_type, main_image, apartment_id] ,(error, results, fields) => {
                 if(error) {
                     reject(error)
                     return
@@ -114,11 +115,50 @@ function updateApartment(apartmentId){
         });
     })
 }
-
+function deleteImagesId(apartmentId){
+    return new Promise((resolve, reject) => {
+        
+            connection.query(`DELETE FROM images WHERE (apartment_id = ?);`, [apartmentId], (error, results, fields) => {
+                if(error) {
+                    reject(error)
+                    return
+                };
+            console.log("results, ", results)
+            resolve(results) ;
+        });
+    })
+}
+function deleteApartmentById(apartmentId){
+    return new Promise((resolve, reject) => {
+        
+            connection.query(`DELETE FROM apartments WHERE (id = ?);`, [apartmentId], (error, results, fields) => {
+                if(error) {
+                    reject(error)
+                    return
+                };
+            console.log("results, ", results)
+            resolve(results) ;
+        });
+    })
+}
+function apartmentsLength(){
+    console.log("results")
+    return new Promise((resolve, reject) => {
+        
+            connection.query(`SELECT * FROM apartments`, (error, results, fields) => {
+                if(error) {
+                    reject(error)
+                    return
+                };
+            console.log("results, ", results.data)
+            resolve(results) ;
+        });
+    })
+}
     
     // console.log('imageURL: ' , imageURL)
     // console.log('apartment_id:', apartment_id)
     
 
 
-module.exports = {getAll, byId, getImagesById, newApartment, addImages, updateApartment}
+module.exports = {getAll, byId, getImagesById, newApartment, addImages, updateApartment, deleteImagesId, deleteApartmentById, apartmentsLength }

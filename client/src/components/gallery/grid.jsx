@@ -17,7 +17,7 @@ class Grid extends React.Component {
         </svg>;
 
         return (
-            <div className={"city-grid box col-xl-3 col-lg-4 col-md-6 col-sm-12"}
+            <div className={window.location.href === "http://localhost:3000/profile" || "http://localhost:3000/profile#" ? "col-xl-4 box" : "city-grid box col-xl-3 col-lg-4 col-md-6 col-sm-12"} 
                  id={type === "cities" ? "city" + this.props.id : "apartment" + this.props.id}>
                 <Link to={`/apartment/${this.props.id}`}>
                     <div className={"city-content card"}>
@@ -36,7 +36,8 @@ class Grid extends React.Component {
                             {<p className={"apartment-address"}>{`address: ${address}`}</p>}    
                         </div>}
                         {<span className={"heart"}> {heart_icon} </span>}
-                        {window.location.href === "http://localhost:3000/profile" && <img className="pencil" value={this.props.id} onClick={(e) =>this.props.onPencilClick(e, this.props.id)} src={`http://localhost:4000/images/pencil-icon.png`} alt=""/>}
+                        {(window.location.href === "http://localhost:3000/profile" || window.location.href === "http://localhost:3000/profile#") && <img className="pencil" value={this.props.id} onClick={(e) =>this.props.onPencilClick(e, this.props.id)} src={`http://localhost:4000/images/pencil-icon.png`} alt=""/>}
+                        {(window.location.href === "http://localhost:3000/profile" || window.location.href === "http://localhost:3000/profile#") && <img className="delete" value={this.props.id} onClick={(e) =>this.props.deleteApartment(e, this.props.id)} src={`http://localhost:4000/images/delete-icon.png`} alt=""/>}
                     </div>
                 </Link>
             </div>
