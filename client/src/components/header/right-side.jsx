@@ -67,7 +67,7 @@ class RightSide extends React.Component {
                         </i></li>
                     {this.state.user ?
 
-                        <li className={"navigation-li"}> <Link to={`/profile/`}><h4 className={"li-title"}>
+                        <li className={"navigation-li"}> <Link to={`/profile`}><h4 className={"li-title"}>
                             {this.state.user.first_name} </h4></Link></li>
 
                         : <li onClick={this.changeFormStatus} className={"navigation-li"}><h4 className={"li-title"}>

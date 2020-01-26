@@ -11,10 +11,10 @@ async function registerUser({...data}) {
     }
 }
 
-const getApartments = async (rooms = 0, beds = 0, minprice = -1, maxprice = 99999999999, city_id = 0, size = 12,) => {
-    console.log("city: ", city_id)
+const getApartments = async (rooms = 0, beds = 0, minprice = -1, maxprice = 99999999999, city_id = 0, size = 12, page = 1) => {
+    console.log("size: ", size)
     try {
-        const response = await fetcher.get(`/apartments?rooms=${rooms}&beds=${beds}&minprice=${minprice}&maxprice=${maxprice}&size=${size}&city_id=${city_id}`);
+        const response = await fetcher.get(`/apartments?rooms=${rooms}&beds=${beds}&minprice=${minprice}&maxprice=${maxprice}&size=${size}&city_id=${city_id}&page=${page}`);
         return response.data.apartments;
     } catch (error) {
         console.log(error);
@@ -82,15 +82,33 @@ const getCities = async (onSuccess) => {
 
 const updateApartment = async(id, data) => {
     try{
-     const response = await fetcher.put(`/apartment/${id}`, data) 
+     const response = await fetcher.put(`/apartments/${id}`, data) 
      console.log("response ", response)
      return response.data
  }catch (error) {
      console.log(error)
- }}
+}}
+
+const deleteApartmentById = async(id) => {
+    try{
+     const response = await fetcher.delete(`/apartments/${id}`) 
+     console.log("response ", response)
+     return response.data
+ }catch (error) {
+     console.log(error)
+}}
+
+const getApartmentsLength = async() => {
+    try{
+     const response = await fetcher.get(`/apartments/length`) 
+     console.log("response ", response)
+     return response.data
+ }catch (error) {
+     console.log(error)
+}}
 
 
-export { getApartments, getApartment, registerUser, loginUser, getApartmentsByUserId, addApartment, addImages, getCities, updateApartment}
+export { getApartments, getApartment, registerUser, loginUser, getApartmentsByUserId, addApartment, addImages, getCities, updateApartment, deleteApartmentById, getApartmentsLength}
 
 /*const getDataFromServer = () => {
     fetch(`https://storage.googleapis.com/realtour/apartments-rt.json`, {
