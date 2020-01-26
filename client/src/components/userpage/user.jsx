@@ -7,6 +7,7 @@ import { getApartmentsByUserId, addApartment, getCities, updateApartment, getApa
 import Grig from "../gallery/grid";
 
 
+
 class User extends Component {
     constructor(props) {
         super(props);
@@ -39,7 +40,8 @@ class User extends Component {
             description: field({ name: 'description', isRequired: true, minLength: 5 }),
             city_id: field({ name: 'city_id', isRequired: true, minLength: 2 }),
             images: field({ name: 'images', isRequired: true })
-        }; this.inputChange = this.inputChange.bind(this);
+        };  this.inputChange = this.inputChange.bind(this);
+            this.myDivToFocus = React.createRef()
     }
     async componentDidMount() {
         if (Cookies.get('user')) {
@@ -131,6 +133,12 @@ class User extends Component {
         console.log("Pencil")
         console.log(apartmentId)
         await getApartment(apartmentId, this.consolefunction)
+        if(this.myDivToFocus.current){
+            this.myDivToFocus.current.scrollIntoView({ 
+               behavior: "smooth", 
+               block: "nearest"
+            })
+        }
     }
     consolefunction = (data) => {
         console.log("data: ", data.apartment[0])
@@ -355,7 +363,7 @@ class User extends Component {
                 {
                     this.state.editApartmentIsOpen
                     &&
-                    <div className='user-form col-10'>
+                    <div className='user-form col-10' ref={this.myDivToFocus}>
                         <form>
                             <div class="form-row">
                                 <div class="form-group col-md-6">
