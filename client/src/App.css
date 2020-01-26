@@ -161,11 +161,11 @@ p.rent-status-b{
   top: 59px;
 }
 .delete{
-  width: 16px;
-  height: 16px;
+  width: 24px;
+  height: 24px;
   position: absolute;
-  right: 0px;
-  top: -4px;
+  right: 59px;
+  top: 17px;
 }
 #greeting{
   font-family: 'Open Sans Condensed', sans-serif;
