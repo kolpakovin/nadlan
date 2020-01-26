@@ -14,7 +14,7 @@ class MainContent extends React.Component {
     }
 
     async componentDidMount(){
-        const apartments = await getApartments(0, 0, -1, 99999999999, 4);
+        const apartments = await getApartments(0, 0, -1, 99999999999, 0, 4);
         this.setState({
             apartments
         });

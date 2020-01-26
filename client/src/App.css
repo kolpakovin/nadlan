@@ -215,3 +215,10 @@ p.rent-status-b{
   background: aliceblue;
   padding: 20px;
 }
+.form-control {
+  background: antiquewhite;
+}
+.form-control:focus {
+  outline: 0;
+  background: antiquewhite;
+}

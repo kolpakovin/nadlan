@@ -14,7 +14,11 @@ class Gallery extends React.Component {
             min_price: 0,
             max_price: 0,
             apartments: [],
-            cities: []
+            cities: [],
+            first_number: 1,
+            second_number: 2,
+            third_number: 3,
+            apartments_length: null
         }
     }
 
@@ -25,6 +29,39 @@ class Gallery extends React.Component {
             loading: false,
         });
         await getCities(this.setCities)
+        if (!this.state.apartments_length) {
+            const apartments = await getApartments(0, 0, -1, 99999999999, 0, 9999);
+            const apartments_length = apartments.length
+            this.setState({ apartments_length })
+        }
+    }
+    handleClick = async (e, pageNum) => {
+        e.preventDefault();
+        console.log("pageNum: ", pageNum)
+        const apartments = await getApartments(0, 0, -1, 99999999999, 0, 12, pageNum)
+        this.setState({apartments})
+    }
+    handleMoveRight = (e) => {
+        e.preventDefault();
+        if (this.state.third_number * 12 < this.state.apartments_length) {
+            const { first_number, second_number, third_number } = this.state;
+            this.setState({
+                first_number: first_number + 1,
+                second_number: second_number + 1,
+                third_number: third_number + 1
+            });
+        }
+    }
+    handleMoveLeft = (e) => {
+        e.preventDefault();
+        if (this.state.first_number !== 1) {
+            const { first_number, second_number, third_number } = this.state;
+            this.setState({
+                first_number: first_number - 1,
+                second_number: second_number - 1,
+                third_number: third_number - 1
+            });
+        }
     }
     setCities = (cities) => {
         console.log(cities)
@@ -74,8 +111,8 @@ class Gallery extends React.Component {
     }
 
     searchApartments = async e => {
-        console.log({rooms: this.state.number_of_rooms, beds: this.state.number_of_beds, minprice: this.state.min_price, maxprice: this.state.maxprice});
-        const apartments = await getApartments(this.state.number_of_rooms, this.state.number_of_beds, this.state.min_price, this.state.maxprice, this.state.city_id);
+        console.log({rooms: this.state.number_of_rooms, beds: this.state.number_of_beds, minprice: this.state.min_price, maxprice: this.state.max_price});
+        const apartments = await getApartments(this.state.number_of_rooms, this.state.number_of_beds, this.state.min_price, this.state.max_price, this.state.city_id);
         this.showApartments(apartments);
     }
     handleChange = (e) => {
@@ -168,6 +205,19 @@ class Gallery extends React.Component {
                 <div className={"gallery row "}>
                     {this.state.apartments.map((item, i) => <Grig {...item} key={i}/>)}
                 </div>
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination justify-content-center">
+                        <li class="page-item">
+                            <a class="page-link" onClick={e => this.handleMoveLeft(e)} href="#">Previous</a>
+                        </li>
+                        <li class="page-item"><a class="page-link" value={this.state.first_number} onClick={e => this.handleClick(e, this.state.first_number)}  href="#">{this.state.first_number}</a></li>
+                        <li class="page-item"><a class="page-link" value={this.state.second_number} onClick={e => this.handleClick(e, this.state.second_number)}  href="#">{this.state.second_number}</a></li>
+                        <li class="page-item"><a class="page-link" value={this.state.third_number} onClick={e => this.handleClick(e, this.state.third_number)}  href="#">{this.state.third_number}</a></li>
+                        <li class="page-item">
+                            <a class="page-link" onClick={e => this.handleMoveRight(e)} href="#">Next</a>
+                        </li>
+                    </ul>
+                </nav>
             </div>
         )
     }

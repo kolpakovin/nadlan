@@ -23,11 +23,11 @@ li.navigation-li {
     border-bottom: 3px solid red; }
 
 h4.li-title:hover {
-  color: red;
+  color: #8a6097;
   cursor: pointer; }
 
 li.navigation-li:hover {
-  border-bottom: 3px solid red; }
+  border-bottom: 3px solid #8a6097; }
 
 #app-header {
   -webkit-box-pack: justify;
