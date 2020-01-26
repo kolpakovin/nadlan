@@ -191,11 +191,12 @@ p.rent-status-b{
 }
 .btn-secondary{
   background-color: #8a6097;
+  border: 1px solid transparent;
 }
 .btn-secondary:hover {
   color: #fff;
   background-color: #fa5f83;
-  border-color: #545b62;
+  border: 1px solid transparent;
 }
 @media only screen and (max-width: 600px) {
   .carousel img{
@@ -209,4 +210,8 @@ p.rent-status-b{
 }}
 @media (max-width: 600px){
 #left-side {margin-right: 0!important}
+}
+.form-userpage{
+  background: aliceblue;
+  padding: 20px;
 }
