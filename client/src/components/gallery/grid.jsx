@@ -46,7 +46,7 @@ class Grid extends React.Component {
                             window.location.href === "http://localhost:3000/admin" || window.location.href === "http://localhost:3000/admin#") &&
                             <img className="delete" value={this.props.id} onClick={(e) => this.props.deleteApartment(e, this.props.id)} data-tip data-for='delete' src={`http://localhost:4000/images/delete-icon.png`} alt="" />}
                         <ReactTooltip id='delete' place="top" type="success" effect="float">Delete Apartment</ReactTooltip>
-                        {(window.location.href === "http://localhost:3000/admin" || window.location.href === "http://localhost:3000/admin#") &&
+                        {((window.location.href === "http://localhost:3000/admin" || window.location.href === "http://localhost:3000/admin#") && this.props.confirmApartment) &&
                             <img className="confirm" value={this.props.id} onClick={(e) => this.props.confirmApartment(e, this.props.id)} data-tip data-for='confirm' src={`http://localhost:4000/images/confirm-icon.png`} alt="confirm-icon" />}
                         <ReactTooltip id='confirm' place="top" type="success" effect="float">Confirm Apartment</ReactTooltip>
                     </div>

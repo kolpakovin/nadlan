@@ -63,10 +63,14 @@ router.put('/:id', upload.array('images'), async function(req, res, next) {
     }
 })
 router.delete('/:id', async function(req, res, next){
+    const cookie = await JSON.parse(req.cookies['user']);
+    const apartment = await byId(req.params.id)
     try{
-        console.log("req.params " ,req.params)
-        await deleteImagesId(req.params.id)
-        await deleteApartmentById(req.params.id)
+        if(cookie.id == apartment[0].user_id || cookie.role_id === 1){
+            await deleteImagesId(req.params.id)
+            await deleteApartmentById(req.params.id)
+            res.status(200).json(`Apartments of user:${req.params.userId} has been deleted`)
+        }
     } catch(error){
         res.status(500).json({error: error.message});
     }
@@ -100,8 +104,8 @@ router.delete('/user/:userId', async function(req, res, next){
         await apartments.forEach(apartment =>  deleteImagesId(apartment.id))
         await deleteApartmentByUserId(req.params.userId)
         await deleteUser(req.params.userId)
-        }  
         res.status(200).json(`Apartments of user:${req.params.userId} has been deleted`)
+        }  
     } catch(error){
         res.status(500).json({error: error.message});
     }
