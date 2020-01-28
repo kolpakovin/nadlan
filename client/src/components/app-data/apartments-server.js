@@ -77,6 +77,16 @@ const getCities = async (onSuccess) => {
     console.log(error)
 }}
 
+const getAllCitiesWithApartments = async (onSuccess) => {
+    try{
+     const cities = await fetcher.get(`/cities/apartments`)
+     console.log("cities ", cities)
+     onSuccess(cities)
+     return cities
+ }catch (error) {
+     console.log(error)
+ }}
+
 const updateApartment = async(id, data) => {
     try{
      const response = await fetcher.put(`/apartments/${id}`, data) 
@@ -114,7 +124,8 @@ const getUsers = async() => {
 }}
 
 
-export { getApartments, getApartment, registerUser, loginUser, getApartmentsByUserId, addApartment, addImages, getCities, updateApartment, deleteApartmentById, getApartmentsLength, getUsers}
+export { getApartments, getApartment, registerUser, loginUser, getApartmentsByUserId, addApartment, addImages,
+     getCities, updateApartment, deleteApartmentById, getApartmentsLength, getUsers, getAllCitiesWithApartments}
 
 /*const getDataFromServer = () => {
     fetch(`https://storage.googleapis.com/realtour/apartments-rt.json`, {

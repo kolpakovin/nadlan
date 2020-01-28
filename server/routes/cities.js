@@ -1,10 +1,16 @@
 var express = require('express');
 var router = express.Router();
-const {getCityByCityId, getAllCities}  = require('../db/api/cities')
+const {getCityByCityId, getAllCitiesWithApartments,getAllCities}  = require('../db/api/cities')
 
 
 router.get('/', function (req, res, next) {
     getAllCities()
+        .then(apartments => res.status(200).json( apartments ))
+        .catch(error => res.status(500).json({ error: error.message }))
+})
+
+router.get('/apartments', function (req, res, next) {
+    getAllCitiesWithApartments()
         .then(apartments => res.status(200).json( apartments ))
         .catch(error => res.status(500).json({ error: error.message }))
 })

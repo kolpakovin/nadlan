@@ -40,7 +40,6 @@ class RightSide extends React.Component {
     }
     changeUserState = () => {
         if(Cookies.get('user')){
-            console.log('user from state1',this.state.user)
             setTimeout(() => this.setState({
                 user: JSON.parse(Cookies.get('user'))
             }), 500);
