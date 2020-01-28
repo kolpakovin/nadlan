@@ -40,6 +40,11 @@ class Gallery extends React.Component {
         console.log("pageNum: ", pageNum)
         const apartments = await getApartments(0, 0, -1, 99999999999, 0, 12, pageNum)
         this.setState({apartments})
+        window.scrollTo({
+            top: 0,
+            left: 0,
+            behavior: 'smooth'
+          });
     }
     handleMoveRight = (e) => {
         e.preventDefault();
