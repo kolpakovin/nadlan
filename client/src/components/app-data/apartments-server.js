@@ -138,6 +138,14 @@ const deleteUser = async(id) => {
  }catch (error) {
      console.log(error)
 }}
+const deleteApartmentByUserId = async (id) => {
+    try{
+     const response = await fetcher.delete(`/apartments/user/${id}`) 
+     console.log("response u", response)
+     return response.data
+ }catch (error) {
+     console.log(error)
+}}
 
-export { getApartments, getApartment, registerUser, loginUser, getApartmentsByUserId, addApartment, addImages, deleteUser,
-     getCities, updateApartment, deleteApartmentById, getApartmentsLength, getUsers, getAllCitiesWithApartments, confirmApartment}
+export { getApartments, getApartment, registerUser, loginUser, getApartmentsByUserId, addApartment, addImages, deleteApartmentByUserId,
+    getCities, updateApartment, deleteApartmentById, getApartmentsLength, getUsers, getAllCitiesWithApartments, deleteUser, confirmApartment}

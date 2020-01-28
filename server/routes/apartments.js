@@ -2,7 +2,9 @@ var express = require('express');
 var router = express.Router();
 const multer = require('multer');
 
-const {getAll, byId, getImagesById, newApartment, addImages, updateApartment, deleteImagesId, deleteApartmentById, apartmentsLength, confirmApartment}  = require('../db/api/apartments')
+const {getAll, byId, getImagesById, newApartment, addImages, updateApartment, deleteImagesId, deleteApartmentById, apartmentsLength,
+     confirmApartment, deleteApartmentByUserId, getApartmentsByUserId }  = require('../db/api/apartments')
+const {deleteUser} = require('../db/api/login')
 
 const storage = multer.diskStorage({ 
     destination: function(req, file, cb){
@@ -86,5 +88,17 @@ router.put('/', async function(req, res, next){
         res.status(500).json({error: error.message});
     }
 })
-
+router.delete('/user/:userId', async function(req, res, next){
+    try{
+        console.log("req.params " ,req.params.userId)
+        const apartments = await getApartmentsByUserId(req.params.userId)
+        console.log("apartments", apartments)
+        await apartments.forEach(apartment =>  deleteImagesId(apartment.id))
+        await deleteApartmentByUserId(req.params.userId)
+        await deleteUser(req.params.userId)
+        res.status(200).json(`Apartments of user:${req.params.userId} has been deleted`)
+    } catch(error){
+        res.status(500).json({error: error.message});
+    }
+})
 module.exports = router;

@@ -24,7 +24,9 @@ class RightSide extends React.Component {
     async componentDidMount() {
         if (Cookies.get('user')) {
             this.setState({
-                user: JSON.parse(Cookies.get('user'))
+                user: JSON.parse(Cookies.get('user')),
+                isOpenForm: false,
+                isOpenSignUp: false
             });
         }
     }

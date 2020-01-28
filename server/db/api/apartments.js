@@ -67,6 +67,18 @@ function getImagesById(apartmentId){
         });
     })
 }
+function getApartmentsByUserId(userId){
+    return new Promise((resolve, reject) => {
+        
+            connection.query(`Select * from apartments where user_id = ? `, [userId], (error, results, fields) => {
+                if(error) {
+                    reject(error)
+                    return
+                };
+            resolve(results) ;
+        });
+    })
+}
 function newApartment(user_id, address, city_id, price, number_of_room, number_of_bath, sqft, description, sale_status, availability, property_type, main_image, status) {
     main_image = "images/apartment/" + main_image
     return new Promise((resolve, reject) => {
@@ -170,7 +182,20 @@ function confirmApartment(apartmentId){
         });
     })
 }    
-
+function deleteApartmentByUserId(userId){
+    console.log('userId', userId)
+    return new Promise((resolve, reject) => {
+        
+            connection.query(`DELETE FROM apartments WHERE (user_id = ?);`, [userId], (error, results, fields) => {
+                if(error) {
+                    reject(error)
+                    return
+                };
+            console.log("results, ", results)
+            resolve(results) ;
+        });
+    })
+}
 
 module.exports = {getAll, byId, getImagesById, newApartment, addImages, updateApartment, deleteImagesId, deleteApartmentById,
-     apartmentsLength, confirmApartment }
+     apartmentsLength, confirmApartment, deleteApartmentByUserId, getApartmentsByUserId }

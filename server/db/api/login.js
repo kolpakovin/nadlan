@@ -47,9 +47,10 @@ function newUser({...details}){
     })
 }
 function deleteUser(id) {
+    console.log('id', id)
     return new Promise((resolve, reject) => {
-
-        connection.query(`Delete from users WHERE (id = ?)`, [id], (error, results, fields) => {
+        console.log(`Delete from users WHERE (id = '${id}')`)
+        connection.query(`Delete from users WHERE (id = '${id}')`, (error, results, fields) => {
             if (error) {
                 reject(error)
                 return
