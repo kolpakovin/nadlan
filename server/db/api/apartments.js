@@ -18,7 +18,7 @@ const Builder = require('./builder')
 //     })
 // }
 
-function getAll({rooms = -1, beds = -1, minprice = -1, maxprice = 9999999999999,user_id = -1,city_id = -1, page = 1, size = 12}) {
+function getAll({rooms = -1, beds = -1, minprice = -1, maxprice = 9999999999999,user_id = -1,city_id = -1, page = 1, size = 12, status = 'approved'}) {
     const builder = new Builder();
     return new Promise((resolve, reject) => {
         const {query,params} = builder.allApartments(page, size)
@@ -28,6 +28,7 @@ function getAll({rooms = -1, beds = -1, minprice = -1, maxprice = 9999999999999,
                         .maxprice(maxprice)
                         .user_id(user_id)
                         .city_id(city_id)
+                        .status(status)
                         .build()
         console.log(query, params); 
         connection.query(query, [...params,page,size], (error, results, fields) => {
@@ -156,10 +157,20 @@ function apartmentsLength(){
         });
     })
 }
-    
-    // console.log('imageURL: ' , imageURL)
-    // console.log('apartment_id:', apartment_id)
-    
+function confirmApartment(apartmentId){
+    return new Promise((resolve, reject) => {
+        
+            connection.query(`UPDATE apartments SET status = 'approved' WHERE (id = '?');`, [apartmentId], (error, results, fields) => {
+                if(error) {
+                    reject(error)
+                    return
+                };
+            console.log("results, ", results.data)
+            resolve(results) ;
+        });
+    })
+}    
 
 
-module.exports = {getAll, byId, getImagesById, newApartment, addImages, updateApartment, deleteImagesId, deleteApartmentById, apartmentsLength }
+module.exports = {getAll, byId, getImagesById, newApartment, addImages, updateApartment, deleteImagesId, deleteApartmentById,
+     apartmentsLength, confirmApartment }

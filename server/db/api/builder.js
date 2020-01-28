@@ -52,6 +52,11 @@ class Builder {
         }
         return this;
     }
+    status = (status) => {
+        this.params.push(status);
+        this.query += ' and status = ? ';
+        return this;
+    }
     build = () => {
         this.query += this.limit;
         return {query: this.query, params: this.params}

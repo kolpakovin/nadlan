@@ -11,10 +11,10 @@ async function registerUser({...data}) {
     }
 }
 
-const getApartments = async (rooms = 0, beds = 0, minprice = -1, maxprice = 99999999999, city_id = 0, size = 12, page = 1) => {
+const getApartments = async (rooms = 0, beds = 0, minprice = -1, maxprice = 99999999999, city_id = 0, size = 12, page = 1, status = 'approved') => {
     console.log("size: ", size)
     try {
-        const response = await fetcher.get(`/apartments?rooms=${rooms}&beds=${beds}&minprice=${minprice}&maxprice=${maxprice}&size=${size}&city_id=${city_id}&page=${page}`);
+        const response = await fetcher.get(`/apartments?rooms=${rooms}&beds=${beds}&minprice=${minprice}&maxprice=${maxprice}&size=${size}&city_id=${city_id}&page=${page}&status=${status}`);
         return response.data.apartments;
     } catch (error) {
         console.log(error);
@@ -42,8 +42,6 @@ async function getApartment(apartmentId, handleSuccess) {
         return error
     }
 }
-
-
 
 async function loginUser(email, password) {
     // console.log(email, password)
@@ -123,39 +121,14 @@ const getUsers = async() => {
      console.log(error)
 }}
 
+const confirmApartment = async(apartmentId) => {
+    try{
+     const response = await fetcher.put(`/apartments`, {id: apartmentId}) 
+     console.log("response ", response)
+     return response.data
+ }catch (error) {
+     console.log(error)
+}}
 
 export { getApartments, getApartment, registerUser, loginUser, getApartmentsByUserId, addApartment, addImages,
-     getCities, updateApartment, deleteApartmentById, getApartmentsLength, getUsers, getAllCitiesWithApartments}
-
-/*const getDataFromServer = () => {
-    fetch(`https://storage.googleapis.com/realtour/apartments-rt.json`, {
-            method: 'GET',      
-        }
-    ).then(response => response.json()
-    ).then(success =>  {
-            this.setState({
-                feedPosts: success,
-            })
-        }
-    ).catch(error => console.log(error))};*/
-
-// const getDataFromServer = (type, handleSuccess) => {
-//     fetch(`https://storage.googleapis.com/realtour/${type}`, {
-//             method: 'GET',
-//         }
-//     ).then(response => response.json()
-//     ).then(success => handleSuccess(success)
-//     ).catch(error => console.log(error));
-// };
-// const getQuery = (query) => {
-//     let result = "";
-//     for (const q in query) {
-//         result += `${q}=${query[q]}`
-//     }
-// }
-// const getApartments = async ({rooms = -1, beds = -1, minprice = -1, maxprice = -1, size = 10}) => {
-    // const getApartment = (apartmentId,handleSuccess) => {
-//     axios.get(`http://localhost:4000/apartments/${apartmentId}`
-//     ).then(success => handleSuccess(success.data)
-//     ).catch(error => console.log(error));
-// }
+     getCities, updateApartment, deleteApartmentById, getApartmentsLength, getUsers, getAllCitiesWithApartments, confirmApartment}
