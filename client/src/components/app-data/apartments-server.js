@@ -45,16 +45,13 @@ async function getApartment(apartmentId, handleSuccess) {
 
 
 
-async function loginUser(email, password, func) {
+async function loginUser(email, password) {
     // console.log(email, password)
     console.log(email, password, 'herere')
-    console.log('func', func)
-
     try {
         const login = await fetcher.post(`/users/login`, {email, password});
         console.log('login', login)
-        func()
-        return login
+        return login.data
     } catch (error) {
         return error
     }
@@ -107,8 +104,17 @@ const getApartmentsLength = async() => {
      console.log(error)
 }}
 
+const getUsers = async() => {
+    try{
+     const response = await fetcher.get(`/users`) 
+     console.log("response u", response)
+     return response.data
+ }catch (error) {
+     console.log(error)
+}}
 
-export { getApartments, getApartment, registerUser, loginUser, getApartmentsByUserId, addApartment, addImages, getCities, updateApartment, deleteApartmentById, getApartmentsLength}
+
+export { getApartments, getApartment, registerUser, loginUser, getApartmentsByUserId, addApartment, addImages, getCities, updateApartment, deleteApartmentById, getApartmentsLength, getUsers}
 
 /*const getDataFromServer = () => {
     fetch(`https://storage.googleapis.com/realtour/apartments-rt.json`, {

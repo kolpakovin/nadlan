@@ -39,10 +39,12 @@ class RightSide extends React.Component {
         })
     }
     changeUserState = () => {
-        console.log('user from state1',this.state.user)
-        setTimeout(() => this.setState({
-            user: JSON.parse(Cookies.get('user'))
-        }), 500);
+        if(Cookies.get('user')){
+            console.log('user from state1',this.state.user)
+            setTimeout(() => this.setState({
+                user: JSON.parse(Cookies.get('user'))
+            }), 500);
+        }
 
         // if (this.state.isOpenForm && JSON.parse(Cookies.get('user'))) {
         //     this.setState({
@@ -62,14 +64,9 @@ class RightSide extends React.Component {
         return (
             <div className={'h-100'}>
                 <ul id={"right-ul"}>
-                    <li onMouseEnter={() => this.setState({ activeMenu: true })}
-                        onMouseLeave={() => this.setState({ activeMenu: false })} className={"navigation-li"}
-                        id={"iphone-icon"}><i className="fas fa-mobile li-title">
-                            {this.state.activeMenu && <IphoneInner activeMenu={this.state.activeMenu} />}
-                        </i></li>
                     {this.state.user ?
 
-                        <li className={"navigation-li"}> <Link to={`/profile`}><h4 className={"li-title"} data-tip data-for='user'>
+                        <li className={"navigation-li"}> <Link to={this.state.user.role_id === 1 ? '/admin' : '/profile'}><h4 className={"li-title"} data-tip data-for='user'>
                             {this.state.user.first_name} </h4></Link>  <ReactTooltip id='user' place="bottom" type="info" effect="float">Get To My Profile</ReactTooltip></li>
 
                         : <li onClick={this.changeFormStatus} className={"navigation-li"}><h4 className={"li-title"}>

@@ -116,6 +116,7 @@ function updateApartment(address, city_id, price, number_of_room, number_of_bath
     })
 }
 function deleteImagesId(apartmentId){
+    console.log("delete")
     return new Promise((resolve, reject) => {
         
             connection.query(`DELETE FROM images WHERE (apartment_id = ?);`, [apartmentId], (error, results, fields) => {
