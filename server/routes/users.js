@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-const { login, users, newUser } = require('../db/api/login');
+const { login, users, newUser, deleteUser } = require('../db/api/login');
 const crypto = require('crypto')
 
 /* GET users listing. */
@@ -8,7 +8,7 @@ router.get ('/', function(req, res, next) {
       users()
       .then(users => res.status(200).json(users))
       .catch(error => res.status(500).json({error: error.message}))
-  })  
+})  
 
 router.post('/login', function (req, res, next) {
 
@@ -49,6 +49,14 @@ router.post('/signup', async (req, res) => {
   } catch (error) {
     res.status(409).json({ status: 409, message: error });
     console.log('Failed: ', error)
+  }
+})
+router.delete('/:id', async function(req, res, next){
+  try{
+      deleteUser(req.params.id)
+      res.status(200).json('User has been deleted ')
+  } catch(error){
+      res.status(500).json({error: error.message});
   }
 })
 

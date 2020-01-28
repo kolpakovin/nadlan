@@ -46,4 +46,16 @@ function newUser({...details}){
         });
     })
 }
-module.exports = { login, users, newUser }
+function deleteUser(id) {
+    return new Promise((resolve, reject) => {
+
+        connection.query(`Delete from users WHERE (id = ?)`, [id], (error, results, fields) => {
+            if (error) {
+                reject(error)
+                return
+            };
+            resolve(results);
+        });
+    })
+}
+module.exports = { login, users, newUser, deleteUser }

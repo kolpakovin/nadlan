@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Grig from "../gallery/grid";
-import {getApartments, getUsers, confirmApartment} from "../app-data/apartments-server";
+import {getApartments, getUsers, confirmApartment, deleteUser} from "../app-data/apartments-server";
 import { Table } from 'react-bootstrap';
 
 
@@ -40,6 +40,12 @@ class Admin extends Component {
         e.preventDefault()
         if(window.confirm('Are you sure you wish to delete this apartment?')){
             confirmApartment(apartmentId)
+        }
+    }
+    deleteUserById = (e, id) => {
+        e.preventDefault();
+        if(window.confirm('Are you sure you wish to delete this user?')){
+            deleteUser(id)
         }
     }
     render() {
@@ -91,7 +97,7 @@ class Admin extends Component {
                                                      <td>{user.last_name}</td>
                                                      <td>{user.email}</td>
                                                      <td>{user.phone}</td>
-                                                     <img className="delete-user" src="http://localhost:4000/images/delete-user-icon.png"/>
+                                                     <img className="delete-user"  onClick={(e) => this.deleteUserById(e, user.id)} src="http://localhost:4000/images/delete-user-icon.png"/>
                                                  </tr>
                                              )
                                          })}

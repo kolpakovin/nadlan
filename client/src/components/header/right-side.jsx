@@ -44,12 +44,6 @@ class RightSide extends React.Component {
                 user: JSON.parse(Cookies.get('user'))
             }), 500);
         }
-
-        // if (this.state.isOpenForm && JSON.parse(Cookies.get('user'))) {
-        //     this.setState({
-        //         user: JSON.parse(Cookies.get('user'))
-        //     })
-        // }
         console.log('user from state',this.state.user)
     }
     cleanCookie = () => {

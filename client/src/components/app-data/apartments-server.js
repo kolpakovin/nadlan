@@ -130,5 +130,14 @@ const confirmApartment = async(apartmentId) => {
      console.log(error)
 }}
 
-export { getApartments, getApartment, registerUser, loginUser, getApartmentsByUserId, addApartment, addImages,
+const deleteUser = async(id) => {
+    try{
+     const response = await fetcher.delete(`/users/${id}`) 
+     console.log("response u", response)
+     return response.data
+ }catch (error) {
+     console.log(error)
+}}
+
+export { getApartments, getApartment, registerUser, loginUser, getApartmentsByUserId, addApartment, addImages, deleteUser,
      getCities, updateApartment, deleteApartmentById, getApartmentsLength, getUsers, getAllCitiesWithApartments, confirmApartment}
