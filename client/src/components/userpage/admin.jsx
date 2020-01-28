@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Grig from "../gallery/grid";
-import {getApartments, getUsers, confirmApartment, deleteUser} from "../app-data/apartments-server";
+import {getApartments, getUsers, confirmApartment, deleteUser, deleteApartmentByUserId, getApartmentsByUserId} from "../app-data/apartments-server";
 import { Table } from 'react-bootstrap';
 
 
@@ -42,10 +42,10 @@ class Admin extends Component {
             confirmApartment(apartmentId)
         }
     }
-    deleteUserById = (e, id) => {
+    deleteUserById = async (e, id) => {
         e.preventDefault();
         if(window.confirm('Are you sure you wish to delete this user?')){
-            deleteUser(id)
+           await deleteApartmentByUserId(id)
         }
     }
     render() {
