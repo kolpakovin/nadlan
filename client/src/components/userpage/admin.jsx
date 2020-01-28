@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Grig from "../gallery/grid";
-import {getApartments, getUsers} from "../app-data/apartments-server";
+import {getApartments, getUsers, confirmApartment} from "../app-data/apartments-server";
 import { Table } from 'react-bootstrap';
 
 
@@ -16,15 +16,14 @@ class Admin extends Component {
             my_users: false
         }
     }
-    async componentDidMount() {
-        
+    async componentDidMount() {    
             this.setState({
-                apartments: await getApartments(),
+                apartments: await getApartments(0, 0, -1, 99999999999, 0, 20, 1, 'pending'),
                 users: await getUsers()
-            });
-            
+            });       
     }
     handleMenu = (e, type) => {
+        e.preventDefault();
         if(type === "my_apartments") {
             this.setState({
                 my_users: false,
@@ -37,13 +36,19 @@ class Admin extends Component {
             })
         }
     }
+    confirmApartment = (e, apartmentId) => {
+        e.preventDefault()
+        if(window.confirm('Are you sure you wish to delete this apartment?')){
+            confirmApartment(apartmentId)
+        }
+    }
     render() {
         return (
             <div className="row mt-2 mr-0 ml-0">
                     <div class="bg-light border-right col-lg-2 col-md-12" id="sidebar-wrapper">
                             <div class="sidebar-heading list-group-item-action ">Admin Menu </div>
                             <div class="list-group list-group-flush">
-                                <a href="#" class="list-group-item list-group-item-action bg-light" onClick={e => this.handleMenu(e, 'my_apartments')}>All Apartments</a>
+                                <a href="#" class="list-group-item list-group-item-action bg-light" onClick={e => this.handleMenu(e, 'my_apartments')}>Apartments To Confirm</a>
                                 <a href="#" class="list-group-item list-group-item-action bg-light" onClick={e => this.handleMenu(e, 'users')}>All Users</a>
                                 <a href="/" class="list-group-item list-group-item-action bg-light">Homepage</a>
                                 <a href="#" class="list-group-item list-group-item-action bg-light">Log Out</a>
@@ -55,7 +60,7 @@ class Admin extends Component {
                         <div className={"container col-10"}>
                             <div className={" row"}>
                                 {
-                                    this.state.apartments.map((item, i) => <Grig {...item} deleteApartment={this.deleteApartment} onPencilClick={this.onPencilClick} key={i} />)
+                                    this.state.apartments.map((item, i) => <Grig {...item} deleteApartment={this.deleteApartment} confirmApartment={this.confirmApartment} key={i} />)
                                 }
                             </div>
                         </div>
@@ -86,7 +91,7 @@ class Admin extends Component {
                                                      <td>{user.last_name}</td>
                                                      <td>{user.email}</td>
                                                      <td>{user.phone}</td>
-                                                     <img className="delete-user" src="http://localhost:4000/images/delete-icon.png"/>
+                                                     <img className="delete-user" src="http://localhost:4000/images/delete-user-icon.png"/>
                                                  </tr>
                                              )
                                          })}

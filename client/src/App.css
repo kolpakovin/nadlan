@@ -222,3 +222,18 @@ p.rent-status-b{
   outline: 0;
   background: antiquewhite;
 }
+img.confirm {
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  right: -11px;
+  top: -16px;
+}
+img.delete-user {
+  position: re;
+  width: 25px;
+  height: 25px;
+  position: relative;
+  left: 5px;
+  top: 11px;
+}

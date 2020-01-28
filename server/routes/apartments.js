@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 const multer = require('multer');
 
-const {getAll, byId, getImagesById, newApartment, addImages, updateApartment, deleteImagesId, deleteApartmentById, apartmentsLength}  = require('../db/api/apartments')
+const {getAll, byId, getImagesById, newApartment, addImages, updateApartment, deleteImagesId, deleteApartmentById, apartmentsLength, confirmApartment}  = require('../db/api/apartments')
 
 const storage = multer.diskStorage({ 
     destination: function(req, file, cb){
@@ -78,13 +78,13 @@ router.get('/length', async function(req, res, next){
         res.status(500).json({error: error.message});
     }
 })
-// router.get ('/', function(req, res, next) {
-//     connection.query(`SELECT * from apartments`, function (error, results, fields) {
-//   if (error) throw error;
-//   res.json(results);
-//   console.log(req.query)
-// })})
-
-
+router.put('/', async function(req, res, next){
+    try{
+        confirmApartment(req.body.id)
+        res.status(200).json('Okk')
+    } catch(error){
+        res.status(500).json({error: error.message});
+    }
+})
 
 module.exports = router;
