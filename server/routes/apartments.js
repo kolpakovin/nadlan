@@ -89,13 +89,18 @@ router.put('/', async function(req, res, next){
     }
 })
 router.delete('/user/:userId', async function(req, res, next){
+    const cookie = JSON.parse(req.cookies['user'])
+    console.log("req..", cookie.id);
     try{
-        console.log("req.params " ,req.params.userId)
+        console.log(cookie.id === req.params.userId || cookie.role_id == 1)
+        if(cookie.id === req.params.userId || cookie.role_id === 1){
+            console.log("req.params " ,req.params.userId)
         const apartments = await getApartmentsByUserId(req.params.userId)
         console.log("apartments", apartments)
         await apartments.forEach(apartment =>  deleteImagesId(apartment.id))
         await deleteApartmentByUserId(req.params.userId)
         await deleteUser(req.params.userId)
+        }  
         res.status(200).json(`Apartments of user:${req.params.userId} has been deleted`)
     } catch(error){
         res.status(500).json({error: error.message});
