@@ -224,7 +224,10 @@ class User extends Component {
     deleteApartment = (e, apartmentId) => {
         e.preventDefault()
         console.log("apar", apartmentId)
-        deleteApartmentById(apartmentId)
+        if(window.confirm('Are you sure you wish to delete this apartment?')){
+            deleteApartmentById(apartmentId)
+        }
+        
     }
     handleMenu = (e, type) => {
         if(type === "my_apartments"){

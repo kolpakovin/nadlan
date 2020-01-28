@@ -16,6 +16,19 @@ function getCityByCityId(id) {
 function getAllCities() {
     return new Promise((resolve, reject) => {
 
+        connection.query(`SELECT * FROM realtor.cities where (country_id = 95) ORDER BY name ;`, (error, results, fields) => {
+            if (error) {
+                reject(error)
+                return
+            };
+            resolve(results);
+        });
+    })
+}
+
+function getAllCitiesWithApartments() {
+    return new Promise((resolve, reject) => {
+
         connection.query(`SELECT C.* FROM cities C join apartments A on C.id = A.city_id group by C.id`, (error, results, fields) => {
             if (error) {
                 reject(error)
@@ -26,4 +39,4 @@ function getAllCities() {
     })
 }
 
-module.exports = {getCityByCityId, getAllCities}
+module.exports = {getCityByCityId, getAllCitiesWithApartments, getAllCities}

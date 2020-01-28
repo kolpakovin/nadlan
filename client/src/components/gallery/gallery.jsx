@@ -1,6 +1,6 @@
 import React from "react";
 import Grig from "./grid";
-import {getApartments, getCities} from "../app-data/apartments-server";
+import {getApartments, getAllCitiesWithApartments} from "../app-data/apartments-server";
 
 
 
@@ -28,7 +28,7 @@ class Gallery extends React.Component {
             apartments,
             loading: false,
         });
-        await getCities(this.setCities)
+        await getAllCitiesWithApartments(this.setCities)
         if (!this.state.apartments_length) {
             const apartments = await getApartments(0, 0, -1, 99999999999, 0, 9999);
             const apartments_length = apartments.length
