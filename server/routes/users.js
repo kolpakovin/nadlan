@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-const { login, users, newUser, deleteUser, checkEmail } = require('../db/api/login');
+const { login, users, newUser, deleteUser, checkEmail, getUser } = require('../db/api/login');
 const crypto = require('crypto')
 
 /* GET users listing. */
@@ -9,7 +9,11 @@ router.get ('/', function(req, res, next) {
       .then(users => res.status(200).json(users))
       .catch(error => res.status(500).json({error: error.message}))
 })  
-
+router.get ('/:id', function(req, res, next) {
+  getUser(req.params.id)
+  .then(user => res.status(200).json(user))
+  .catch(error => res.status(500).json({error: error.message}))
+})  
 router.post('/login', function (req, res, next) {
 
   const token = crypto.pbkdf2Sync(req.body.password, 'realtorrocks', 100000, 64, 'sha512');

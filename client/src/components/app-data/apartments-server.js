@@ -156,7 +156,15 @@ const checkEmail = async (email) => {
         console.log(error)
    }
 }
-
+const getUser = async (id) => {
+    try{
+        const response = await fetcher.get(`/users/${id}`) 
+        console.log("response u", response)
+        return response.data
+       }catch (error) {
+        console.log(error)
+   }
+}
 export { getApartments, getApartment, registerUser, loginUser, getApartmentsByUserId, addApartment, addImages, deleteApartmentByUserId,
     getCities, updateApartment, deleteApartmentById, getApartmentsLength, getUsers, getAllCitiesWithApartments,
-    checkEmail, deleteUser, confirmApartment}
+    checkEmail, deleteUser, confirmApartment, getUser}

@@ -68,7 +68,7 @@ class RightSide extends React.Component {
                             Log In
     
                     </h4></li>}
-                    {this.state.user ? <li onClick={() => this.cleanCookie()} className={"navigation-li"}>
+                    {this.state.user ?  <li onClick={() => this.cleanCookie()} className={"navigation-li"}>
                     <Link to={`/`}><h4 className={"li-title"}>
                         Log Out
                     </h4></Link></li>

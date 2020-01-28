@@ -1,7 +1,7 @@
 import React from "react";
 import "./apartment.css";
 import {Carousel} from "react-bootstrap";
-import {getApartments, getApartment} from "../app-data/apartments-server";
+import {getApartments, getApartment, getUser} from "../app-data/apartments-server";
 import SingleAppLoader from "./single-app-loader";
 
 
@@ -17,23 +17,26 @@ class Apartment extends React.Component {
             loading: true,
             apartmentsArray: [],
             apartmentId: apartmentId,
+            user: null,
             sideMenu: false,
+            showContact: false,
             images: ["http://localhost:4000/images/apartment-loader.jpg","http://localhost:4000/images/apartment-loader.jpg","http://localhost:4000/images/apartment-loader.jpg", "http://localhost:4000/images/apartment-loader.jpg"]
         }
     }
 
-    componentDidMount() {
+    componentDidMount = async() =>{
         getApartment(this.props.match.params.id,this.showApartments)
         
     }
     showApartments = (data) => {
-        console.log(data.apartment[0], 'bbbbb')
         this.setState({    
             apartment: data.apartment[0],
             loading: false
         },  () => this.showImages())
     }
-    showImages = () => {
+    showImages = async() => {
+        const user = await getUser(this.state.apartment.user_id)
+        this.setState({user: user[0]})
         if(!this.state.apartment.images){
             this.setState({
                 images: [this.state.apartment.main_image, this.state.apartment.main_image, this.state.apartment.main_image,this.state.apartment.main_image]
@@ -56,10 +59,12 @@ class Apartment extends React.Component {
             sideMenu: !this.state.sideMenu
         })
     }
-    
+    showContact = (e) => {
+        e.preventDefault();
+        this.setState({showContact: true});
+    }
     render() {
-        const {apartment, loading} = this.state;
-        console.log(this.props.match.params.id, 'asdsa')
+        const {apartment, loading, user} = this.state;
         
         return (
             loading ? <SingleAppLoader/> :
@@ -143,6 +148,11 @@ class Apartment extends React.Component {
 
 
                 <div id={"div-form"} className={this.state.sideMenu ? "active" : undefined}>
+                    {!this.state.showContact &&
+                        <label onClick={e => this.showContact(e)} className={"contact"}>Person To Contact</label>}
+                    { this.state.showContact && 
+                        <label className="thecontact">{`Contact: ${user.first_name}  Phone: ${user.phone}`}</label>
+                        }
                     <div className={"text-center"} id={"phone-form"}>
                         <form action="">
                             More about this property

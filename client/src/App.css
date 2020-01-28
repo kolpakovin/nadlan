@@ -237,3 +237,14 @@ img.delete-user {
   left: 5px;
   top: 11px;
 }
+label.contact, label.thecontact {
+  cursor: pointer;
+  text-decoration: underline;
+  position: relative;
+  bottom: 50px;
+  display: flex;
+  justify-content: center;
+}
+label.contact:hover{
+  color: #2485fe;
+}

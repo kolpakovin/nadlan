@@ -70,4 +70,16 @@ function checkEmail(email) {
         });
     })
 }
-module.exports = { login, users, newUser, deleteUser, checkEmail }
+function getUser(id) {
+    return new Promise((resolve, reject) => {
+        connection.query(`Select * from users where (id = ?)`,[id] ,(error, results, fields) => {
+            if (error) {
+                reject(error)
+                return
+            };
+            resolve(results);
+        });
+    })
+}
+
+module.exports = { login, users, newUser, deleteUser, checkEmail, getUser }
