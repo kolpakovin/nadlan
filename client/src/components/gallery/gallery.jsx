@@ -8,11 +8,11 @@ class Gallery extends React.Component {
     constructor() {
         super();
         this.state = {
-            city_id: "",
+            city_id: 0,
             number_of_rooms: 0,
             number_of_beds: 0,
             min_price: 0,
-            max_price: 0,
+            max_price: 9999999,
             apartments: [],
             cities: [],
             first_number: 1,
@@ -206,7 +206,7 @@ class Gallery extends React.Component {
                     {this.state.apartments.map((item, i) => <Grig {...item} key={i}/>)}
                 </div>
                 <nav aria-label="Page navigation example">
-                    <ul class="pagination justify-content-center">
+                    <ul class="pagination justify-content-center mb-2">
                         <li class="page-item">
                             <a class="page-link" onClick={e => this.handleMoveLeft(e)} href="#">Previous</a>
                         </li>

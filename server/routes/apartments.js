@@ -63,7 +63,8 @@ router.put('/:id', upload.array('images'), async function(req, res, next) {
 router.delete('/:id', async function(req, res, next){
     try{
         console.log("req.params " ,req.params)
-        deleteApartmentById(req.params.id)
+        await deleteImagesId(req.params.id)
+        await deleteApartmentById(req.params.id)
     } catch(error){
         res.status(500).json({error: error.message});
     }

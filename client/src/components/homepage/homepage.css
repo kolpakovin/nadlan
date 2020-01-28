@@ -252,3 +252,14 @@
   border-bottom-left-radius: 5px;
   border: 0px;
 }
+#signup {
+  position: fixed;
+  z-index: 9999;
+  top: 35px;
+  color: black;
+  background: white;
+  line-height: 1.6;
+  width: 500px;
+  margin: 0 auto;
+  right: 39%;
+}

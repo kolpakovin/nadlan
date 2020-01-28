@@ -18,7 +18,7 @@ class Grid extends React.Component {
         </svg>;
 
         return (
-            <div className={(window.location.href === "http://localhost:3000/profile" || window.location.href === "http://localhost:3000/profile#") ? "col-xl-4 box" : "city-grid box col-xl-3 col-lg-4 col-md-6 col-sm-12"} 
+            <div className={(window.location.href === "http://localhost:3000/profile" || window.location.href === "http://localhost:3000/profile#" || window.location.href === "http://localhost:3000/admin" || window.location.href === "http://localhost:3000/admin#") ? "col-xl-4 box" : "city-grid box col-xl-3 col-lg-4 col-md-6 col-sm-12"} 
                  id={type === "cities" ? "city" + this.props.id : "apartment" + this.props.id}>
                 <Link to={`/apartment/${this.props.id}`}>
                     <div className={"city-content card"}>
@@ -42,7 +42,7 @@ class Grid extends React.Component {
                         src={`http://localhost:4000/images/pencil-icon.png`} data-tip="React-tooltip" alt=""/>
                          }
                          <ReactTooltip place="top" type="success" effect="float">Edit Apartment</ReactTooltip>
-                        {(window.location.href === "http://localhost:3000/profile" || window.location.href === "http://localhost:3000/profile#") && <img className="delete" value={this.props.id} onClick={(e) =>this.props.deleteApartment(e, this.props.id)} data-tip data-for='delete' src={`http://localhost:4000/images/delete-icon.png`} alt=""/>}
+                        {(window.location.href === "http://localhost:3000/profile" || window.location.href === "http://localhost:3000/profile#" || window.location.href === "http://localhost:3000/admin" || window.location.href === "http://localhost:3000/admin#") && <img className="delete" value={this.props.id} onClick={(e) =>this.props.deleteApartment(e, this.props.id)} data-tip data-for='delete' src={`http://localhost:4000/images/delete-icon.png`} alt=""/>}
                         <ReactTooltip id='delete' place="top" type="success" effect="float">Delete Apartment</ReactTooltip>
                     </div>
                 </Link>

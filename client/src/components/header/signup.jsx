@@ -2,66 +2,74 @@ import React from "react";
 import "./header.css";
 import { Redirect } from 'react-router'
 import {registerUser} from '../app-data/apartments-server';
-
-const crypto = require('crypto');
+import validate, { field } from '../app-data/validator';
+import InputErrors from '../app-data/input-errors';
 
 
 class SignUp extends React.Component{
     constructor(props) {
         super(props);
         this.state = {
-            first_name: '',
-            last_name: '',
-            email: '', 
-            password: '',
-            phone: '',
-            status: 'active'
-        }
+        //     first_name: '',
+        //     last_name: '',
+        //     email: '', 
+        //     password: '',
+        //     phone: '',
+            status: 'active',
+            containerClassName: '',
+            email: field({ name: 'email', isRequired: true, pattern: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/ }),
+            password: field({ name: 'password', isRequired: true, minLength: 5 }),
+            phone: field({ name: 'phone', isRequired: true, minLength: 10 }),
+            first_name: field({ name: 'first_name', isRequired: true, minLength: 2 }),
+            last_name: field({ name: 'last_name', isRequired: true, minLength: 2 })
+
+        }; this.handleChange = this.handleChange.bind(this);
     };
-    handleChange = (e) => {
-        e.preventDefault();
-        const name = e.target.name;
-        const value = e.target.value;
+    // handleChange = (e) => {
+    //     e.preventDefault();
+    //     const name = e.target.name;
+    //     const value = e.target.value;
+    //     this.setState({
+    //         [name]: value
+    //     }, console.log(name , this.state[name]))
+    // }
+    handleChange = ({ target: { name, value } }) => {
+        const errors = validate(name, value, this.state[name].validations);
         this.setState({
-            [name]: value
-        }, console.log(name , this.state[name]))
+            [name]: {
+                ...this.state[name],
+                value,
+                errors
+            }
+        });
     }
     signUpUser = (e) => {
         e.preventDefault();
-        const {first_name, last_name, email, password, phone, status} = this.state
-        registerUser({first_name, last_name, email, password, phone, status});
+        const {status} = this.state
+        registerUser({first_name: this.state.first_name.value, last_name: this.state.last_name.value, email:this.state.email.value, password: this.state.password.value, phone: this.state.phone.value, status});
     }
     render() {
         
         return (
-            <form id={"login"} style={{display: this.props.isOpenSignUp ? 'flex' : 'none'} } >
-               <div className={"left-side"}>
+            <form id={"signup"} style={{display: this.props.isOpenSignUp ? 'flex' : 'none'} } >
+               <div className={"right-side"}>
                    <div className={"padding-form"}>
                        <h4>Sign up new account</h4>
                        <p>Access all your saved properties, searches, notes and more.</p>
-                       <input type="text" name="first_name"  placeholder="First Name" value={this.state.first_name} onChange={(e) => this.handleChange(e)}/>
-                       <input type="text" name="last_name"  placeholder="Last Name" value={this.state.last_name} onChange={(e) => this.handleChange(e)}/>
-                       <input type="text" name="email"  placeholder="Email Address" value={this.state.email} onChange={(e) => this.handleChange(e)}/>
-                       <input type="text" name="password" placeholder="Password" value={this.state.password} onChange={(e) => this.handleChange(e)}/>
-                       <input type="text" name="phone"  placeholder="Phone Number" value={this.state.phone} onChange={(e) => this.handleChange(e)}/>
-                       <div className={"d-flex justify-content-end"}>
-                           <a href="" id={"forgot-password"}>Forgot Password?</a>
-                       </div>
-                       <div className={"d-flex mt-3 mb-4"}>
+                       <input type="text" name="first_name"  placeholder="First Name" onBlur={(e) => this.handleChange(e)} required />
+                       <InputErrors errors={this.state.first_name.errors}></InputErrors>
+                       <input type="text" name="last_name"  placeholder="Last Name" onBlur={(e) => this.handleChange(e)} required />
+                       <InputErrors errors={this.state.last_name.errors}></InputErrors>
+                       <input type="text" name="email"  placeholder="Email Address" onBlur={(e) => this.handleChange(e)} required />
+                       <InputErrors errors={this.state.email.errors}></InputErrors>
+                       <input type="text" name="password" placeholder="Password" onBlur={(e) => this.handleChange(e)} required />
+                       <InputErrors errors={this.state.password.errors}></InputErrors>
+                       <input type="text" name="phone"  placeholder="Phone Number" onBlur={(e) => this.handleChange(e)} required />
+                       <InputErrors errors={this.state.phone.errors}></InputErrors>
+                       <div className={"mt-3 mb-4  text-center"}>
                            <button onClick={(e) => this.signUpUser(e)} id={"simple-login"}>Sign Up</button>
-                           <a href="" id={"no-account"} className={"ml-3"}>No account? Sign Up</a>
                        </div>
-                       <button className={"login-form-button facebook-button"}>Log In with Facebook</button>
-                       <button className={"login-form-button google-button"}><img src="./images/google-logo.jpg" alt=""/>Log In with Google</button>
-                   </div>
-               </div>
-               <div className={"right-side"}>
-                   <div className={"padding-form"}>
                        <span id={"close-me"} onClick={this.props.changeSignUpStatus}>x</span>
-                       <h4>Real estate professional?</h4>
-                       <p>Manage your profile, leads, <br/> listings and more.</p>
-                       <button>Pro Log In</button>
-                       <div><a href="">No professional account? Sign Up here</a></div>
                        <img src={"./images/house_login_web.jpg"} alt=""/>
                    </div>
                </div>

@@ -6,7 +6,7 @@ const crypto = require('crypto')
 /* GET users listing. */
 router.get ('/', function(req, res, next) {
       users()
-      .then(users => res.status(200).json({users}))
+      .then(users => res.status(200).json(users))
       .catch(error => res.status(500).json({error: error.message}))
   })  
 
@@ -17,9 +17,15 @@ router.post('/login', function (req, res, next) {
   console.log('very important',req.body.email, req.body.password)
   login(req.body.email, userPasswordHashed)
     .then((user) => {
-      // console.log('user: ', user);
-      res.cookie("user", JSON.stringify(user), { maxAge: 1000 * 60 * 60 * 24 });
-      res.status(200).json(user)
+      console.log(user)
+      if(user){
+        res.cookie("user", JSON.stringify(user), { maxAge: 1000 * 60 * 60 * 24 });
+        res.status(200).json(user)
+      } else {
+        console.log("invalid")
+        res.status(200).json("")
+      }
+      
     })
     .catch(error => res.status(500).json({ error: error.message }))
 })

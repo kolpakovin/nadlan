@@ -10,7 +10,9 @@ class LoginForm extends React.Component{
         this.state = {
             email: '', 
             password: '',
-            redirect : false 
+            redirect : false,
+            invalidUser: false,
+            changeStatus: false
             // form_style: true
         }
     }
@@ -28,13 +30,16 @@ class LoginForm extends React.Component{
             [name]: value
         }, console.log(name , this.state[name]))
     }
-    sendUser = (e) => {
+    sendUser = async (e) => {
         e.preventDefault()
         console.log(this.state.email ,this.state.password);
-        // this.setState({
-        //     form_style: false
-        // })
-        loginUser(this.state.email, this.state.password, this.changeState)
+        const user = await loginUser(this.state.email, this.state.password)
+        if (user){
+            this.changeState()
+            this.setState({changeStatus: true})
+        } else (
+            this.setState({invalidUser: true})
+        )
         // .then(result => this.setState({}))
         
     }
@@ -62,36 +67,29 @@ class LoginForm extends React.Component{
     }
    
     render() {
-        const changeStatus = this.props.changeUserState;
+        if(this.state.changeStatus){
+            const changeStatus = this.props.changeUserState;
+            changeStatus()
+        }
+        
         return (
             
-            <form id={"login"} style={{display: this.props.isOpenForm && 
+            <form id={"login"} className="text-center" style={{display: this.props.isOpenForm && 
             (window.location.href !== "http://localhost:3000/profile" && window.location.href !== "http://localhost:3000/admin") ? 'flex' : 'none'} } >
-               <div className={"left-side"}>
+               <div className={"right-side"}>
                    <div className={"padding-form"}>
                         {this.renderRedirect()}
                        <h4>Log in to your account</h4>
                        <p>Access all your saved properties, searches, notes and more.</p>
                        <input type="text" name="email" placeholder={"Email Address"} value={this.state.email} onChange={(e) => this.handleChange(e)}/>
                        <input type="text" name="password" placeholder={"Password"} value={this.state.password} onChange={(e) => this.handleChange(e)}/>
-                       <div className={"d-flex justify-content-end"}>
-                           <a href="" id={"forgot-password"}>Forgot Password?</a>
+                       {this.state.invalidUser && <h1>Invalid email or password</h1>}
+                       <div className={"mt-3 mb-4 ml-auto mr-auto"}>
+                           <button onClick={(e) => {this.sendUser(e)}} id={"simple-login"}>Log In</button>
                        </div>
-                       <div className={"d-flex mt-3 mb-4"}>
-                           <button onClick={(e) => {this.sendUser(e); changeStatus()}} id={"simple-login"}>Log In</button>
-                           <a href="" id={"no-account"} className={"ml-3"}>No account? Sign Up</a>
-                       </div>
-                       <button className={"login-form-button facebook-button"}>Log In with Facebook</button>
-                       <button className={"login-form-button google-button"}><img src="./images/google-logo.jpg" alt=""/>Log In with Google</button>
-                   </div>
-               </div>
-               <div className={"right-side"}>
-                   <div className={"padding-form"}>
                        <span id={"close-me"} onClick={this.props.changeFormStatus}>x</span>
-                       <h4>Real estate professional?</h4>
-                       <p>Manage your profile, leads, <br/> listings and more.</p>
-                       <button>Pro Log In</button>
-                       <div><a href="">No professional account? Sign Up here</a></div>
+                   </div>
+                   <div className={"padding-form"}>
                        <img src={"./images/house_login_web.jpg"} alt=""/>
                    </div>
                </div>

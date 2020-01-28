@@ -18,7 +18,7 @@ class Apartment extends React.Component {
             apartmentsArray: [],
             apartmentId: apartmentId,
             sideMenu: false,
-            images: []
+            images: ["http://localhost:4000/images/apartment-loader.jpg","http://localhost:4000/images/apartment-loader.jpg","http://localhost:4000/images/apartment-loader.jpg", "http://localhost:4000/images/apartment-loader.jpg"]
         }
     }
 
@@ -34,15 +34,22 @@ class Apartment extends React.Component {
         },  () => this.showImages())
     }
     showImages = () => {
-        this.setState({
-            images: this.state.apartment.images.split(',')
-        })
+        if(!this.state.apartment.images){
+            this.setState({
+                images: [this.state.apartment.main_image, this.state.apartment.main_image, this.state.apartment.main_image,this.state.apartment.main_image]
+            })
+        } else {
+            this.setState({
+                images: this.state.apartment.images.split(',')
+            })
+        }
     };
     showSideMenu = () => {
         this.setState({
             sideMenu: !this.state.sideMenu
         })
     }
+    
     render() {
         const {apartment, loading} = this.state;
         console.log(this.props.match.params.id, 'asdsa')
@@ -58,13 +65,16 @@ class Apartment extends React.Component {
                 <div className={"position-relative"}>
                     <i id={"side-menu-button"} onClick={this.showSideMenu} className="fas fa-address-card"></i>
                 </div>
+                {
+                    this.state.images !== []
+                            &&
 
                 <Carousel>
 
                     <Carousel.Item>
                         <img
                             className="d-block w-100"
-                            src={"http://localhost:4000/"+this.state.images[0]}
+                            src={this.state.images[0].includes("http") ? this.state.images[0] : "http://localhost:4000/"+this.state.images[0]}
                             alt="First slide"
                         />
                         <div>
@@ -77,7 +87,7 @@ class Apartment extends React.Component {
                     <Carousel.Item>
                         <img
                             className="d-block w-100"
-                            src={"http://localhost:4000/"+this.state.images[1]}
+                            src={this.state.images[1].includes("http") ? this.state.images[1] :"http://localhost:4000/"+this.state.images[1]}
                             alt="Third slide"
                         />
 
@@ -88,7 +98,7 @@ class Apartment extends React.Component {
                     <Carousel.Item>
                         <img
                             className="d-block w-100"
-                            src={"http://localhost:4000/"+this.state.images[2]}
+                            src={this.state.images[2].includes("http") ? this.state.images[2] :"http://localhost:4000/"+this.state.images[2]}
                             alt="Third slide"
                         />
 
@@ -100,6 +110,7 @@ class Apartment extends React.Component {
 
 
                 </Carousel>
+                }
 
                 <div className={"d-flex position-relative description"}>
                     <p className={"upload-time-1 position-absolute"}>{apartment.description}</p>

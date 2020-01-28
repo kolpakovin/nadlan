@@ -12,8 +12,6 @@ li.navigation-li {
   -ms-flex-align: center;
   align-items: center;
   border-bottom: 3px solid transparent; }
-  li.navigation-li:first-child {
-    border-bottom: 3px solid red; }
   li.navigation-li li {
     list-style: none; }
 
@@ -37,7 +35,7 @@ li.navigation-li:hover {
 
 #app-header img {
   height: 100px;
-  width: 200px; }
+  width: 85%; }
 
 .sub-nav-menu {
   position: absolute;
@@ -174,36 +172,36 @@ div.navigation {
   z-index: 9999;
   top: 75px;
   color: black;
-  right: calc(100vw/4);
+  right: 35%;
   background: white;
   line-height: 1.6; }
-  #login h4 {
+  #login h4, #signup h4 {
     font-size: 23px; }
-  #login p {
+  #login p, #signup p {
     margin: 8px 0; }
   #login .left-side {
     width: 55%; }
-  #login .right-side {
-    width: 45%;
-    background-color: #ececec; }
-    #login .right-side button {
+  #login .right-side, #signup .right-side {
+    background-color: #ececec;
+  width: 100%; }
+    #login .right-side button, #signup .right-side button{
       background-color: #00acee;
       color: white;
       border: 0;
       border-radius: 10px;
       padding: 0 30px;
       margin: 10px 0; }
-    #login .right-side a {
+    #login .right-side a, #signup .right-side a{
       color: #00acee; }
-      #login .right-side a:hover {
+      #login .right-side a:hover, #signup .right-side a:hover{
         text-decoration: underline; }
-    #login .right-side img {
+    #login .right-side img, #signup .right-side img {
       position: absolute;
       bottom: 30px;
       right: 35px; }
-  #login .padding-form {
+  #login .padding-form, #signup .padding-form {
     padding: 30px 20px; }
-  #login input {
+  #login input, #signup input {
     width: 100%;
     height: 35px;
     position: relative;
@@ -212,13 +210,13 @@ div.navigation {
   #login #forgot-password:hover {
     color: #1c7de6;
     text-decoration: underline; }
-  #login #close-me {
+  #login #close-me, #signup #close-me  {
     position: absolute;
     right: 10px;
     top: 0;
     font-size: 22px;
     cursor: pointer; }
-  #login #simple-login {
+  #login #simple-login, #signup #simple-login {
     color: white;
     background-color: #d92228;
     border: 0;
@@ -231,7 +229,7 @@ div.navigation {
     #login #no-account:hover {
       color: #1c7de6;
       text-decoration: underline; }
-  #login .login-form-button {
+  #login .login-form-button, #signup .login-form-button {
     width: 100%;
     margin: 5px 0;
     border-radius: 15px;
@@ -288,4 +286,7 @@ div.navigation {
   #address {
     width: 355px !important; }
   #right-ul:last-child {
-    display: none; } }
+    display: none; } 
+}
+#signup #simple-login {margin-bottom: 80px;}
+#login #simple-login {margin-bottom: 30px}
