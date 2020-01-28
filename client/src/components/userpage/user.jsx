@@ -13,17 +13,7 @@ class User extends Component {
         super(props);
         this.state = {
             apartments: [],
-            // city_id: null,
-            // address: null,
-            // price: null,
-            // rooms: null,
-            // baths: null,
-            // sqft: null,
-            // sale_status: null,
             available: "available",
-            // property_type: null,
-            // main_image: null,
-            // images: [],
             cities: [],
             apartment: null,
             editApartmentIsOpen: false,
@@ -227,9 +217,9 @@ class User extends Component {
         if(window.confirm('Are you sure you wish to delete this apartment?')){
             deleteApartmentById(apartmentId)
         }
-        
     }
     handleMenu = (e, type) => {
+        e.preventDefault()
         if(type === "my_apartments"){
             this.setState({
                 editApartmentIsOpen: false,

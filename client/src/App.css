@@ -166,8 +166,7 @@ p.rent-status-b{
   width: 24px;
   height: 24px;
   position: absolute;
-  right: 59px;
-  top: 17px;
+  right: 0;
 }
 #greeting{
   font-family: 'Open Sans Condensed', sans-serif;
@@ -226,8 +225,9 @@ img.confirm {
   position: absolute;
   width: 25px;
   height: 25px;
-  right: -11px;
-  top: -16px;
+  right: 30px;
+  top: 2px;
+  background: honeydew;
 }
 img.delete-user {
   position: re;

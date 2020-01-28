@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-const { login, users, newUser, deleteUser } = require('../db/api/login');
+const { login, users, newUser, deleteUser, checkEmail } = require('../db/api/login');
 const crypto = require('crypto')
 
 /* GET users listing. */
@@ -59,6 +59,17 @@ router.delete('/:id', async function(req, res, next){
       res.status(500).json({error: error.message});
   }
 })
+
+router.get('/:email', async function(req, res, next){
+  try{
+      const response = await checkEmail(req.params.email)
+      console.log(response == false)
+      res.status(200).json(response)
+  } catch(error){
+      res.status(500).json({error: error.message});
+  }
+})
+
 
 // router.post('/login', function (req, res, next){
 //   // const userDetails = req.body;

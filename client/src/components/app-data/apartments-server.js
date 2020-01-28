@@ -135,7 +135,7 @@ const deleteUser = async(id) => {
      const response = await fetcher.delete(`/users/${id}`) 
      console.log("response u", response)
      return response.data
- }catch (error) {
+    }catch (error) {
      console.log(error)
 }}
 const deleteApartmentByUserId = async (id) => {
@@ -143,9 +143,20 @@ const deleteApartmentByUserId = async (id) => {
      const response = await fetcher.delete(`/apartments/user/${id}`) 
      console.log("response u", response)
      return response.data
- }catch (error) {
+    }catch (error) {
      console.log(error)
 }}
 
+const checkEmail = async (email) => {
+    try{
+        const response = await fetcher.get(`/users/${email}`) 
+        console.log("response u", response)
+        return response.data
+       }catch (error) {
+        console.log(error)
+   }
+}
+
 export { getApartments, getApartment, registerUser, loginUser, getApartmentsByUserId, addApartment, addImages, deleteApartmentByUserId,
-    getCities, updateApartment, deleteApartmentById, getApartmentsLength, getUsers, getAllCitiesWithApartments, deleteUser, confirmApartment}
+    getCities, updateApartment, deleteApartmentById, getApartmentsLength, getUsers, getAllCitiesWithApartments,
+    checkEmail, deleteUser, confirmApartment}

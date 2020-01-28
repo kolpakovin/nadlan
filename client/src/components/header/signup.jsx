@@ -1,7 +1,7 @@
 import React from "react";
 import "./header.css";
 import { Redirect } from 'react-router'
-import {registerUser} from '../app-data/apartments-server';
+import {registerUser, checkEmail} from '../app-data/apartments-server';
 import validate, { field } from '../app-data/validator';
 import InputErrors from '../app-data/input-errors';
 
@@ -10,29 +10,17 @@ class SignUp extends React.Component{
     constructor(props) {
         super(props);
         this.state = {
-        //     first_name: '',
-        //     last_name: '',
-        //     email: '', 
-        //     password: '',
-        //     phone: '',
             status: 'active',
             containerClassName: '',
             email: field({ name: 'email', isRequired: true, pattern: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/ }),
             password: field({ name: 'password', isRequired: true, minLength: 5 }),
             phone: field({ name: 'phone', isRequired: true, minLength: 10 }),
             first_name: field({ name: 'first_name', isRequired: true, minLength: 2 }),
-            last_name: field({ name: 'last_name', isRequired: true, minLength: 2 })
+            last_name: field({ name: 'last_name', isRequired: true, minLength: 2 }),
+            invalidEmail: false
 
         }; this.handleChange = this.handleChange.bind(this);
     };
-    // handleChange = (e) => {
-    //     e.preventDefault();
-    //     const name = e.target.name;
-    //     const value = e.target.value;
-    //     this.setState({
-    //         [name]: value
-    //     }, console.log(name , this.state[name]))
-    // }
     handleChange = ({ target: { name, value } }) => {
         const errors = validate(name, value, this.state[name].validations);
         this.setState({
@@ -43,10 +31,16 @@ class SignUp extends React.Component{
             }
         });
     }
-    signUpUser = (e) => {
+    signUpUser = async (e) => {
         e.preventDefault();
         const {status} = this.state
-        registerUser({first_name: this.state.first_name.value, last_name: this.state.last_name.value, email:this.state.email.value, password: this.state.password.value, phone: this.state.phone.value, status});
+        const email = await checkEmail(this.state.email.value)
+        console.log("email", email.data)
+        if(!email.length){
+            await registerUser({first_name: this.state.first_name.value, last_name: this.state.last_name.value, email:this.state.email.value, password: this.state.password.value, phone: this.state.phone.value, status});
+        } else {
+            this.setState({invalidEmail: true})
+        }
     }
     render() {
         
@@ -62,6 +56,7 @@ class SignUp extends React.Component{
                        <InputErrors errors={this.state.last_name.errors}></InputErrors>
                        <input type="text" name="email"  placeholder="Email Address" onBlur={(e) => this.handleChange(e)} required />
                        <InputErrors errors={this.state.email.errors}></InputErrors>
+                       {this.state.invalidEmail && <label htmlFor="">This email is already in use </label>   }
                        <input type="text" name="password" placeholder="Password" onBlur={(e) => this.handleChange(e)} required />
                        <InputErrors errors={this.state.password.errors}></InputErrors>
                        <input type="text" name="phone"  placeholder="Phone Number" onBlur={(e) => this.handleChange(e)} required />

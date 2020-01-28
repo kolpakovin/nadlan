@@ -36,7 +36,6 @@ class Grid extends React.Component {
                             {<p className={'city-name'}>{`city: ${name}`}</p>}
                             {<p className={"apartment-address"}>{`address: ${address}`}</p>}
                         </div>}
-                        {<span className={"heart"}> {heart_icon} </span>}
                         {(window.location.href === "http://localhost:3000/profile" || window.location.href === "http://localhost:3000/profile#") &&
                             <img className="pencil" value={this.props.id} onClick={(e) => this.props.onPencilClick(e, this.props.id)}
                                 src={`http://localhost:4000/images/pencil-icon.png`} data-tip="React-tooltip" alt="" />

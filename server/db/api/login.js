@@ -59,4 +59,15 @@ function deleteUser(id) {
         });
     })
 }
-module.exports = { login, users, newUser, deleteUser }
+function checkEmail(email) {
+    return new Promise((resolve, reject) => {
+        connection.query(`Select * from users where (email = ?)`,[email] ,(error, results, fields) => {
+            if (error) {
+                reject(error)
+                return
+            };
+            resolve(results);
+        });
+    })
+}
+module.exports = { login, users, newUser, deleteUser, checkEmail }

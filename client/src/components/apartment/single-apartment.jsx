@@ -39,9 +39,16 @@ class Apartment extends React.Component {
                 images: [this.state.apartment.main_image, this.state.apartment.main_image, this.state.apartment.main_image,this.state.apartment.main_image]
             })
         } else {
-            this.setState({
-                images: this.state.apartment.images.split(',')
-            })
+            if(this.state.apartment.images.split(',').length < 3){
+                let images = this.state.apartment.images.split(',')
+                images.forEach(image => images.push(image))
+                console.log(images)
+                this.setState({images})
+            } else {
+                this.setState({
+                    images: this.state.apartment.images.split(',')
+                })
+            }
         }
     };
     showSideMenu = () => {
@@ -58,10 +65,7 @@ class Apartment extends React.Component {
             loading ? <SingleAppLoader/> :
             <div>
 
-                <div className={"agency "}>
-                    <p>Presented by:</p>
-                    <p><b>Drew Coleman</b> with <b>Hasson Company</b></p>
-                </div>
+                
                 <div className={"position-relative"}>
                     <i id={"side-menu-button"} onClick={this.showSideMenu} className="fas fa-address-card"></i>
                 </div>
@@ -69,7 +73,7 @@ class Apartment extends React.Component {
                     this.state.images !== []
                             &&
 
-                <Carousel>
+                <Carousel className="mt-3">
 
                     <Carousel.Item>
                         <img
@@ -118,23 +122,20 @@ class Apartment extends React.Component {
 
                 </div>
                 <div className={"apartment-details"}>
-                    <a href="" id={"under-carousel-text"}>Veterans:Check Eligibility for a $0 Down VA Loan</a>
                     <p><b style={{fontSize: "22px"}}>${Math.floor(apartment.price)}</b></p>
                     <span>{(apartment.number_of_bath === 1) ? (apartment.number_of_bath + " baths") : (apartment.number_of_bath + " baths")}</span>
                     <span
                         className={"ml-4"}>{(apartment.number_of_room === 1) ? (apartment.number_of_room + " room") : (apartment.number_of_room + " rooms")}</span>
                     <span className={"ml-4"}>{apartment.sqft && (apartment.sqft + " sqft")}</span>
 
-                    <p>{(apartment.address)}</p>
-                    <div className={"position-relative like-me"}>
-                        <a href=""><i className="far fa-heart"></i></a>
-                    </div>
+                    <p>Address: {(apartment.address)}</p>
+                    <p>City: {(apartment.real_city_name)}</p>
 
                 </div>
 
 
                         <div className={"google-map"}>
-                            <iframe src={`https://maps.google.com/maps?q=${apartment.real_city_name}${apartment.address}&t=&z=13&ie=UTF8&iwloc=&output=embed`}
+                            <iframe src={`https://maps.google.com/maps?q=${apartment.real_city_name.replace(" ", "")}&t=&z=13&ie=UTF8&iwloc=&output=embed`}
                                     style={{border:"0"}}/>
                         </div>
                 {/*<i className="fas fa-angle-right" style={{fontSize: "44px"}}></i>*/}

@@ -12,8 +12,8 @@ import ReactTooltip from 'react-tooltip';
  
 
 class RightSide extends React.Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             activeMenu: false,
             isOpenForm: false,
@@ -22,7 +22,7 @@ class RightSide extends React.Component {
         }
     }
     async componentDidMount() {
-        if (Cookies.get('user')) {
+        if (Cookies.get('user') && this.state.user === null) {
             this.setState({
                 user: JSON.parse(Cookies.get('user')),
                 isOpenForm: false,

@@ -37,8 +37,9 @@ class Gallery extends React.Component {
     }
     handleClick = async (e, pageNum) => {
         e.preventDefault();
+        const {number_of_rooms, number_of_beds, min_price, max_price, city_id} = this.state
         console.log("pageNum: ", pageNum)
-        const apartments = await getApartments(0, 0, -1, 99999999999, 0, 12, pageNum)
+        const apartments = await getApartments(number_of_rooms, number_of_beds, min_price, max_price, city_id, 12, pageNum)
         this.setState({apartments})
         window.scrollTo({
             top: 0,
@@ -116,6 +117,8 @@ class Gallery extends React.Component {
     }
 
     searchApartments = async e => {
+        this.setState({isTrue3: false,
+            isTrue2: false, isTrue1: false})
         console.log({rooms: this.state.number_of_rooms, beds: this.state.number_of_beds, minprice: this.state.min_price, maxprice: this.state.max_price});
         const apartments = await getApartments(this.state.number_of_rooms, this.state.number_of_beds, this.state.min_price, this.state.max_price, this.state.city_id);
         this.showApartments(apartments);
@@ -153,7 +156,7 @@ class Gallery extends React.Component {
         </div>;
         const beds_fltr = <div>
             <div>
-                <button  onClick={this.toggleSubMenu2} className={"btn btn-secondary dropdown-toggle ml-2"} >Beds</button>
+                <button  onClick={this.toggleSubMenu2} className={"btn btn-secondary dropdown-toggle ml-2"} >Baths</button>
 
                 {isTrue2 &&
                 <div className={"dropdown-fltr position-absolute fltr"}>
@@ -190,7 +193,7 @@ class Gallery extends React.Component {
                 <div id={"filters"} className={"mb-2 mt-2"}>
                 <div class="form-group col-md-4">
                                 <select name="city_id" onClick={(e) => this.handleChange(e)} id="inputState" class="form-control">
-                                    <option selected>City...</option>
+                                    <option value="0" selected>City...</option>
                                     {cities.map((city, i) => {
                                         return (
                                             <option key={i} value={city.id}>{city.name}</option>

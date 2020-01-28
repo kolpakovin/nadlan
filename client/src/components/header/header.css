@@ -200,7 +200,8 @@ div.navigation {
       bottom: 30px;
       right: 35px; }
   #login .padding-form, #signup .padding-form {
-    padding: 30px 20px; }
+    padding: 30px 20px;
+  text-align: center; }
   #login input, #signup input {
     width: 100%;
     height: 35px;
