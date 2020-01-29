@@ -19,6 +19,7 @@ class User extends Component {
             editApartmentIsOpen: false,
             add_apartment: false,
             my_apartments: true,
+            posted: false,
             address: field({ name: 'address', isRequired: true, minLength: 4 }),
             price: field({ name: 'price', isRequired: true }),
             number_of_room: field({ name: 'Number of rooms', isRequired: true }),
@@ -204,6 +205,7 @@ class User extends Component {
             form_data.append("status", "pending")
             if (type === "newApartment") {
                 addApartment(form_data)
+                this.setState({posted: true})
             } else if (type === "updateApartment") {
                 form_data.append("apartmentId", this.state.apartment.id)
                 updateApartment(this.state.apartment.id, form_data)
@@ -337,6 +339,8 @@ class User extends Component {
                                     <textarea className="form-control" id="exampleFormControlTextarea1" rows="3" name='description' onChange={this.inputChange}></textarea>
                                 </div>
                                 <button type="submit" class="btn btn-secondary btn-primary" onClick={(e) => this.onSubmit(e, "newApartment")}>Post apartment</button>
+                                { this.state.posted &&
+                                    <label className={"ml-4"}>Admin will review your apartment as soon as possible. Thank you for your patience.</label>}            
                             </form>
                         </div>}
                     {

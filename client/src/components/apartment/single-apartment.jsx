@@ -150,10 +150,13 @@ class Apartment extends React.Component {
                 <div id={"div-form"} className={this.state.sideMenu ? "active" : undefined}>
                     {!this.state.showContact &&
                         <label onClick={e => this.showContact(e)} className={"contact"}>Person To Contact</label>}
-                    { this.state.showContact && 
-                        <label className="thecontact">{`Contact: ${user.first_name}  Phone: ${user.phone}`}</label>
+                    { this.state.showContact &&
+                        <div id="contact">
+                            <p >{`Contact: ${user.first_name}`}</p>
+                            <p >{`Phone: ${user.phone}`}</p>
+                        </div> 
                         }
-                    <div className={"text-center"} id={"phone-form"}>
+                    {/* <div className={"text-center"} id={"phone-form"}>
                         <form action="">
                             More about this property
                             <div className={"d-table  mb-2 div-input"}><span className="input-group-addon">
@@ -177,7 +180,7 @@ class Apartment extends React.Component {
 
                         </form>
 
-                    </div>
+                    </div> */}
                 </div>
 
 
