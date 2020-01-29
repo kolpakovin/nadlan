@@ -226,7 +226,7 @@ class User extends Component {
         }
         return (
             <div>
-                <div className="m-4 d-flex w-25 text-center align-items-center">
+                <div style={{width: '23%'}} className="m-4 d-flex text-center align-items-center">
                     <h1 id="greeting">{`Hello ${JSON.parse(Cookies.get('user')).first_name} ${JSON.parse(Cookies.get('user')).last_name}. Enjoy evgenyrealestate`}</h1>
                     <GifPlayer gif="http://localhost:4000/images/hi.gif" id='hi' still="http://localhost:4000/images/hi.gif" />
 
