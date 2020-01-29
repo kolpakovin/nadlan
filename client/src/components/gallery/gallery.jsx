@@ -11,8 +11,8 @@ class Gallery extends React.Component {
             city_id: 0,
             number_of_rooms: 0,
             number_of_beds: 0,
-            min_price: 0,
-            max_price: 9999999,
+            min_price: -1,
+            max_price: 9999999999,
             apartments: [],
             cities: [],
             first_number: 1,
@@ -200,7 +200,7 @@ class Gallery extends React.Component {
         return (
             <div>
                 <div id={"filters"} className={"mb-2 mt-2"}>
-                    <div class="form-group col-md-4">
+                    <div class="form-group col-md-3">
                         <select name="city_id" onClick={(e) => this.handleChange(e)} id="inputState" class="form-control">
                             <option value="0" selected>City...</option>
                             {cities.map((city, i) => {
@@ -210,7 +210,7 @@ class Gallery extends React.Component {
                             })}
                         </select>
                     </div>
-                    <div class="form-group col-md-4">
+                    <div class="form-group col-md-3">
                                 <select name="sale_status" onClick={(e) => this.handleChange(e)} id="inputState" class="form-control">
                                     <option value="" onClick={(e) => this.handleChange(e)} selected>Sale/Rent</option>
                                     <option value="sale" onClick={(e) => this.handleChange(e)}>Sale</option>
@@ -222,7 +222,7 @@ class Gallery extends React.Component {
                     {beds_fltr}
                     {price_fltr}
                     <div className="ml-2">
-                        <button className="btn btn-secondary btn-outline-black" onClick={this.searchApartments}>SEARCH</button>
+                        <button className="btn btn-secondary btn-outline-black" style={{background: "#8a6097", color: "wheat"}} onClick={this.searchApartments}>SEARCH</button>
                     </div>
                 </div>
                 <div className={"gallery row "}>
