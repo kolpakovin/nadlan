@@ -4,7 +4,7 @@ import ReactTooltip from 'react-tooltip';
 
 class Grid extends React.Component {
     render() {
-        const { type, label, number_of_bath, address, country, number_of_room, for_rent, for_sale, sqft, price, image, main_image, name } = this.props;
+        const { type, sale_status ,label, number_of_bath, address, country, number_of_room, for_rent, for_sale, sqft, price, image, main_image, name } = this.props;
 
         const num_bath_or_description = number_of_bath && "baths: " + number_of_bath;
         const apartment_price = price && "$" + Math.floor(price);
@@ -30,7 +30,7 @@ class Grid extends React.Component {
                         </div>}
                         {<p className={"apartment-price"}>{apartment_price}</p>}
                         {<p className={"upload-time"}>{this.props.description}</p>}{/*{Math.floor(Math.random() * Math.floor(10))}*/}
-                        {<p className={for_rent ? "rent-status" : "rent-status rent-status-b"}>{for_rent ? "for rent" : "for sale"}</p>}
+                        {<p className={for_rent ? "rent-status" : "rent-status rent-status-b"}>{sale_status === "rent" ? "for rent" : "for sale"}</p>}
                         {<p className={"country"}>{country && country}</p>}
                         {<div className={"d-flex ml-2"}>
                             {<p className={'city-name'}>{`city: ${name}`}</p>}
