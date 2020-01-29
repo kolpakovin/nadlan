@@ -189,8 +189,9 @@ p.rent-status-b{
   font-weight: bold;
 }
 .btn-secondary{
-  background-color: #8a6097;
+  background-color: antiquewhite;
   border: 1px solid transparent;
+  color: black
 }
 .btn-secondary:hover {
   color: #fff;
