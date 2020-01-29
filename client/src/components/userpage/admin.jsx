@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import Grig from "../gallery/grid";
 import { getApartments, getUsers, confirmApartment, deleteApartmentByUserId, deleteApartmentById } from "../app-data/apartments-server";
 import { Table } from 'react-bootstrap';
+import Cookies from 'js-cookie';
+const GifPlayer = require('react-gif-player');
+
 
 
 
@@ -71,15 +74,17 @@ class Admin extends Component {
     }
     render() {
         return (
+            
             <div className="row mt-2 mr-0 ml-0">
-                <div className="bg-light border-right col-lg-2 col-md-12" id="sidebar-wrapper">
+                { JSON.parse(Cookies.get('user')).role_id === 1 ?
+                    <div className="bg-light border-right col-lg-2 col-md-12" id="sidebar-wrapper">
                     <div className="sidebar-heading list-group-item-action ">Admin Menu </div>
                     <div className="list-group list-group-flush">
                         <a href="/#" className="list-group-item list-group-item-action bg-light" onClick={e => this.handleMenu(e, 'apartments_to_confirm')}>Apartments To Confirm</a>
                         <a href="/#" className="list-group-item list-group-item-action bg-light" onClick={e => this.handleMenu(e, 'users')}>All Users</a>
                         <a href="/" className="list-group-item list-group-item-action bg-light" onClick={e => this.handleMenu(e, 'all_apartments')}>All Apartments</a>
-                    </div>
-                </div>
+                    </div> 
+                </div> : <div className="text-center w-75 mr-auto ml-auto"><GifPlayer style={{height: "400px"}} gif="http://localhost:4000/images/403.gif"  still="http://localhost:4000/images/403.gif" /></div>    }
                 {
                     this.state.apartments_to_confirm
                             &&
