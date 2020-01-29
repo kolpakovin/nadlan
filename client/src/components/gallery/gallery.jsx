@@ -200,9 +200,9 @@ class Gallery extends React.Component {
         return (
             <div>
                 <div id={"filters"} className={"mb-2 mt-2"}>
-                    <div class="form-group col-md-3">
-                        <select name="city_id" onClick={(e) => this.handleChange(e)} id="inputState" class="form-control">
-                            <option value="0" selected>City...</option>
+                    <div className="form-group col-md-3">
+                        <select name="city_id" onClick={(e) => this.handleChange(e)} id="inputState" className="form-control">
+                            <option defaultValue="0" >City...</option>
                             {cities.map((city, i) => {
                                 return (
                                     <option key={i} value={city.id}>{city.name}</option>
@@ -210,9 +210,9 @@ class Gallery extends React.Component {
                             })}
                         </select>
                     </div>
-                    <div class="form-group col-md-3">
-                                <select name="sale_status" onClick={(e) => this.handleChange(e)} id="inputState" class="form-control">
-                                    <option value="" onClick={(e) => this.handleChange(e)} selected>Sale/Rent</option>
+                    <div className="form-group col-md-3">
+                                <select name="sale_status" onClick={(e) => this.handleChange(e)} id="inputState" className="form-control">
+                                    <option defaultValue="" onClick={(e) => this.handleChange(e)} >Sale/Rent</option>
                                     <option value="sale" onClick={(e) => this.handleChange(e)}>Sale</option>
                                     <option value="rent" onClick={(e) => this.handleChange(e)}>Rent</option>
                                     <option value="both" onClick={(e) => this.handleChange(e)}>Both</option>
@@ -229,15 +229,15 @@ class Gallery extends React.Component {
                     {this.state.apartments.map((item, i) => <Grig {...item} key={i} />)}
                 </div>
                 <nav aria-label="Page navigation example">
-                    <ul class="pagination justify-content-center mb-2">
-                        <li class="page-item">
-                            <a class="page-link" onClick={e => this.handleMoveLeft(e)} href="#">Previous</a>
+                    <ul className="pagination justify-content-center mb-2">
+                        <li className="page-item">
+                            <a className="page-link" onClick={e => this.handleMoveLeft(e)} href="#">Previous</a>
                         </li>
-                        <li class="page-item"><a class="page-link" value={this.state.first_number} onClick={e => this.handleClick(e, this.state.first_number)} href="#">{this.state.first_number}</a></li>
-                        <li class="page-item"><a class="page-link" value={this.state.second_number} onClick={e => this.handleClick(e, this.state.second_number)} href="#">{this.state.second_number}</a></li>
-                        <li class="page-item"><a class="page-link" value={this.state.third_number} onClick={e => this.handleClick(e, this.state.third_number)} href="#">{this.state.third_number}</a></li>
-                        <li class="page-item">
-                            <a class="page-link" onClick={e => this.handleMoveRight(e)} href="#">Next</a>
+                        <li className="page-item"><a className="page-link" value={this.state.first_number} onClick={e => this.handleClick(e, this.state.first_number)} href="#">{this.state.first_number}</a></li>
+                        <li className="page-item"><a className="page-link" value={this.state.second_number} onClick={e => this.handleClick(e, this.state.second_number)} href="#">{this.state.second_number}</a></li>
+                        <li className="page-item"><a className="page-link" value={this.state.third_number} onClick={e => this.handleClick(e, this.state.third_number)} href="#">{this.state.third_number}</a></li>
+                        <li className="page-item">
+                            <a className="page-link" onClick={e => this.handleMoveRight(e)} href="#">Next</a>
                         </li>
                     </ul>
                 </nav>
