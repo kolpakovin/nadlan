@@ -1,6 +1,4 @@
 import React from "react";
-import {navigation} from "../app-data/header-data";
-import MainBar from "./main-bar";
 import "./header.css";
 import RightSide from "./right-side";
 

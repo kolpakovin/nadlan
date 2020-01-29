@@ -64,6 +64,7 @@ router.put('/:id', upload.array('images'), async function(req, res, next) {
 })
 router.delete('/:id', async function(req, res, next){
     const cookie = await JSON.parse(req.cookies['user']);
+    console.log(cookie)
     const apartment = await byId(req.params.id)
     try{
         if(cookie.id == apartment[0].user_id || cookie.role_id === 1){

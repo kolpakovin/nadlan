@@ -11,7 +11,7 @@ class Inner extends React.Component {
                     return (<div> {innerNavItem.map((listItem, i) => {
                         return (
                             <li className={"mb-1"} key={i}>
-                                <a href={listItem.href ? listItem.href : "javascript:void(0)"}>
+                                <a href={listItem.href ? listItem.href : "JavaScript:Void(0)"}>
                                  {listItem.title}
                                 </a>
                             </li>

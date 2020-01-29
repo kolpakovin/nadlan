@@ -2,7 +2,6 @@ import React from 'react';
 import './App.css';
 import Header from "./components/header/header";
 import Gallery from "./components/gallery/gallery";
-import {getApartments} from "./components/app-data/apartments-server";
 import {
     BrowserRouter as Router,
     Switch,
@@ -11,7 +10,7 @@ import {
 import Homepage from "./components/homepage/homepage";
 import Apartment from "./components/apartment/single-apartment";
 import Footer from "./components/homepage/footer";
-import Loader from "./components/gallery/loader";
+// import Loader from "./components/gallery/loader";
 import User from "./components/userpage/user";
 import Admin from "./components/userpage/admin";
 
@@ -19,10 +18,6 @@ import Admin from "./components/userpage/admin";
 
 
 class App extends React.Component{
-    constructor(props) {
-        super(props);
-    }
-    
     render() {
         
         return(

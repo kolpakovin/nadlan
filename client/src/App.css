@@ -159,8 +159,8 @@ p.rent-status-b{
   width: 31px;
   height: 31px;
   position: absolute;
-  right: 15px;
-  top: 59px;
+  right: 0;
+  top: 30px;
 }
 .delete{
   width: 24px;

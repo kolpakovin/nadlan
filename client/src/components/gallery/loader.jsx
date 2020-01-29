@@ -1,5 +1,4 @@
 import React from "react";
-import Grig from "./grid";
 
 class Loader extends React.Component {
     render() {

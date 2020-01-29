@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Cookies from 'js-cookie';
-import { Redirect } from 'react-router';
 import validate, { field } from '../app-data/validator';
 import InputErrors from '../app-data/input-errors';
 import { getApartmentsByUserId, addApartment, getCities, updateApartment, getApartment, deleteApartmentById } from '../app-data/apartments-server';
@@ -63,18 +62,16 @@ class User extends Component {
         }
     }
     cleanCookie = () => {
-        console.log('clean cookie')
         Cookies.remove('user');
     }
     addApartment = (e) => {
         e.preventDefault()
-        const { main_image, user_id, city_id, address, price, rooms, baths, sqft, sale_status, available, property_type, images } = this.state
+        const { main_image, city_id, address, price, rooms, baths, sqft, sale_status, available, property_type, images } = this.state
         const formData = new FormData();
         const apartmentsToSend = []
         apartmentsToSend.push(main_image);
         apartmentsToSend.push(...images);
         apartmentsToSend.forEach(image => {
-            console.log("I WAS HERE BABY", image)
             formData.append('images', image)
         });
         const singleApartment = {
@@ -90,7 +87,6 @@ class User extends Component {
             property_type,
             status: "pending"
         }
-        console.log("singleApartment: ", singleApartment)
         for (let prop in singleApartment) {
             formData.append(prop, singleApartment[prop])
         }
@@ -103,11 +99,9 @@ class User extends Component {
         const value = e.target.value;
         this.setState({
             [name]: value
-        }, console.log(name, this.state[name]))
+        })
     }
     onFileChange = (e) => {
-        console.log(e)
-        console.log(e.target.files[0])
         this.setState({
             main_image: e.target.files[0]
         })
@@ -116,13 +110,10 @@ class User extends Component {
         this.setState({ images: e.target.files })
     }
     setCities = (cities) => {
-        console.log(cities)
         this.setState({ cities: cities.data })
     }
     onPencilClick = async (e, apartmentId) => {
         e.preventDefault()
-        console.log("Pencil")
-        console.log(apartmentId)
         await getApartment(apartmentId, this.consolefunction)
         if(this.myDivToFocus.current){
             this.myDivToFocus.current.scrollIntoView({ 
@@ -132,10 +123,7 @@ class User extends Component {
         }
     }
     consolefunction = (data) => {
-        console.log("data: ", data.apartment[0])
         const apartment = data.apartment[0]
-        console.log("this.state.address.value", this.state.address.value)
-        console.log("this.state.address", this.state.address)
         this.state.address.value = apartment.address
         this.state.price.value = apartment.price
         this.state.number_of_room.value = apartment.number_of_room
@@ -176,18 +164,13 @@ class User extends Component {
         isOK = true;
         if (isOK) {
             const user_id = JSON.parse(Cookies.get('user')).id
-            const result = {};
             for (let prop in this.state) {
                 if (this.state[prop] instanceof Object) {
                     if (prop === 'image') {
-                        console.log("image")
                         form_data.append('images', this.state.image.files[0])
                     }
                     if (prop === 'images') {
-                        console.log("images")
-                        console.log("doc", this.state.images.files)
                         for (let i = 0; i < this.state.images.files.length; i++) {
-                            console.log("bla")
                             form_data.append(prop, this.state.images.files[i])
                         }
                     }
@@ -215,7 +198,6 @@ class User extends Component {
     }
     deleteApartment = (e, apartmentId) => {
         e.preventDefault()
-        console.log("apar", apartmentId)
         if(window.confirm('Are you sure you wish to delete this apartment?')){
             deleteApartmentById(apartmentId)
         }
@@ -241,29 +223,27 @@ class User extends Component {
         for (let city in this.state.cities) {
             cities.push(this.state.cities[city]);
         }
-        console.log(cities)
         return (
             <div>
                 <div className="m-4">
                     <h1 id="greeting">{`Hello ${JSON.parse(Cookies.get('user')).first_name} ${JSON.parse(Cookies.get('user')).last_name}. Let's build a new page ;)`}</h1>
                 </div>
                 <div className='row' id='user_row'>
-                    <div class="bg-light border-right col-lg-2 col-md-12" id="sidebar-wrapper">
-                        <div class="sidebar-heading list-group-item-action ">User Menu </div>
-                        <div class="list-group list-group-flush">
-                            <a href="#" class="list-group-item list-group-item-action bg-light" onClick={e => this.handleMenu(e, 'my_apartments')}>My Apartments</a>
-                            <a href="#" class="list-group-item list-group-item-action bg-light" onClick={e => this.handleMenu(e, 'add_apartment')}>Add Apartment</a>
-                            <a href="/apartments" class="list-group-item list-group-item-action bg-light">All Apartments</a>
-                            <a href="/" class="list-group-item list-group-item-action bg-light">Homepage</a>
-                            <a href="#" class="list-group-item list-group-item-action bg-light">Log Out</a>
+                    <div className="bg-light border-right col-lg-2 col-md-12" id="sidebar-wrapper">
+                        <div className="sidebar-heading list-group-item-action ">User Menu </div>
+                        <div className="list-group list-group-flush">
+                            <a href="/#" className="list-group-item list-group-item-action bg-light" onClick={e => this.handleMenu(e, 'my_apartments')}>My Apartments</a>
+                            <a href="/#" className="list-group-item list-group-item-action bg-light" onClick={e => this.handleMenu(e, 'add_apartment')}>Add Apartment</a>
+                            <a href="/apartments" className="list-group-item list-group-item-action bg-light">All Apartments</a>
+                            <a href="/" className="list-group-item list-group-item-action bg-light">Homepage</a>
                         </div>
                     </div>
                     { this.state.add_apartment
                                 &&
                         <div className='user-form col-10 '>
-                            <form class="form-userpage">
-                                <div class="form-row">
-                                    <div class="form-group col-md-6">
+                            <form className="form-userpage">
+                                <div className="form-row">
+                                    <div className="form-group col-md-6">
                                         <label for="inputState">City</label>
                                         <select name={'city_id'} onChange={this.inputChange} id="inputState" class="form-control">
                                             <option selected>City...</option>
@@ -274,30 +254,30 @@ class User extends Component {
                                             })}
                                         </select>
                                     </div>
-                                    <div class="form-group col-md-6">
+                                    <div className="form-group col-md-6">
                                         <label for="inputPassword4">Address</label>
                                         <input type="text" class="form-control" id="inputAddress" placeholder="Address" name="address" onBlur={this.inputChange} />
                                         <InputErrors errors={this.state.address.errors}></InputErrors>
                                     </div>
                                 </div>
 
-                                <div class="form-row">
-                                    <div class="form-group col-md-2">
+                                <div className="form-row">
+                                    <div className="form-group col-md-2">
                                         <label for="inputZip">Rooms</label>
-                                        <input type="text" class="form-control" id="inputZip" name="number_of_room" onBlur={this.inputChange} />
+                                        <input type="text" className="form-control" id="inputZip" name="number_of_room" onBlur={this.inputChange} />
                                         <InputErrors errors={this.state.number_of_room.errors}></InputErrors>
                                     </div>
-                                    <div class="form-group col-md-2">
+                                    <div className="form-group col-md-2">
                                         <label for="inputZip">Baths</label>
-                                        <input type="text" class="form-control" id="inputZip1" name="number_of_bath" onBlur={this.inputChange} />
+                                        <input type="text" className="form-control" id="inputZip1" name="number_of_bath" onBlur={this.inputChange} />
                                         <InputErrors errors={this.state.number_of_bath.errors}></InputErrors>
                                     </div>
-                                    <div class="form-group col-md-2">
+                                    <div className="form-group col-md-2">
                                         <label for="inputZip">Sqft</label>
-                                        <input type="text" class="form-control" id="inputZip3" name="sqft" onBlur={this.inputChange} />
+                                        <input type="text" className="form-control" id="inputZip3" name="sqft" onBlur={this.inputChange} />
                                         <InputErrors errors={this.state.sqft.errors}></InputErrors>
                                     </div>
-                                    <div class="form-group col-md-2">
+                                    <div className="form-group col-md-2">
                                         <label for="inputZip">Price</label>
                                         <input type="text" class="form-control" id="inputZip4" name="price" onBlur={this.inputChange} />
                                         <InputErrors errors={this.state.price.errors}></InputErrors>

@@ -1,6 +1,5 @@
 import React from "react";
 import "./header.css";
-import { Redirect } from 'react-router'
 import {registerUser, checkEmail} from '../app-data/apartments-server';
 import validate, { field } from '../app-data/validator';
 import InputErrors from '../app-data/input-errors';
@@ -12,7 +11,7 @@ class SignUp extends React.Component{
         this.state = {
             status: 'active',
             containerClassName: '',
-            email: field({ name: 'email', isRequired: true, pattern: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/ }),
+            email: field({ name: 'email', isRequired: true, pattern: /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/ }),
             password: field({ name: 'password', isRequired: true, minLength: 5 }),
             phone: field({ name: 'phone', isRequired: true, minLength: 10 }),
             first_name: field({ name: 'first_name', isRequired: true, minLength: 2 }),
@@ -35,7 +34,6 @@ class SignUp extends React.Component{
         e.preventDefault();
         const {status} = this.state
         const email = await checkEmail(this.state.email.value)
-        console.log("email", email.data)
         if(!email.length){
             await registerUser({first_name: this.state.first_name.value, last_name: this.state.last_name.value, email:this.state.email.value, password: this.state.password.value, phone: this.state.phone.value, status});
         } else {
@@ -62,7 +60,7 @@ class SignUp extends React.Component{
                        <input type="text" name="phone"  placeholder="Phone Number" onBlur={(e) => this.handleChange(e)} required />
                        <InputErrors errors={this.state.phone.errors}></InputErrors>
                        <div className={"mt-3 mb-4  text-center"}>
-                           <button onClick={(e) => this.signUpUser(e)} id={"simple-login"}>Sign Up</button>
+                           <button onClick={(e) => this.signUpUser(e)} id={"simple-login1"}>Sign Up</button>
                        </div>
                        <span id={"close-me"} onClick={this.props.changeSignUpStatus}>x</span>
                        <img src={"./images/house_login_web.jpg"} alt=""/>
