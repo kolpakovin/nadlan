@@ -57,6 +57,12 @@ class Builder {
         this.query += ' and status = ? ';
         return this;
     }
+    sale_status = (sale_status) => {
+        if(sale_status !== 'both'){
+            this.params.push(sale_status);
+            this.query += ' and sale_status = ? ';
+        } return this;
+    }
     build = () => {
         this.query += this.limit;
         return {query: this.query, params: this.params}
