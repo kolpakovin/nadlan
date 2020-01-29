@@ -11,10 +11,11 @@ async function registerUser({...data}) {
     }
 }
 
-const getApartments = async (rooms = 0, beds = 0, minprice = -1, maxprice = 99999999999, city_id = 0, size = 12, page = 1, status = 'approved') => {
+const getApartments = async (rooms = 0, beds = 0, minprice = -1, maxprice = 99999999999, city_id = 0, size = 12, page = 1, status = 'approved', sale_status = 'both') => {
     console.log("size: ", size)
+    console.log(status, sale_status)
     try {
-        const response = await fetcher.get(`/apartments?rooms=${rooms}&beds=${beds}&minprice=${minprice}&maxprice=${maxprice}&size=${size}&city_id=${city_id}&page=${page}&status=${status}`);
+        const response = await fetcher.get(`/apartments?rooms=${rooms}&beds=${beds}&minprice=${minprice}&maxprice=${maxprice}&size=${size}&city_id=${city_id}&page=${page}&status=${status}&sale_status=${sale_status}`);
         return response.data.apartments;
     } catch (error) {
         console.log(error);
