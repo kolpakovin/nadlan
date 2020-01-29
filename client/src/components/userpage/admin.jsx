@@ -72,12 +72,12 @@ class Admin extends Component {
     render() {
         return (
             <div className="row mt-2 mr-0 ml-0">
-                <div class="bg-light border-right col-lg-2 col-md-12" id="sidebar-wrapper">
-                    <div class="sidebar-heading list-group-item-action ">Admin Menu </div>
-                    <div class="list-group list-group-flush">
-                        <a href="/#" class="list-group-item list-group-item-action bg-light" onClick={e => this.handleMenu(e, 'apartments_to_confirm')}>Apartments To Confirm</a>
-                        <a href="/#" class="list-group-item list-group-item-action bg-light" onClick={e => this.handleMenu(e, 'users')}>All Users</a>
-                        <a href="/" class="list-group-item list-group-item-action bg-light" onClick={e => this.handleMenu(e, 'all_apartments')}>All Apartments</a>
+                <div className="bg-light border-right col-lg-2 col-md-12" id="sidebar-wrapper">
+                    <div className="sidebar-heading list-group-item-action ">Admin Menu </div>
+                    <div className="list-group list-group-flush">
+                        <a href="/#" className="list-group-item list-group-item-action bg-light" onClick={e => this.handleMenu(e, 'apartments_to_confirm')}>Apartments To Confirm</a>
+                        <a href="/#" className="list-group-item list-group-item-action bg-light" onClick={e => this.handleMenu(e, 'users')}>All Users</a>
+                        <a href="/" className="list-group-item list-group-item-action bg-light" onClick={e => this.handleMenu(e, 'all_apartments')}>All Apartments</a>
                     </div>
                 </div>
                 {

@@ -249,3 +249,7 @@ label.contact, label.thecontact {
 label.contact:hover{
   color: #2485fe;
 }
+img#hi {
+  height: 100px;
+  width: 120px;
+}

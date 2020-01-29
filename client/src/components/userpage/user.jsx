@@ -4,6 +4,7 @@ import validate, { field } from '../app-data/validator';
 import InputErrors from '../app-data/input-errors';
 import { getApartmentsByUserId, addApartment, getCities, updateApartment, getApartment, deleteApartmentById } from '../app-data/apartments-server';
 import Grig from "../gallery/grid";
+const GifPlayer = require('react-gif-player');
 
 
 
@@ -225,8 +226,10 @@ class User extends Component {
         }
         return (
             <div>
-                <div className="m-4">
-                    <h1 id="greeting">{`Hello ${JSON.parse(Cookies.get('user')).first_name} ${JSON.parse(Cookies.get('user')).last_name}. Let's build a new page ;)`}</h1>
+                <div className="m-4 d-flex w-25 text-center align-items-center">
+                    <h1 id="greeting">{`Hello ${JSON.parse(Cookies.get('user')).first_name} ${JSON.parse(Cookies.get('user')).last_name}. Enjoy evgenyrealestate`}</h1>
+                    <GifPlayer gif="http://localhost:4000/images/hi.gif" id='hi' still="http://localhost:4000/images/hi.gif" />
+
                 </div>
                 <div className='row' id='user_row'>
                     <div className="bg-light border-right col-lg-2 col-md-12" id="sidebar-wrapper">
@@ -245,7 +248,7 @@ class User extends Component {
                                 <div className="form-row">
                                     <div className="form-group col-md-6">
                                         <label for="inputState">City</label>
-                                        <select name={'city_id'} onChange={this.inputChange} id="inputState" class="form-control">
+                                        <select name={'city_id'} onChange={this.inputChange} id="inputState" className="form-control">
                                             <option selected>City...</option>
                                             {cities.map((city, i) => {
                                                 return (
@@ -283,8 +286,8 @@ class User extends Component {
                                         <InputErrors errors={this.state.price.errors}></InputErrors>
                                     </div>
                                     <div class="form-group col-md-4">
-                                        <label for="inputState">Sale Status</label>
-                                        <select name="sale_status" onChange={this.inputChange} id="inputState" class="form-control">
+                                        <label for="inputState1">Sale Status</label>
+                                        <select name="sale_status" onChange={this.inputChange} id="inputState1" class="form-control">
                                             <option selected>Sale Status...</option>
                                             <option value="sale" >For Sale</option>
                                             <option value="rent" >For Rent</option>

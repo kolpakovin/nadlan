@@ -29,7 +29,7 @@ class MainContent extends React.Component {
                         }
                     </div>
                 </div>
-                <div className="whatsapp"><h2>What's happening in London, KY</h2></div>
+                <div className="whatsapp"><h2>What's happening in Tel Aviv</h2></div>
                 <div className="statistic row">
                     <div className="info col-md-3 col-sm-6"><p className="numbers">461</p><p>Homes for sale</p></div>
                     <div className="info col-md-3 col-sm-6"><p className="numbers">2</p><p>Open houses</p></div>

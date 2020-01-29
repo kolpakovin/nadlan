@@ -53,6 +53,11 @@ class RightSide extends React.Component {
         Cookies.remove('user')
     }
     render() {
+        if(Cookies.get('user') && this.state.isOpenForm){
+            this.setState({
+                isOpenForm: false
+            })
+        }
         return (
             <div className={'h-100'}>
                 <ul id={"right-ul"}>
