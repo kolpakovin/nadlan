@@ -125,7 +125,9 @@ class User extends Component {
     }
     consolefunction = (data) => {
         const apartment = data.apartment[0]
-        this.state.address.value = apartment.address
+        const address = { ...this.state.address, value: apartment.address };
+
+        // this.state.address.value = apartment.address
         this.state.price.value = apartment.price
         this.state.number_of_room.value = apartment.number_of_room
         this.state.number_of_bath.value = apartment.number_of_bath
@@ -136,7 +138,8 @@ class User extends Component {
         this.state.city_id.value = apartment.city_id
         this.setState({
             apartment,
-            editApartmentIsOpen: true
+            editApartmentIsOpen: true, 
+            address
         })
     }
     onSubmit = (e, type) => {
@@ -259,7 +262,7 @@ class User extends Component {
                                     </div>
                                     <div className="form-group col-md-6">
                                         <label for="inputPassword4">Address</label>
-                                        <input type="text" class="form-control" id="inputAddress" placeholder="Address" name="address" onBlur={this.inputChange} />
+                                        <input type="text" className="form-control" id="inputAddress" placeholder="Address" name="address" onBlur={this.inputChange} />
                                         <InputErrors errors={this.state.address.errors}></InputErrors>
                                     </div>
                                 </div>
@@ -285,9 +288,9 @@ class User extends Component {
                                         <input type="text" class="form-control" id="inputZip4" name="price" onBlur={this.inputChange} />
                                         <InputErrors errors={this.state.price.errors}></InputErrors>
                                     </div>
-                                    <div class="form-group col-md-4">
+                                    <div className="form-group col-md-4">
                                         <label for="inputState1">Sale Status</label>
-                                        <select name="sale_status" onChange={this.inputChange} id="inputState1" class="form-control">
+                                        <select name="sale_status" onChange={this.inputChange} id="inputState1" className="form-control">
                                             <option selected>Sale Status...</option>
                                             <option value="sale" >For Sale</option>
                                             <option value="rent" >For Rent</option>
@@ -295,10 +298,10 @@ class User extends Component {
                                         </select>
                                     </div>
                                 </div>
-                                <div class="form-row">
-                                    <div class="form-group col-md-4">
-                                        <label for="inputState">Property Type</label>
-                                        <select name="property_type" onChange={this.inputChange} id="inputState1" class="form-control">
+                                <div className="form-row">
+                                    <div className="form-group col-md-4">
+                                        <label for="inputState2">Property Type</label>
+                                        <select name="property_type" onChange={this.inputChange} id="inputState2" className="form-control">
                                             <option selected>Property Type...</option>
                                             <option value="condo">Condo</option>
                                             <option value="house">House</option>
@@ -306,14 +309,14 @@ class User extends Component {
                                             <option value="land">Land</option>
                                         </select>
                                     </div>
-                                    <div class="form-group mt-1 ml-4">
+                                    <div className="form-group mt-1 ml-4">
                                         <label for="exampleFormControlFile1">Apartment's main image</label>
-                                        <input type="file" name="image" class="image form-control-file" accept="image/png, image/jpeg" id="exampleFormControlFile1" onChange={this.inputChange} />
+                                        <input type="file" name="image" className="image form-control-file" accept="image/png, image/jpeg" id="exampleFormControlFile1" onChange={this.inputChange} />
                                         <InputErrors errors={this.state.image.errors}></InputErrors>
                                     </div>
-                                    <div class="form-group mt-1 ml-4">
+                                    <div className="form-group mt-1 ml-4">
                                         <label for="exampleFormControlFile1">Apartment's images</label>
-                                        <input type="file" name="images" class="images form-control-file" accept="image/png, image/jpeg" id="exampleFormControlFile2" onChange={this.inputChange} multiple />
+                                        <input type="file" name="images" className="images form-control-file" accept="image/png, image/jpeg" id="exampleFormControlFile2" onChange={this.inputChange} multiple />
                                         <InputErrors errors={this.state.images.errors}></InputErrors>
                                     </div>
                                 </div>
@@ -321,7 +324,7 @@ class User extends Component {
                                     <label htmlFor="exampleFormControlTextarea1">Description</label>
                                     <textarea className="form-control" id="exampleFormControlTextarea1" rows="3" name='description' onChange={this.inputChange}></textarea>
                                 </div>
-                                <button type="submit" class="btn btn-secondary btn-primary" onClick={(e) => this.onSubmit(e, "newApartment")}>Post apartment</button>
+                                <button type="submit" className="btn btn-secondary btn-primary" onClick={(e) => this.onSubmit(e, "newApartment")}>Post apartment</button>
                                 { this.state.posted &&
                                     <label className={"ml-4"}>Admin will review your apartment as soon as possible. Thank you for your patience.</label>}            
                             </form>
@@ -343,12 +346,12 @@ class User extends Component {
                     this.state.editApartmentIsOpen
                     &&
                     <div className='user-form col-10' ref={this.myDivToFocus}>
-                        <form class="form-userpage">
-                            <div class="form-row">
-                                <div class="form-group col-md-6">
-                                    <label for="inputState">City</label>
-                                    <select name={'city_id'} onChange={this.inputChange} id="inputState" class="form-control">
-                                        <option selected>City...</option>
+                        <form className="form-userpage">
+                            <div className="form-row">
+                                <div className="form-group col-md-6">
+                                    <label htmlFor="inputState3">City</label>
+                                    <select name={'city_id'} onChange={this.inputChange} id="inputState3" className="form-control">
+                                        <option defaultValue>City...</option>
                                         {cities.map((city, i) => {
                                             return (
                                                 <option key={i} value={city.id}>{city.name}</option>
@@ -356,63 +359,63 @@ class User extends Component {
                                         })}
                                     </select>
                                 </div>
-                                <div class="form-group col-md-6">
-                                    <label for="inputPassword4">Address</label>
-                                    <input type="text" class="form-control" id="inputAddress" placeholder="Address" value={this.state.address.value} name="address" onChange={this.inputChange} />
+                                <div className="form-group col-md-6">
+                                    <label htmlFor="inputPassword4">Address</label>
+                                    <input type="text" className="form-control" id="inputAddress" placeholder="Address" value={this.state.address.value} name="address" onChange={this.inputChange} />
                                     <InputErrors errors={this.state.address.errors}></InputErrors>
                                 </div>
                             </div>
 
-                            <div class="form-row">
-                                <div class="form-group col-md-2">
-                                    <label for="inputZip">Rooms</label>
-                                    <input type="text" class="form-control" id="inputZip" name="number_of_room" value={this.state.number_of_room.value} onChange={this.inputChange} />
+                            <div className="form-row">
+                                <div className="form-group col-md-2">
+                                    <label htmlFor="inputZip">Rooms</label>
+                                    <input type="text" className="form-control" id="inputZip" name="number_of_room" value={this.state.number_of_room.value} onChange={this.inputChange} />
                                     <InputErrors errors={this.state.number_of_room.errors}></InputErrors>
                                 </div>
-                                <div class="form-group col-md-2">
-                                    <label for="inputZip">Baths</label>
-                                    <input type="text" class="form-control" id="inputZip1" name="number_of_bath" value={this.state.number_of_bath.value} onChange={this.inputChange} />
+                                <div className="form-group col-md-2">
+                                    <label htmlFor="inputZip">Baths</label>
+                                    <input type="text" className="form-control" id="inputZip1" name="number_of_bath" value={this.state.number_of_bath.value} onChange={this.inputChange} />
                                     <InputErrors errors={this.state.number_of_bath.errors}></InputErrors>
                                 </div>
-                                <div class="form-group col-md-2">
-                                    <label for="inputZip">Sqft</label>
-                                    <input type="text" class="form-control" id="inputZip3" name="sqft" value={this.state.sqft.value} onChange={this.inputChange} />
+                                <div className="form-group col-md-2">
+                                    <label htmlFor="inputZip">Sqft</label>
+                                    <input type="text" className="form-control" id="inputZip3" name="sqft" value={this.state.sqft.value} onChange={this.inputChange} />
                                     <InputErrors errors={this.state.sqft.errors}></InputErrors>
                                 </div>
-                                <div class="form-group col-md-2">
-                                    <label for="inputZip">Price</label>
-                                    <input type="text" class="form-control" id="inputZip4" name="price" value={this.state.price.value} onChange={this.inputChange} />
+                                <div className="form-group col-md-2">
+                                    <label htmlFor="inputZip">Price</label>
+                                    <input type="text" className="form-control" id="inputZip4" name="price" value={this.state.price.value} onChange={this.inputChange} />
                                     <InputErrors errors={this.state.price.errors}></InputErrors>
                                 </div>
-                                <div class="form-group col-md-4">
-                                    <label for="inputState">Sale Status</label>
-                                    <select name="sale_status" onChange={this.inputChange} id="inputState" class="form-control">
-                                        <option selected>Sale Status...</option>
+                                <div className="form-group col-md-4">
+                                    <label htmlFor="inputState4">Sale Status</label>
+                                    <select name="sale_status" onChange={this.inputChange} id="inputState4" className="form-control">
+                                        <option defaultValue>Sale Status...</option>
                                         <option value="sale" >For Sale</option>
                                         <option value="rent" >For Rent</option>
                                         <option value="both" >Both</option>
                                     </select>
                                 </div>
                             </div>
-                            <div class="form-row">
-                                <div class="form-group col-md-4">
-                                    <label for="inputState">Property Type</label>
-                                    <select name="property_type" onChange={this.inputChange} id="inputState1" class="form-control">
-                                        <option selected>Property Type...</option>
+                            <div className="form-row">
+                                <div className="form-group col-md-4">
+                                    <label htmlFor="inputState5">Property Type</label>
+                                    <select name="property_type" onChange={this.inputChange} id="inputState5" className="form-control">
+                                        <option defaultValue>Property Type...</option>
                                         <option value="condo">Condo</option>
                                         <option value="house">House</option>
                                         <option value="ranch">Ranch</option>
                                         <option value="land">Land</option>
                                     </select>
                                 </div>
-                                <div class="form-group mt-1 ml-4">
-                                    <label for="exampleFormControlFile1">Apartment's main image</label>
-                                    <input type="file" name="image" class="image form-control-file" accept="image/png, image/jpeg" id="exampleFormControlFile1" onChange={this.inputChange} />
+                                <div className="form-group mt-1 ml-4">
+                                    <label htmlFor="exampleFormControlFile1">Apartment's main image</label>
+                                    <input type="file" name="image" className="image form-control-file" accept="image/png, image/jpeg" id="exampleFormControlFile1" onChange={this.inputChange} />
                                     <InputErrors errors={this.state.image.errors}></InputErrors>
                                 </div>
-                                <div class="form-group mt-1 ml-4">
-                                    <label for="exampleFormControlFile1">Apartment's images</label>
-                                    <input type="file" name="images" class="images form-control-file" accept="image/png, image/jpeg" id="exampleFormControlFile2" onChange={this.inputChange} multiple />
+                                <div className="form-group mt-1 ml-4">
+                                    <label htmlFor="exampleFormControlFile1">Apartment's images</label>
+                                    <input type="file" name="images" className="images form-control-file" accept="image/png, image/jpeg" id="exampleFormControlFile2" onChange={this.inputChange} multiple />
                                     <InputErrors errors={this.state.images.errors}></InputErrors>
                                 </div>
                             </div>
@@ -420,7 +423,7 @@ class User extends Component {
                                 <label htmlFor="exampleFormControlTextarea1">Description</label>
                                 <textarea className="form-control" id="exampleFormControlTextarea1" rows="3" name='description' value={this.state.description.value} onChange={this.inputChange}></textarea>
                             </div>
-                            <button type="submit" class="btn btn-secondary btn-primary" onClick={(e) => this.onSubmit(e, "updateApartment")}>Update apartment</button>
+                            <button type="submit" className="btn btn-secondary btn-primary" onClick={(e) => this.onSubmit(e, "updateApartment")}>Update apartment</button>
                         </form>
                     </div>
                 }
