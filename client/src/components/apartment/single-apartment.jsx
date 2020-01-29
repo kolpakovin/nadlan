@@ -2,6 +2,7 @@ import React from "react";
 import "./apartment.css";
 import {Carousel} from "react-bootstrap";
 import {getApartments, getApartment, getUser} from "../app-data/apartments-server";
+import { Link } from "react-router-dom";
 import SingleAppLoader from "./single-app-loader";
 
 
@@ -65,7 +66,7 @@ class Apartment extends React.Component {
     }
     render() {
         const {apartment, loading, user} = this.state;
-        
+        console.log("images", this.state.images)
         return (
             loading ? <SingleAppLoader/> :
             <div>
@@ -73,6 +74,9 @@ class Apartment extends React.Component {
                 
                 <div className={"position-relative"}>
                     <i id={"side-menu-button"} onClick={this.showSideMenu} className="fas fa-address-card"></i>
+                </div>
+                <div id="button-apart">
+                    <Link to={"/apartments"}><button><i class="fas fa-arrow-left"></i> Bact To All Apartments </button></Link>
                 </div>
                 {
                     this.state.images !== []
@@ -123,7 +127,7 @@ class Apartment extends React.Component {
 
                 <div className={"d-flex position-relative description"}>
                     <p className={"upload-time-1 position-absolute"}>{apartment.description}</p>
-                    <p className={"ml-2 rent-status-1 position-absolute"}>{"For " + apartment.sale_status}</p>
+                    <p className={"ml-2 rent-status-1 position-absolute"}>{apartment.sale_status === 'both' ? 'For Rent and For Sale' :"For " + apartment.sale_status}</p>
 
                 </div>
                 <div className={"apartment-details"}>

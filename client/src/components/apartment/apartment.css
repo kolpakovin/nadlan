@@ -267,9 +267,9 @@ span.input-group-addon {
     -o-transition: transform .5s;
     transition: transform .5s;
     transition: transform .5s, -webkit-transform .5s;
-    -webkit-transform: translateX(-120%);
-    -ms-transform: translateX(-120%);
-    transform: translateX(-120%); }
+    -webkit-transform: translateX(-280%);
+    -ms-transform: translateX(-280%);
+    transform: translateX(-280%); }
     #div-form.active {
       -webkit-transform: translateX(0);
       -ms-transform: translateX(0);
@@ -299,4 +299,14 @@ div#contact {
   padding: 30px;
   background: aliceblue;
   text-align: center;
+}
+#button-apart{
+  position: relative;
+  top: 50px;
+  width: 215px;
+}
+div#button-apart button {
+  background: #dfc3fa;
+  border: 3px solid transparent;
+  border-radius: 8px;
 }
