@@ -76,7 +76,7 @@ class Apartment extends React.Component {
                     <i id={"side-menu-button"} onClick={this.showSideMenu} className="fas fa-address-card"></i>
                 </div>
                 <div id="button-apart">
-                    <Link to={"/apartments"}><button><i class="fas fa-arrow-left"></i> Bact To All Apartments </button></Link>
+                    <Link to={"/apartments"}><button><i className="fas fa-arrow-left"></i> Bact To All Apartments </button></Link>
                 </div>
                 {
                     this.state.images !== []
