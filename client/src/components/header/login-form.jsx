@@ -28,11 +28,10 @@ class LoginForm extends React.Component{
         const value = e.target.value;
         this.setState({
             [name]: value
-        }, console.log(name , this.state[name]))
+        })
     }
     sendUser = async (e) => {
         e.preventDefault()
-        console.log(this.state.email ,this.state.password);
         const user = await loginUser(this.state.email, this.state.password)
         if (user){
             this.changeState()
@@ -49,16 +48,12 @@ class LoginForm extends React.Component{
         })
     }
     renderRedirect = () => {
-        if (this.state.redirect && JSON.parse(Cookies.get('user')).role_id == 2) {
-           console.log('state ', this.state.form_style);
+        if (this.state.redirect && JSON.parse(Cookies.get('user')).role_id === 2) {
            this.setState({
                redirect: false
            })
           return <Redirect to='/profile' />
-        }else if (this.state.redirect && JSON.parse(Cookies.get('user')).role_id == 1) {
-            console.log('JSON', JSON.parse(Cookies.get('user')))
-            console.log('state ', this.state.form_style);
-             console.log('I was here 2');
+        }else if (this.state.redirect && JSON.parse(Cookies.get('user')).role_id === 1) {
              this.setState({
                 redirect: false
             })

@@ -39,7 +39,7 @@ class Admin extends Component {
             })
         } else if (type === "all_apartments") {
             this.setState({
-                apartments: await getApartments(0, 0, -1, 99999999999, 0, 20, 1, 'approved')
+                apartments: await getApartments(0, 0, -1, 99999999999, 0, 99, 1, 'approved')
             }, this.setState({
                 my_users: false,
                 apartments_to_confirm: false,
@@ -65,7 +65,6 @@ class Admin extends Component {
     }
     deleteApartment = (e, apartmentId) => {
         e.preventDefault()
-        console.log("apar", apartmentId)
         if(window.confirm('Are you sure you wish to delete this apartment?')){
             deleteApartmentById(apartmentId)
         }
@@ -76,10 +75,9 @@ class Admin extends Component {
                 <div class="bg-light border-right col-lg-2 col-md-12" id="sidebar-wrapper">
                     <div class="sidebar-heading list-group-item-action ">Admin Menu </div>
                     <div class="list-group list-group-flush">
-                        <a href="#" class="list-group-item list-group-item-action bg-light" onClick={e => this.handleMenu(e, 'apartments_to_confirm')}>Apartments To Confirm</a>
-                        <a href="#" class="list-group-item list-group-item-action bg-light" onClick={e => this.handleMenu(e, 'users')}>All Users</a>
+                        <a href="/#" class="list-group-item list-group-item-action bg-light" onClick={e => this.handleMenu(e, 'apartments_to_confirm')}>Apartments To Confirm</a>
+                        <a href="/#" class="list-group-item list-group-item-action bg-light" onClick={e => this.handleMenu(e, 'users')}>All Users</a>
                         <a href="/" class="list-group-item list-group-item-action bg-light" onClick={e => this.handleMenu(e, 'all_apartments')}>All Apartments</a>
-                        <a href="#" class="list-group-item list-group-item-action bg-light">Log Out</a>
                     </div>
                 </div>
                 {
@@ -98,7 +96,7 @@ class Admin extends Component {
                             &&
                     <div className={"container col-10"}>
                         <div className={" row"}>
-                            {
+                            { 
                                 this.state.apartments.map((item, i) => <Grig {...item} deleteApartment={this.deleteApartment} key={i} />)
                             }
                         </div>
@@ -130,7 +128,7 @@ class Admin extends Component {
                                                     <td>{user.last_name}</td>
                                                     <td>{user.email}</td>
                                                     <td>{user.phone}</td>
-                                                    <img className="delete-user" onClick={(e) => this.deleteUserById(e, user.id)} src="http://localhost:4000/images/delete-user-icon.png" />
+                                                    <img className="delete-user" onClick={(e) => this.deleteUserById(e, user.id)} src="http://localhost:4000/images/delete-user-icon.png" alt="delete"/>
                                                 </tr>
                                             )
                                         })}

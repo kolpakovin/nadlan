@@ -217,7 +217,7 @@ div.navigation {
     top: 0;
     font-size: 22px;
     cursor: pointer; }
-  #login #simple-login, #signup #simple-login {
+  #login #simple-login, #signup #simple-login1 {
     color: white;
     background-color: #d92228;
     border: 0;
@@ -289,5 +289,5 @@ div.navigation {
   #right-ul:last-child {
     display: none; } 
 }
-#signup #simple-login {margin-bottom: 80px;}
+#signup #simple-login1 {margin-bottom: 80px;}
 #login #simple-login {margin-bottom: 30px}

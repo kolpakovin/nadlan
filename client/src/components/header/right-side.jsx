@@ -1,9 +1,7 @@
 import React from "react";
-import IphoneInner from "./iphone-inner";
 import LoginForm from "./login-form";
 import SignUp from './signup';
 import Cookies from 'js-cookie';
-import { Redirect } from 'react-router';
 import { Link } from "react-router-dom";
 import ReactTooltip from 'react-tooltip';
 
@@ -46,7 +44,6 @@ class RightSide extends React.Component {
                 user: JSON.parse(Cookies.get('user'))
             }), 500);
         }
-        console.log('user from state',this.state.user)
     }
     cleanCookie = () => {
         this.setState({

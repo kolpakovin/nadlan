@@ -1,7 +1,7 @@
 import React from "react";
 import "./apartment.css";
 import {Carousel} from "react-bootstrap";
-import {getApartments, getApartment, getUser} from "../app-data/apartments-server";
+import {getApartment, getUser} from "../app-data/apartments-server";
 import { Link } from "react-router-dom";
 import SingleAppLoader from "./single-app-loader";
 
@@ -46,7 +46,6 @@ class Apartment extends React.Component {
             if(this.state.apartment.images.split(',').length < 3){
                 let images = this.state.apartment.images.split(',')
                 images.forEach(image => images.push(image))
-                console.log(images)
                 this.setState({images})
             } else {
                 this.setState({
@@ -66,7 +65,6 @@ class Apartment extends React.Component {
     }
     render() {
         const {apartment, loading, user} = this.state;
-        console.log("images", this.state.images)
         return (
             loading ? <SingleAppLoader/> :
             <div>
@@ -144,7 +142,7 @@ class Apartment extends React.Component {
 
 
                         <div className={"google-map"}>
-                            <iframe src={`https://maps.google.com/maps?q=${apartment.real_city_name.replace(" ", "")}&t=&z=13&ie=UTF8&iwloc=&output=embed`}
+                            <iframe title="myFrame" src={`https://maps.google.com/maps?q=${apartment.real_city_name.replace(" ", "")}&t=&z=13&ie=UTF8&iwloc=&output=embed`}
                                     style={{border:"0"}}/>
                         </div>
                 {/*<i className="fas fa-angle-right" style={{fontSize: "44px"}}></i>*/}

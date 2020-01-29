@@ -39,7 +39,6 @@ class Gallery extends React.Component {
     handleClick = async (e, pageNum) => {
         e.preventDefault();
         const { number_of_rooms, number_of_beds, min_price, max_price, city_id, sale_status } = this.state
-        console.log("pageNum: ", pageNum)
         const apartments = await getApartments(number_of_rooms, number_of_beds, min_price, max_price, city_id, 12, pageNum, 'approved' , sale_status)
         this.setState({ apartments })
         window.scrollTo({
@@ -71,11 +70,9 @@ class Gallery extends React.Component {
         }
     }
     setCities = (cities) => {
-        console.log(cities)
         this.setState({ cities: cities.data })
     }
     showApartments = (apartments) => {
-        console.log('apartments', apartments);
         this.setState({
             apartments,
             loading: false,
@@ -108,16 +105,13 @@ class Gallery extends React.Component {
     }
 
     handleRadioChangeRooms = (e) => {
-        const { name, value } = e.target;
-        console.log('value: ', value)
+        const { value } = e.target;
         this.setState({
             number_of_rooms: value
         })
     }
     handleRadioChangeBeds = (e) => {
-        const { name, value } = e.target;
-
-        console.log('value: ', value)
+        const { value } = e.target;
         this.setState({
             number_of_beds: value
         })
@@ -128,7 +122,6 @@ class Gallery extends React.Component {
             isTrue3: false,
             isTrue2: false, isTrue1: false
         })
-        console.log({ rooms: this.state.number_of_rooms, beds: this.state.number_of_beds, minprice: this.state.min_price, maxprice: this.state.max_price });
         const apartments = await getApartments(this.state.number_of_rooms, this.state.number_of_beds, this.state.min_price, this.state.max_price, this.state.city_id, 12, 1,'approved' ,this.state.sale_status);
         this.showApartments(apartments);
     }
@@ -231,13 +224,13 @@ class Gallery extends React.Component {
                 <nav aria-label="Page navigation example">
                     <ul className="pagination justify-content-center mb-2">
                         <li className="page-item">
-                            <a className="page-link" onClick={e => this.handleMoveLeft(e)} href="#">Previous</a>
+                            <a className="page-link" onClick={e => this.handleMoveLeft(e)} href="/#">Previous</a>
                         </li>
-                        <li className="page-item"><a className="page-link" value={this.state.first_number} onClick={e => this.handleClick(e, this.state.first_number)} href="#">{this.state.first_number}</a></li>
-                        <li className="page-item"><a className="page-link" value={this.state.second_number} onClick={e => this.handleClick(e, this.state.second_number)} href="#">{this.state.second_number}</a></li>
-                        <li className="page-item"><a className="page-link" value={this.state.third_number} onClick={e => this.handleClick(e, this.state.third_number)} href="#">{this.state.third_number}</a></li>
+                        <li className="page-item"><a className="page-link" value={this.state.first_number} onClick={e => this.handleClick(e, this.state.first_number)} href="/#">{this.state.first_number}</a></li>
+                        <li className="page-item"><a className="page-link" value={this.state.second_number} onClick={e => this.handleClick(e, this.state.second_number)} href="/#">{this.state.second_number}</a></li>
+                        <li className="page-item"><a className="page-link" value={this.state.third_number} onClick={e => this.handleClick(e, this.state.third_number)} href="/#">{this.state.third_number}</a></li>
                         <li className="page-item">
-                            <a className="page-link" onClick={e => this.handleMoveRight(e)} href="#">Next</a>
+                            <a className="page-link" onClick={e => this.handleMoveRight(e)} href="/#">Next</a>
                         </li>
                     </ul>
                 </nav>
