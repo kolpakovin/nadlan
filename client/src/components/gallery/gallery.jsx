@@ -145,11 +145,11 @@ class Gallery extends React.Component {
 
                 {isTrue1 &&
                     <div className={"dropdown-fltr position-absolute fltr"}>
-                        <label className={"label-of-submenu"}><input className={"d-none"} name={"room"} value={1} type="radio" onChange={this.handleRadioChangeRooms} />1+</label>
-                        <label className={"label-of-submenu"}><input className={"d-none"} name={"room"} value={2} type="radio" onChange={this.handleRadioChangeRooms} />2+</label>
-                        <label className={"label-of-submenu"}><input className={"d-none"} name={"room"} value={3} type="radio" onChange={this.handleRadioChangeRooms} />3+</label>
-                        <label className={"label-of-submenu"}><input className={"d-none"} name={"room"} value={4} type="radio" onChange={this.handleRadioChangeRooms} />4+</label>
-                        <label className={"label-of-submenu"}><input className={"d-none"} name={"room"} value={5} type="radio" onChange={this.handleRadioChangeRooms} />5+</label>
+                        <label className={parseInt(this.state.number_of_rooms) === 1 ? "label-of-submenu selected" : "label-of-submenu"}><input className={"d-none"} name={"room"} value={1} type="radio" onChange={this.handleRadioChangeRooms} />1+</label>
+                        <label className={parseInt(this.state.number_of_rooms) === 2 ? "label-of-submenu selected" : "label-of-submenu"}><input className={"d-none"} name={"room"} value={2} type="radio" onChange={this.handleRadioChangeRooms} />2+</label>
+                        <label className={parseInt(this.state.number_of_rooms) === 3 ? "label-of-submenu selected" : "label-of-submenu"}><input className={"d-none"} name={"room"} value={3} type="radio" onChange={this.handleRadioChangeRooms} />3+</label>
+                        <label className={parseInt(this.state.number_of_rooms) === 4 ? "label-of-submenu selected" : "label-of-submenu"}><input className={"d-none"} name={"room"} value={4} type="radio" onChange={this.handleRadioChangeRooms} />4+</label>
+                        <label className={parseInt(this.state.number_of_rooms) === 5 ? "label-of-submenu selected" : "label-of-submenu"}><input className={"d-none"} name={"room"} value={5} type="radio" onChange={this.handleRadioChangeRooms} />5+</label>
 
                     </div>}
 
@@ -162,11 +162,11 @@ class Gallery extends React.Component {
 
                 {isTrue2 &&
                     <div className={"dropdown-fltr position-absolute fltr"}>
-                        <label className={"label-of-submenu"}><input className={"d-none"} name={"room"} value={1} type="radio" onChange={this.handleRadioChangeBeds} />1+</label>
-                        <label className={"label-of-submenu"}><input className={"d-none"} name={"room"} value={2} type="radio" onChange={this.handleRadioChangeBeds} />2+</label>
-                        <label className={"label-of-submenu"}><input className={"d-none"} name={"room"} value={3} type="radio" onChange={this.handleRadioChangeBeds} />3+</label>
-                        <label className={"label-of-submenu"}><input className={"d-none"} name={"room"} value={4} type="radio" onChange={this.handleRadioChangeBeds} />4+</label>
-                        <label className={"label-of-submenu"}><input className={"d-none"} name={"room"} value={5} type="radio" onChange={this.handleRadioChangeBeds} />5+</label>
+                        <label className={parseInt(this.state.number_of_beds) === 1 ? "label-of-submenu selected" : "label-of-submenu"}><input className={"d-none"} name={"room"} value={1} type="radio" onChange={this.handleRadioChangeBeds} />1+</label>
+                        <label className={parseInt(this.state.number_of_beds) === 2 ? "label-of-submenu selected" : "label-of-submenu"}><input className={"d-none"} name={"room"} value={2} type="radio" onChange={this.handleRadioChangeBeds} />2+</label>
+                        <label className={parseInt(this.state.number_of_beds) === 3 ? "label-of-submenu selected" : "label-of-submenu"}><input className={"d-none"} name={"room"} value={3} type="radio" onChange={this.handleRadioChangeBeds} />3+</label>
+                        <label className={parseInt(this.state.number_of_beds) === 4 ? "label-of-submenu selected" : "label-of-submenu"}><input className={"d-none"} name={"room"} value={4} type="radio" onChange={this.handleRadioChangeBeds} />4+</label>
+                        <label className={parseInt(this.state.number_of_beds) === 5 ? "label-of-submenu selected" : "label-of-submenu"}><input className={"d-none"} name={"room"} value={5} type="radio" onChange={this.handleRadioChangeBeds} />5+</label>
 
                     </div>}
 
@@ -179,9 +179,9 @@ class Gallery extends React.Component {
                 <div className={"dropdown-fltr position-absolute fltr"}>
                     <span className={"submenu-title"}>Price range</span>
                     <div className={"d-flex price-fltr"}>
-                        <div><span className={"dollar"}>$</span><input type="text" className={"form-control"} name={"min_price"} placeholder={"Min Price"} onChange={this.handleInputChange} /></div>
+                        <div><span className={"dollar"}>$</span><input type="text" className={"form-control"} name={"min_price"} placeholder={"Min Price"} value={parseInt(this.state.min_price) !== -1 ? this.state.min_price : ''} onChange={this.handleInputChange} /></div>
                         <span className={"price-divider "}>-</span>
-                        <div><span className={"dollar"}>$</span><input type="text" className={"form-control"} name={"max_price"} placeholder={"Max Price"} onChange={this.handleInputChange} /></div>
+                        <div><span className={"dollar"}>$</span><input type="text" className={"form-control"} name={"max_price"} placeholder={"Max Price"} value={parseInt(this.state.max_price) !== 9999999999 ? this.state.max_price : ''} onChange={this.handleInputChange} /></div>
                     </div>
                 </div>}
         </div>
@@ -205,10 +205,9 @@ class Gallery extends React.Component {
                     </div>
                     <div className="form-group col-md-3">
                                 <select name="sale_status" onClick={(e) => this.handleChange(e)} id="inputState" className="form-control">
-                                    <option defaultValue="" onClick={(e) => this.handleChange(e)} >Sale/Rent</option>
+                                    <option defaultValue="" value="both" onClick={(e) => this.handleChange(e)}>Both</option>
                                     <option value="sale" onClick={(e) => this.handleChange(e)}>Sale</option>
                                     <option value="rent" onClick={(e) => this.handleChange(e)}>Rent</option>
-                                    <option value="both" onClick={(e) => this.handleChange(e)}>Both</option>
                                 </select>
                             </div>       
                     {rooms_fltr}

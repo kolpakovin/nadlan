@@ -253,3 +253,7 @@ img#hi {
   height: 100px;
   width: 120px;
 }
+.selected{
+    background: antiquewhite;
+    color: #8a6097!important;
+}
