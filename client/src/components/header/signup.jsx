@@ -34,9 +34,11 @@ class SignUp extends React.Component{
         e.preventDefault();
         const {status} = this.state
         const email = await checkEmail(this.state.email.value)
-        if(!email.length){
+
+         if( !email.length){
             await registerUser({first_name: this.state.first_name.value, last_name: this.state.last_name.value, email:this.state.email.value, password: this.state.password.value, phone: this.state.phone.value, status});
         } else {
+            console.log("was!!")
             this.setState({invalidEmail: true})
         }
     }
@@ -55,7 +57,7 @@ class SignUp extends React.Component{
                        <input type="text" name="email"  placeholder="Email Address" onBlur={(e) => this.handleChange(e)} required />
                        <InputErrors errors={this.state.email.errors}></InputErrors>
                        {this.state.invalidEmail && <label htmlFor="">This email is already in use </label>   }
-                       <input type="text" name="password" placeholder="Password" onBlur={(e) => this.handleChange(e)} required />
+                       <input type="password" name="password" placeholder="Password" onBlur={(e) => this.handleChange(e)} required />
                        <InputErrors errors={this.state.password.errors}></InputErrors>
                        <input type="text" name="phone"  placeholder="Phone Number" onBlur={(e) => this.handleChange(e)} required />
                        <InputErrors errors={this.state.phone.errors}></InputErrors>

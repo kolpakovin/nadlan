@@ -77,7 +77,7 @@ class LoginForm extends React.Component{
                        <h4>Log in to your account</h4>
                        <p>Access all your saved properties, searches, notes and more.</p>
                        <input type="text" name="email" placeholder={"Email Address"} value={this.state.email} onChange={(e) => this.handleChange(e)}/>
-                       <input type="text" name="password" placeholder={"Password"} value={this.state.password} onChange={(e) => this.handleChange(e)}/>
+                       <input type="password" name="password" placeholder={"Password"} value={this.state.password} onChange={(e) => this.handleChange(e)}/>
                        {this.state.invalidUser && <h1>Invalid email or password</h1>}
                        <div className={"mt-3 mb-4 ml-auto mr-auto"}>
                            <button onClick={(e) => {this.sendUser(e)}} id={"simple-login"}>Log In</button>

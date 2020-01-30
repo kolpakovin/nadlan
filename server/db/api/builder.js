@@ -6,7 +6,7 @@ class Builder {
     }
     allApartments = (page, size) =>{
         this.query = "SELECT A.*, C.name from apartments A join cities C on A.city_id = C.id WHERE 1 "; 
-        this.limit = ` limit ${(page-1)*size}, ${size}`;
+        this.limit = `order by A.id desc limit ${(page-1)*size}, ${size} `;
         return this;
     }
     id = (id) => {

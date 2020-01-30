@@ -65,6 +65,7 @@ router.delete('/:id', async function(req, res, next){
 })
 
 router.get('/:email', async function(req, res, next){
+  console.log('req.params.email')
   try{
       const response = await checkEmail(req.params.email)
       console.log(response == false)

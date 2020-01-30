@@ -126,20 +126,40 @@ class User extends Component {
     consolefunction = (data) => {
         const apartment = data.apartment[0]
         const address = { ...this.state.address, value: apartment.address };
-
         // this.state.address.value = apartment.address
-        this.state.price.value = apartment.price
-        this.state.number_of_room.value = apartment.number_of_room
-        this.state.number_of_bath.value = apartment.number_of_bath
-        this.state.sale_status.value = apartment.sale_status
-        this.state.property_type.value = apartment.property_type
-        this.state.sqft.value = apartment.sqft
-        this.state.description.value = apartment.description
-        this.state.city_id.value = apartment.city_id
+        // this.state.price.value = apartment.price
+        const price = { ...this.state.price, value: apartment.price };
+        // this.state.number_of_room.value = apartment.number_of_room
+        const number_of_room = { ...this.state.number_of_room, value: apartment.number_of_room };
+        // this.state.number_of_bath.value = apartment.number_of_bath
+        const number_of_bath = { ...this.state.number_of_bath, value: apartment.number_of_bath };
+        // this.state.sale_status.value = apartment.sale_status
+        const sale_status = { ...this.state.sale_status, value: apartment.sale_status };
+
+        // this.state.property_type.value = apartment.property_type
+        const property_type = { ...this.state.property_type, value: apartment.property_type };
+
+        // this.state.sqft.value = apartment.sqft
+        const sqft = { ...this.state.sqft, value: apartment.sqft };
+
+        // this.state.description.value = apartment.description
+        const description = { ...this.state.description, value: apartment.description };
+
+        // this.state.city_id.value = apartment.city_id
+        const city_id = { ...this.state.city_id, value: apartment.city_id };
+
         this.setState({
             apartment,
             editApartmentIsOpen: true, 
-            address
+            address,
+            price,
+            number_of_room,
+            number_of_bath,
+            sale_status,
+            property_type,
+            sqft,
+            description,
+            city_id
         })
     }
     onSubmit = (e, type) => {
