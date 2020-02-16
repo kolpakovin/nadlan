@@ -1,4 +1,6 @@
 import fetcher from './fetcher';
+import fetcher1 from './fetcher1';
+
 
 async function registerUser({ ...data }) {
     try {
@@ -16,6 +18,16 @@ const getApartments = async (rooms = 0, beds = 0, minprice = -1, maxprice = 9999
         return error
     }
 }
+
+// const getApartments = async () => {
+//     try {
+//         const response = await fetcher1.get(`apartments`);
+//         return response.data.result;
+//     } catch (error) {
+//         return error
+//     }
+// }
+
 const getApartmentsByUserId = async (user_id = -1) => {
     try {
         const response = await fetcher.get(`/apartments?user_id=${user_id}`);

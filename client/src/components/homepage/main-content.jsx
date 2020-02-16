@@ -31,10 +31,10 @@ class MainContent extends React.Component {
                 </div>
                 <div className="whatsapp"><h2>What's happening in Tel Aviv</h2></div>
                 <div className="statistic row">
-                    <div className="info col-md-3 col-sm-6"><p className="numbers">461</p><p>Homes for sale</p></div>
+                    <div className="info col-md-3 col-sm-6"><p className="numbers">17</p><p>Homes for sale</p></div>
                     <div className="info col-md-3 col-sm-6"><p className="numbers">2</p><p>Open houses</p></div>
                     <div className="info col-md-3 col-sm-6"><p className="numbers">252</p><p>Recently sold</p></div>
-                    <div className="info col-md-3 col-sm-6"><p className="numbers">32</p><p>Price reduced</p></div>
+                    <div className="info col-md-3 col-sm-6"><p className="numbers">10</p><p>Price reduced</p></div>
                 </div>
                 
                 
