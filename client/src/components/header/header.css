@@ -31,7 +31,9 @@ li.navigation-li:hover {
   -webkit-box-pack: justify;
   -ms-flex-pack: justify;
   justify-content: space-between;
-  border-bottom: 1px solid #898989; }
+  border-bottom: 1px solid #898989;
+  background: rgb(14,0,255);
+  background: linear-gradient(90deg, rgba(14,0,255,1) 0%, rgba(154,149,247,1) 0%, rgba(169,147,212,1) 0%, rgba(124,55,255,1) 51%, rgba(231,230,170,1) 100%); }
 
 #app-header img {
   height: 100px;
@@ -219,16 +221,16 @@ div.navigation {
     cursor: pointer; }
   #login #simple-login, #signup #simple-login1 {
     color: white;
-    background-color: #d92228;
+    background-color: darkblue;
     border: 0;
     padding: 3px 45px;
     border-radius: 18px; }
   #login #no-account {
     position: relative;
     top: 4px;
-    color: #d92228; }
+    color: darkblue; }
     #login #no-account:hover {
-      color: #1c7de6;
+      color: darkblue;
       text-decoration: underline; }
   #login .login-form-button, #signup .login-form-button {
     width: 100%;
@@ -237,7 +239,7 @@ div.navigation {
     border: 0;
     padding: 3px 10px; }
   #login .facebook-button {
-    background-color: #39589b;
+    background-color: darkblue;
     color: white; }
   #login .google-button {
     background-color: white;

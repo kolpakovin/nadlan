@@ -129,6 +129,7 @@ p.upload-time {
   color: white;
   padding: 0 5px;
   font-size: 12px;
+  height: 19px;
 }
 p.rent-status {
   position: absolute;
