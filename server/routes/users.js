@@ -43,10 +43,9 @@ router.post('/signup', async (req, res) => {
   try {
     results = await newUser(userDetails);
     user = await login(userDetails.email, userDetails.password);
-    user = {...user[0]};
     console.log('user',user);
     if (user){
-      res.cookie("user", user, { maxAge: 1000 * 60 * 60 * 24}).status(200).send(user);
+      res.cookie("user", JSON.stringify(user), { maxAge: 1000 * 60 * 60 * 24}).status(200).send(user);
     } else{
       res.status(401).json({ status: 401, message: "Invalid user. Check your db"})
     }

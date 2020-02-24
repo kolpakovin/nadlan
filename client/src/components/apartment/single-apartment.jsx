@@ -10,7 +10,6 @@ class Apartment extends React.Component {
         super(props);
 
         const apartmentId = this.props.match.params.id;
-        // const apartmentImage = this.props.match.params.main_image;
 
         this.state = {
             apartment: [],

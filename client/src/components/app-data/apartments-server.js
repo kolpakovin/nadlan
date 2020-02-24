@@ -1,5 +1,4 @@
 import fetcher from './fetcher';
-import fetcher1 from './fetcher1';
 
 
 async function registerUser({ ...data }) {
